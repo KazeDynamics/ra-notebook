@@ -2,9 +2,9 @@ import { serializeNonPOJOs } from '$lib/utils';
 import { error } from '@sveltejs/kit';
 
 export const load = ({ locals, params }) => {
-	const getItem = async (itemCountry) => {
+	const getProject = async (itemId) => {
 		try {
-			const item = serializeNonPOJOs(await locals.pb.collection('items').getOne(itemCountry));
+			const item = serializeNonPOJOs(await locals.pb.collection('items').getOne(itemId));
 			return item;
 		} catch (err) {
 			console.log('Error: ', err);
@@ -13,6 +13,6 @@ export const load = ({ locals, params }) => {
 	};
 
 	return {
-		item: getItem(params.itemCountry)
+		item: getItem(params.itemId)
 	};
 };

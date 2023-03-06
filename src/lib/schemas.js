@@ -61,37 +61,6 @@ export const createItemSchema = z.object({
 		.min(1, { message: 'Name is required' })
 		.max(64, { message: 'Name must be 64 characters or less' })
 		.trim(),
-	tagline: z
-		.string({ required_error: 'Tagline is required' })
-		.min(1, { message: 'Tagline is required' })
-		.max(64, { message: 'Tagline must be 64 characters or less' })
-		.trim(),
-	url: z.string({ required_error: 'URL is required' }).url({ message: 'URL must be a valid URL' }),
-	description: z
-		.string({ required_error: 'Description is required' })
-		.min(1, { message: 'Description is required' })
-		.max(512, { message: 'Description must be less than 512 characters' })
-		.trim(),
-	thumbnail: z
-		.instanceof(Blob)
-		.optional()
-		.superRefine((val, ctx) => {
-			if (val) {
-				if (val.size > 5242880) {
-					ctx.addIssue({
-						code: z.ZodIssueCode.custom,
-						message: 'Thumbnail must be less than 5MB'
-					});
-				}
-
-				if (!imageTypes.includes(val.type)) {
-					ctx.addIssue({
-						code: z.ZodIssueCode.custom,
-						message: 'Unsupported file type. Supported formats: jpeg, jpg, png, webp, svg, gif'
-					});
-				}
-			}
-		}),
 	user: z.string({ required_error: 'User is required.' })
 });
 

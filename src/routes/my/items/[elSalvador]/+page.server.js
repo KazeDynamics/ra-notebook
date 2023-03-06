@@ -6,11 +6,11 @@ export const load = ({ locals }) => {
 		throw redirect(303, '/login');
 	}
 
-	const getItemCountry = async (costaRica) => {
+	const getItemCountry = async (elSalvador) => {
 		try {
 			const items = serializeNonPOJOs(
 				await locals.pb.collection('items').getFullList(undefined, {
-					filter: `country = "${costaRica}"`
+					filter: `country = "${elSalvador}"`
 				})
 			);
 			return items;

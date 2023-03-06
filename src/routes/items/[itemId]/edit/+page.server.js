@@ -11,7 +11,7 @@ export const load = async ({ locals, params }) => {
 	try {
 		const item = serializeNonPOJOs(await locals.pb.collection('items').getOne(params.itemId));
 
-		if (locals.user.id === item.user) {
+		if (locals.user.id === project.user) {
 			return {
 				item
 			};
@@ -28,14 +28,8 @@ export const actions = {
 	updateItem: async ({ request, locals, params }) => {
 		const body = await request.formData();
 
-		const thumb = body.get('thumbnail');
-
-		if (thumb.size === 0) {
-			body.delete('thumbnail');
-		}
-
 		const { formData, errors } = await validateData(body, updateItemSchema);
-		const { thumbnail, ...rest } = formData;
+		const { ...rest } = formData;
 
 		if (errors) {
 			return invalid(400, {
@@ -45,7 +39,7 @@ export const actions = {
 		}
 
 		try {
-			await locals.pb.collection('item').update(params.itemId, serialize(formData));
+			await locals.pb.collection('items').update(params.itemId, serialize(formData));
 		} catch (err) {
 			console.log('Error: ', err);
 			throw error(err.status, err.message);

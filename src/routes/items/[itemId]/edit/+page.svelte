@@ -1,8 +1,7 @@
 <script>
 	import { enhance } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
-	import { Icon, Trash } from 'svelte-hero-icons';
-	import { Input, TextArea } from '$lib/components';
+	import { Input, DropdownBusinessUnit, DropdownCountry, DropdownProcess } from '$lib/components';
 	export let data;
 	export let form;
 	let loading = false;
@@ -35,9 +34,27 @@
 			<h3 class="text-3xl font-bold">Edit {data.item.name}</h3>
 			<Input
 				id="name"
-				label="Item name"
+				label="Project name"
 				value={form?.data?.name ?? data.item.name}
 				errors={form?.errors?.name}
+			/>
+			<DropdownCountry
+				id="country"
+				label="Country"
+				value={form?.data?.country ?? data.item.country}
+				errors={form?.errors?.country}
+			/>
+			<DropdownProcess
+				id="process"
+				label="Process Type"
+				value={form?.data?.process ?? data.item.process}
+				errors={form?.errors?.process}
+			/>
+			<DropdownBusinessUnit
+				id="businessUnit"
+				label="Business Unit"
+				value={form?.data?.businessUnit ?? data.item.businessUnit}
+				errors={form?.errors?.businessUnit}
 			/>
 			<div class="w-full max-w-lg pt-3">
 				<button type="submit" class="btn btn-primary w-full max-w-lg">Save Changes</button>

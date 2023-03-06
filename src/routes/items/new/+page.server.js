@@ -13,22 +13,17 @@ export const actions = {
 	create: async ({ request, locals }) => {
 		const body = await request.formData();
 
-		// const thumb = body.get('thumbnail');
+		body.append('user', locals.user.id);
 
-		// if (thumb.size === 0) {
-		// 	body.delete('thumbnail');
-		// }
-		// body.append('user', locals.user.id);
+		const { formData, errors } = await validateData(body, createItemSchema);
+		const { ...rest } = formData;
 
-		// const { formData, errors } = await validateData(body, createItemSchema);
-		// const { thumbnail, ...rest } = formData;
-
-		// if (errors) {
-		// 	return invalid(400, {
-		// 		data: rest,
-		// 		errors: errors.fieldErrors
-		// 	});
-		// }
+		if (errors) {
+			return invalid(400, {
+				data: rest,
+				errors: errors.fieldErrors
+			});
+		}
 
 		try {
 			await locals.pb.collection('items').create(serialize(formData));
