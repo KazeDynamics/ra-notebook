@@ -11,7 +11,7 @@ export const load = async ({ locals, params }) => {
 	try {
 		const item = serializeNonPOJOs(await locals.pb.collection('items').getOne(params.itemId));
 
-		if (locals.user.id === project.user) {
+		if (locals.user.id === item.user) {
 			return {
 				item
 			};

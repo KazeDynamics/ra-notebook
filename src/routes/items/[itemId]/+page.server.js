@@ -2,7 +2,7 @@ import { serializeNonPOJOs } from '$lib/utils';
 import { error } from '@sveltejs/kit';
 
 export const load = ({ locals, params }) => {
-	const getProject = async (itemId) => {
+	const getItem = async (itemId) => {
 		try {
 			const item = serializeNonPOJOs(await locals.pb.collection('items').getOne(itemId));
 			return item;

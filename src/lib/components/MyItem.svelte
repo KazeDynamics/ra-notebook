@@ -37,7 +37,7 @@
 			<div slot="heading">
 				<h3 class="text-2xl">Delete {item.name}</h3>
 				<p class="text-base font-normal mt-2">
-					Are you sure you want to delete this item? Once deleted, the project cannot be restored.
+					Are you sure you want to delete this item? Once deleted, the item cannot be restored.
 				</p>
 			</div>
 			<div slot="actions" class="flex w-full items-center justify-center space-x-2">

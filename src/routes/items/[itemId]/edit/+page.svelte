@@ -34,7 +34,7 @@
 			<h3 class="text-3xl font-bold">Edit {data.item.name}</h3>
 			<Input
 				id="name"
-				label="Project name"
+				label="Item name"
 				value={form?.data?.name ?? data.item.name}
 				errors={form?.errors?.name}
 			/>
