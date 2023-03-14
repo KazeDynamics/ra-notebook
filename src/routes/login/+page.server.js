@@ -23,7 +23,7 @@ export const actions = {
 			}
 		} catch (err) {
 			console.log('Error: ', err);
-			throw error(500, 'Something went wrong logging in');
+			throw error(err.status, err.message);
 		}
 
 		throw redirect(303, '/');

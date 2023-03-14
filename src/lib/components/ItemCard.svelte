@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
 	export let item;
 </script>
 
@@ -10,4 +10,4 @@
 			<a href="/items/{item.id}" class="btn btn-primary">View Item</a>
 		</div>
 	</div>
-</div> -->
+</div>
