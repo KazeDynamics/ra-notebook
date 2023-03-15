@@ -9,7 +9,7 @@ export const load = async ({ locals, params }) => {
 	}
 
 	try {
-		const item = serializeNonPOJOs(await locals.pb.collection('items').getOne(params.itemId));
+		const item = serializeNonPOJOs(await locals.pb.collection('items').getOne(params.itemsId));
 
 		if (locals.user.id === item.user) {
 			return {
@@ -38,7 +38,7 @@ export const actions = {
 		}
 
 		try {
-			await locals.pb.collection('items').update(params.itemId, serialize(formData));
+			await locals.pb.collection('items').update(params.itemsId, serialize(formData));
 		} catch (err) {
 			console.log('Error: ', err);
 			throw error(err.status, err.message);
