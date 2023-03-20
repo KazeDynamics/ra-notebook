@@ -3,6 +3,7 @@
 	import { getImageURL } from '$lib/utils';
 	import { Toaster } from 'svelte-french-toast';
 	export let data;
+	import Icon from '@iconify/svelte';
 </script>
 
 <Toaster />
@@ -74,23 +75,58 @@
 			</nav>
 			<div class=" flex flex-row">
 				<ul class="menu bg-base-100 w-56 hidden lg:block">
-					<li class="py-6">
+					<li>
 						<span
-							>Map
-							<div class="badge badge-accent" style="">Coming soon!</div></span
+							><Icon icon="material-symbols:map" class="inline text-xl" />Map
+							<div class="badge badge-accent  min-w-fit">Coming soon!</div></span
+						>
+					</li>
+					<li class="pb-4">
+						<a
+							on:click={() => {
+								document.getElementById('my-drawer-3').click();
+							}}
+							href="/items/new"
+							>Add Item<Icon icon="material-symbols:add" class="text-green-700 inline text-xl" /></a
 						>
 					</li>
 					<li class="menu-title">
-						<span>Countries</span>
+						<span>LATAM Countries</span>
 					</li>
 					<li>
-						<a href="/my/items/guatemala">Guatemala</a>
+						<a href="/my/items/guatemala"
+							><Icon
+								icon="game-icons:byzantin-temple"
+								class="inline text-xl text-blueGray-500"
+							/>Guatemala</a
+						>
 					</li>
-					<li><a href="/my/items/honduras">Honduras</a></li>
-					<li><a href="/my/items/elSalvador">El Salvador</a></li>
-					<li><a href="/my/items/nicaragua">Nicaragua</a></li>
-					<li><a href="/my/items/costaRica">Costa Rica</a></li>
-					<li><a href="/my/items/panama">Panama</a></li>
+					<li>
+						<a href="/my/items/honduras"
+							><Icon icon="noto:palm-tree" class="inline text-xl" />Honduras</a
+						>
+					</li>
+					<li>
+						<a href="/my/items/elSalvador"
+							><Icon icon="game-icons:mountain-cave" class="inline text-xl text-amber-700" />El
+							Salvador</a
+						>
+					</li>
+					<li>
+						<a href="/my/items/nicaragua"
+							><Icon icon="emojione:volcano" class="inline text-xl" />Nicaragua</a
+						>
+					</li>
+					<li>
+						<a href="/my/items/costaRica"
+							><Icon icon="game-icons:waterfall" class="inline text-xl text-lightBlue-600" />Costa
+							Rica</a
+						>
+					</li>
+					<li>
+						<a href="/my/items/panama"><Icon icon="openmoji:ship" class="inline text-xl" />Panama</a
+						>
+					</li>
 				</ul>
 				<div class="flex-auto py-4">
 					<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -103,22 +139,35 @@
 	<div class="drawer-side">
 		<label for="my-drawer-3" class="drawer-overlay" />
 		<ul class="menu p-4 w-80 bg-base-100">
-			<li class="py-6">
+			<li class="py-2 h-12">
 				<span
-					>Map
+					><Icon icon="material-symbols:map" class="inline text-xl" />Map
 					<div class="badge badge-accent">Coming soon!</div></span
+				>
+			</li>
+			<li class="py-2">
+				<a
+					on:click={() => {
+						document.getElementById('my-drawer-3').click();
+					}}
+					href="/items/new"
+					><Icon icon="bi:plus-circle" class="text-green-700 inline text-xl" />Add Item</a
 				>
 			</li>
 			<!-- Sidebar content here -->
 			<li class="menu-title">
-				<span>Countries</span>
+				<span>LATAM Countries</span>
 			</li>
 			<li>
 				<a
 					on:click={() => {
 						document.getElementById('my-drawer-3').click();
 					}}
-					href="/my/items/guatemala">Guatemala</a
+					href="/my/items/guatemala"
+					><Icon
+						icon="game-icons:byzantin-temple"
+						class="inline text-xl text-blueGray-500"
+					/>Guatemala</a
 				>
 			</li>
 			<li>
@@ -126,7 +175,7 @@
 					on:click={() => {
 						document.getElementById('my-drawer-3').click();
 					}}
-					href="/my/items/honduras">Honduras</a
+					href="/my/items/honduras"><Icon icon="noto:palm-tree" class="inline text-xl" />Honduras</a
 				>
 			</li>
 			<li>
@@ -134,7 +183,8 @@
 					on:click={() => {
 						document.getElementById('my-drawer-3').click();
 					}}
-					href="/my/items/elSalvador">El Salvador</a
+					href="/my/items/elSalvador"
+					><Icon icon="game-icons:mountain-cave" class="inline text-xl text-amber-700" />El Salvador</a
 				>
 			</li>
 			<li>
@@ -142,7 +192,8 @@
 					on:click={() => {
 						document.getElementById('my-drawer-3').click();
 					}}
-					href="/my/items/nicaragua">Nicaragua</a
+					href="/my/items/nicaragua"
+					><Icon icon="emojione:volcano" class="inline text-xl" />Nicaragua</a
 				>
 			</li>
 			<li>
@@ -150,7 +201,8 @@
 					on:click={() => {
 						document.getElementById('my-drawer-3').click();
 					}}
-					href="/my/items/costaRica">Costa Rica</a
+					href="/my/items/costaRica"
+					><Icon icon="game-icons:waterfall" class="inline text-xl text-lightBlue-600" />Costa Rica</a
 				>
 			</li>
 			<li>
@@ -158,7 +210,7 @@
 					on:click={() => {
 						document.getElementById('my-drawer-3').click();
 					}}
-					href="/my/items/panama">Panama</a
+					href="/my/items/panama"><Icon icon="openmoji:ship" class="inline text-xl" />Panama</a
 				>
 			</li>
 		</ul>
