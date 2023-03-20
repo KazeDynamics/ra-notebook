@@ -68,7 +68,7 @@ export const createItemSchema = z.object({
 	user: z.string({ required_error: 'User is required.' })
 });
 
-export const updateItemSchema = createItemSchema.omit({ user: true });
+export const updateItemSchema = createItemSchema.omit({ user: true, country: true });
 
 export const updateEmailSchema = z.object({
 	email: z

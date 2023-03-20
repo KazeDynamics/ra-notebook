@@ -28,7 +28,25 @@
 <div class="w-full h-28 flex items-center justify-between">
 	<div class="flex flex-col w-full ml-4 h-full justify-center">
 		<a href="/items/{item.id}" class="font-semibold text-lg">{item.name}</a>
-		<p>{item.country}</p>
+		{#if item.country === 'guatemala'}
+			<p>Guatemala</p>
+		{:else if item.country === 'honduras'}
+			<p>Honduras</p>
+		{:else if item.country === 'elSalvador'}
+			<p>El Salvador</p>
+		{:else if item.country === 'nicaragua'}
+			<p>Nicaragua</p>
+		{:else if item.country === 'costaRica'}
+			<p>Costa Rica</p>
+		{:else if item.country === 'panama'}
+			<p>Panama</p>
+		{/if}
+		{#if item.process === 'productSubmission'}
+			<p>Product Submission</p>
+		{:else if item.process === 'productRenewal'}
+			<p>Product Renewal</p>
+		{/if}
+		<p>{item.businessUnit}</p>
 	</div>
 	<div class="flex items-center justify-end w-full">
 		<a href="/items/{item.id}/edit" class="btn btn-outline">Edit Item</a>

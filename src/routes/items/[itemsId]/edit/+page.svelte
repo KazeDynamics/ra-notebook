@@ -42,6 +42,7 @@
 				label="Item country"
 				value={form?.data?.country ?? data.item.country}
 				errors={form?.errors?.country}
+				disabled
 			/>
 			<DropdownProcess
 				id="process"

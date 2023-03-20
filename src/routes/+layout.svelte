@@ -11,35 +11,51 @@
 	<input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
 	<div class="drawer-content flex flex-col">
 		<div class="min-h-full">
-			<nav class="navbar border-b">
-				<div class="flex-none lg:hidden">
-					<label for="my-drawer-3" class="btn btn-square btn-ghost">
-						<svg
-							xmlns="http://www.w3.org/2000/svg"
-							fill="none"
-							viewBox="0 0 24 24"
-							class="inline-block w-6 h-6 stroke-current"
-							><path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M4 6h16M4 12h16M4 18h16"
-							/></svg
+			<nav class="navbar border-b bg-primary">
+				{#if data.user}
+					<div class="flex-none lg:hidden">
+						<label for="my-drawer-3" class="btn btn-square btn-ghost ">
+							<svg
+								xmlns="http://www.w3.org/2000/svg"
+								fill="none"
+								viewBox="0 0 24 24"
+								class="inline-block w-6 h-6 stroke-current text-base-100"
+								><path
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									d="M4 6h16M4 12h16M4 18h16"
+								/></svg
+							>
+						</label>
+					</div>
+				{/if}
+				{#if !data.user}
+					<div class="flex-1">
+						<a
+							href="/"
+							class="btn btn-ghost normal-case text-xl pl-2 text-base-100 pointer-events-none"
+							>Regulatory Notebook</a
 						>
-					</label>
-				</div>
-				<div class="flex-1">
-					<a href="/" class="btn btn-ghost normal-case text-xl">Regulatory Notebook</a>
-				</div>
+					</div>
+				{:else}
+					<div class="flex-1">
+						<a href="/" class="btn btn-ghost normal-case text-xl pl-2 text-base-100"
+							>Regulatory Notebook</a
+						>
+					</div>
+				{/if}
 				<div class="flex-none">
 					{#if !data.user}
 						<div class="dropdown dropdown-end">
-							<a href="/login" class="btn btn-primary">Login</a>
+							<a href="/login" class="btn btn-primary bg-base-100 border-black text-black">Login</a>
 							<a href="/register" class="btn btn-secondary">Register</a>
 						</div>
 					{:else}
 						<div class="dropdown dropdown-end mr-4">
-							<a href="/items/new" class="btn btn-primary btn-outline">Add Item</a>
+							<a href="/items/new" class="btn btn-text-base-100 btn-outline text-base-100"
+								>Add Item</a
+							>
 						</div>
 						<div class="dropdown dropdown-end">
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->

@@ -12,23 +12,23 @@
 			class="flex flex-col space-y-2 w-full items-center"
 			use:enhance
 		>
-			<h3 class="text-3xl font-bold">Tell us more about this item</h3>
-			<Input id="name" label="Item name" value={form?.data?.name} errors={form?.errors?.name} />
+			<h3 class="text-3xl font-bold">Please provide the product information</h3>
+			<Input id="name" label="Product Name" value={form?.data?.name} errors={form?.errors?.name} />
 			<DropdownCountry
 				id="country"
-				label="Item country"
+				label="Country"
 				value={form?.data?.country}
 				errors={form?.errors?.country}
 			/>
 			<DropdownProcess
 				id="process"
-				label="Item process"
+				label="Process Type"
 				value={form?.data?.process}
 				errors={form?.errors?.process}
 			/>
 			<DropdownBusinessUnit
 				id="businessUnit"
-				label="Item business unit"
+				label="Business Unit"
 				value={form?.data?.businessUnit}
 				errors={form?.errors?.businessUnit}
 			/>
