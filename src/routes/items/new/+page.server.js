@@ -31,6 +31,6 @@ export const actions = {
 			throw error(err.status, err.message);
 		}
 
-		throw redirect(303, '/my/items');
+		throw redirect(303, '/');
 	}
 };
