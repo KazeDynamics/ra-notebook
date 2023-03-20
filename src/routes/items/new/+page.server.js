@@ -19,7 +19,7 @@ export const actions = {
 
 		if (errors) {
 			return fail(400, {
-				data: rest,
+				data: formData,
 				errors: errors.fieldErrors
 			});
 		}

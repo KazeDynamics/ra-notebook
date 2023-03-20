@@ -32,8 +32,8 @@ export const actions = {
 			const { name, avatar } = await locals.pb
 				.collection('users')
 				.update(locals?.user?.id, serialize(formData));
-			locals.user.name = name;
-			locals.user.avatar = avatar;
+			locals.users.name = name;
+			locals.users.avatar = avatar;
 		} catch (err) {
 			console.log('Error: ', err);
 

@@ -47,6 +47,15 @@ export const registerUserSchema = z
 		}
 	});
 
+const imageTypes = [
+	'image/jpeg',
+	'image/jpg',
+	'image/png',
+	'image/webp',
+	'image/svg+xml',
+	'image/gif'
+];
+
 export const createItemSchema = z.object({
 	name: z
 		.string({ required_error: 'Name is required' })
