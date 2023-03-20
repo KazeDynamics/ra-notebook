@@ -6,22 +6,40 @@ export const load = ({ locals }) => {
 		throw redirect(303, '/login');
 	}
 
-	const getItemCountry = async (costaRica) => {
+	// const getItemCountry = async (costaRica) => {
+	// 	try {
+	// 		const items = serializeNonPOJOs(
+	// 			await locals.pb.collection('items').getFullList({
+	// 				filter: `country = "${costaRica}"`
+	// 			})
+	// 		);
+	// 		return items;
+	// 	} catch (err) {
+	// 		console.log('Error: ', err);
+	// 		throw error(err.status, err.message);
+	// 	}
+	// };
+
+	// return {
+	// 	items: getItemCountry(locals.user.id)
+	// };
+
+	const getItemsByCountry = async () => {
 		try {
 			const items = serializeNonPOJOs(
 				await locals.pb.collection('items').getFullList(undefined, {
-					filter: `country = "${costaRica}"`
+					filter: `country = "costaRica"`
 				})
 			);
 			return items;
 		} catch (err) {
-			console.log('Error: ', err);
+			console.log('Error:', err);
 			throw error(err.status, err.message);
 		}
 	};
 
 	return {
-		items: getItemCountry(locals.user.id)
+		items: getItemsByCountry()
 	};
 };
 

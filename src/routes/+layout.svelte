@@ -9,7 +9,7 @@
 <div class="min-h-full">
 	<nav class="navbar bg-base-100 border-b">
 		<div class="flex-1">
-			<a href="/" class="btn btn-ghost normal-case text-xl">Showcase</a>
+			<a href="/" class="btn btn-ghost normal-case text-xl">Regulatory Notebook</a>
 		</div>
 		<div class="flex-none">
 			{#if !data.user}
