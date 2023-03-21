@@ -32,15 +32,11 @@
 				{/if}
 				{#if !data.user}
 					<div class="flex-1">
-						<a
-							href="/"
-							class="btn btn-ghost normal-case text-xl pl-2 text-base-100 pointer-events-none"
-							>Regulatory Notebook</a
-						>
+						<a href="/" class="btn btn-ghost normal-case text-xl pl-2 text-base-100 e">Notebook</a>
 					</div>
 				{:else}
 					<div class="flex-1">
-						<a href="/" class="btn btn-ghost normal-case text-xl pl-2 text-base-100"
+						<a href="/home" class="btn btn-ghost normal-case text-xl pl-2 text-base-100"
 							>Regulatory Notebook</a
 						>
 					</div>
@@ -52,11 +48,11 @@
 							<a href="/register" class="btn btn-secondary">Register</a>
 						</div>
 					{:else}
-						<div class="dropdown dropdown-end mr-4">
+						<!-- <div class="dropdown dropdown-end mr-4">
 							<a href="/items/new" class="btn btn-text-base-100 btn-outline text-base-100"
 								>Add Item</a
 							>
-						</div>
+						</div> -->
 						<div class="dropdown dropdown-end">
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 							<!-- svelte-ignore a11y-label-has-associated-control -->
@@ -90,65 +86,75 @@
 				</div>
 			</nav>
 			<div class=" flex flex-row">
-				<ul class="menu bg-base-100 w-56 hidden lg:block">
-					<li>
-						<span
-							><Icon icon="material-symbols:map" class="inline text-xl" />Map
-							<div class="badge badge-accent  min-w-fit">Coming soon!</div></span
-						>
-					</li>
-					<li class="pb-4">
-						<a
-							on:click={() => {
-								document.getElementById('my-drawer-3').click();
-							}}
-							href="/items/new"
-							>Add Item<Icon icon="material-symbols:add" class="text-green-700 inline text-xl" /></a
-						>
-					</li>
-					<li class="menu-title">
-						<span>LATAM Countries</span>
-					</li>
-					<li>
-						<a href="/my/items/guatemala"
-							><Icon
-								icon="game-icons:byzantin-temple"
-								class="inline text-xl text-blueGray-500"
-							/>Guatemala</a
-						>
-					</li>
-					<li>
-						<a href="/my/items/honduras"
-							><Icon icon="noto:palm-tree" class="inline text-xl" />Honduras</a
-						>
-					</li>
-					<li>
-						<a href="/my/items/elSalvador"
-							><Icon icon="game-icons:mountain-cave" class="inline text-xl text-amber-700" />El
-							Salvador</a
-						>
-					</li>
-					<li>
-						<a href="/my/items/nicaragua"
-							><Icon icon="emojione:volcano" class="inline text-xl" />Nicaragua</a
-						>
-					</li>
-					<li>
-						<a href="/my/items/costaRica"
-							><Icon icon="game-icons:waterfall" class="inline text-xl text-lightBlue-600" />Costa
-							Rica</a
-						>
-					</li>
-					<li>
-						<a href="/my/items/panama"><Icon icon="openmoji:ship" class="inline text-xl" />Panama</a
-						>
-					</li>
-				</ul>
-				<div class="flex-auto py-4">
-					<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
-						<slot />
+				{#if data.user}
+					<ul class="menu bg-base-100 w-56 hidden lg:block border border-solid border-r-gray-300">
+						<li>
+							<span
+								><Icon icon="material-symbols:map" class="inline text-xl" />Map
+								<div class="badge badge-accent  min-w-fit">Coming soon!</div></span
+							>
+						</li>
+						<li class="pb-4">
+							<a href="/items/new"
+								>Add Item<Icon
+									icon="material-symbols:add"
+									class="text-green-700 inline text-xl"
+								/></a
+							>
+						</li>
+						<li class="menu-title">
+							<span>LATAM Countries</span>
+						</li>
+						<li>
+							<a href="/my/items/guatemala"
+								><Icon
+									icon="game-icons:byzantin-temple"
+									class="inline text-xl text-blueGray-500"
+								/>Guatemala</a
+							>
+						</li>
+						<li>
+							<a href="/my/items/honduras"
+								><Icon icon="noto:palm-tree" class="inline text-xl" />Honduras</a
+							>
+						</li>
+						<li>
+							<a href="/my/items/elSalvador"
+								><Icon icon="game-icons:mountain-cave" class="inline text-xl text-amber-700" />El
+								Salvador</a
+							>
+						</li>
+						<li>
+							<a href="/my/items/nicaragua"
+								><Icon icon="emojione:volcano" class="inline text-xl" />Nicaragua</a
+							>
+						</li>
+						<li>
+							<a href="/my/items/costaRica"
+								><Icon icon="game-icons:waterfall" class="inline text-xl text-lightBlue-600" />Costa
+								Rica</a
+							>
+						</li>
+						<li>
+							<a href="/my/items/panama"
+								><Icon icon="openmoji:ship" class="inline text-xl" />Panama</a
+							>
+						</li>
+					</ul>
+				{/if}
+				{#if !data.user}
+					<div class="flex-auto">
+						<div class="mx-auto">
+							<slot />
+						</div>
 					</div>
-				</div>
+				{:else}
+					<div class="flex-auto py-4">
+						<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
+							<slot />
+						</div>
+					</div>
+				{/if}
 			</div>
 		</div>
 	</div>

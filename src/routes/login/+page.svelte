@@ -26,7 +26,7 @@
 	};
 </script>
 
-<div class="flex flex-col items-center h-full w-full">
+<div class="flex flex-col items-center h-full w-full pt-8">
 	<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-content">
 		Login to your account
 	</h2>

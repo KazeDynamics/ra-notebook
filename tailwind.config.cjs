@@ -14,7 +14,7 @@ const config = {
 		themes: [
 			{
 				mytheme: {
-					primary: '#1d4ed8',
+					primary: '#07457E',
 
 					secondary: '#581c87',
 

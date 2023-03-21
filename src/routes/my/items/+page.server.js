@@ -6,27 +6,27 @@ export const load = ({ locals }) => {
 		throw redirect(303, '/login');
 	}
 
-	const getItemsByCountry = async () => {
+	const getUsersProjects = async (userId) => {
 		try {
 			const items = serializeNonPOJOs(
 				await locals.pb.collection('items').getFullList(undefined, {
-					filter: `country = "costaRica"`
+					filter: `user = "${userId}"`
 				})
 			);
 			return items;
 		} catch (err) {
-			console.log('Error:', err);
+			console.log('Error: ', err);
 			throw error(err.status, err.message);
 		}
 	};
 
 	return {
-		items: getItemsByCountry()
+		items: getUsersProjects(locals.user.id)
 	};
 };
 
 export const actions = {
-	deleteItem: async ({ request, locals }) => {
+	deleteProject: async ({ request, locals }) => {
 		const { id } = Object.fromEntries(await request.formData());
 
 		try {
