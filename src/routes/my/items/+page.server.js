@@ -6,7 +6,7 @@ export const load = ({ locals }) => {
 		throw redirect(303, '/login');
 	}
 
-	const getUsersProjects = async (userId) => {
+	const getUsersItems = async (userId) => {
 		try {
 			const items = serializeNonPOJOs(
 				await locals.pb.collection('items').getFullList(undefined, {
@@ -21,12 +21,12 @@ export const load = ({ locals }) => {
 	};
 
 	return {
-		items: getUsersProjects(locals.user.id)
+		items: getUsersItems(locals.user.id)
 	};
 };
 
 export const actions = {
-	deleteProject: async ({ request, locals }) => {
+	deleteItem: async ({ request, locals }) => {
 		const { id } = Object.fromEntries(await request.formData());
 
 		try {
