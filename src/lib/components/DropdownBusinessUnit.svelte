@@ -22,11 +22,13 @@
 		{value}
 	>
 		<option disabled selected>Choose a Business Unit</option>
-		<option value="bu1">BU1</option>
-		<option value="bu2">BU2</option>
-		<option value="bu3">BU3</option>
-		<option value="bu4">BU4</option>
-		<option value="bu5">BU5</option>
+		<option value="IC">IC</option>
+		<option value="PI">PI</option>
+		<option value="CRM">CRM</option>
+		<option value="EP">EP</option>
+		<option value="ENDO">ENDO</option>
+		<option value="URO">URO</option>
+		<option value="NMD">NMD</option>
 	</select>
 	{#if errors}
 		{#each errors as error}

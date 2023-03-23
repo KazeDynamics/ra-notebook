@@ -1,8 +1,8 @@
 <div class="flex-auto" style="margin-top: -4px">
 	<div class="wrap-layer">
 		<div class="content w-full">
-			<h2>Regulatory Affiars</h2>
-			<h2>Regulatory Affiars</h2>
+			<h2>Regulatory Affairs</h2>
+			<h2>Regulatory Affairs</h2>
 		</div>
 		<div class="text-layer mt-8">
 			<div class="flex flex-col items-center h-full w-full">
@@ -85,11 +85,11 @@
 
 <style>
 	svg {
-		/* position: relative; */
 		top: 0;
 		left: 0;
 		width: 100%;
 		height: 100vh;
+		height: 100svh;
 		box-sizing: border-box;
 		display: block;
 		background-color: #07457e;

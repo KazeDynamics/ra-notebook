@@ -34,4 +34,7 @@
 	<h2 class="mt-6">
 		Business Unit: <h1 class="text-3xl font-bold">{data.item.businessUnit}</h1>
 	</h2>
+	<h2 class="mt-6">
+		Created on: <h1 class="text-3xl font-bold">{data.item.created.split(' ')[0]}</h1>
+	</h2>
 </div>
