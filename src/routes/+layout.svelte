@@ -149,7 +149,7 @@
 						</div>
 					</div>
 				{:else}
-					<div class="flex-auto py-4">
+					<div class="flex-auto py-4 px-4 md:px-0">
 						<div class="mx-auto max-w-7xl sm:px-6 lg:px-8">
 							<slot />
 						</div>

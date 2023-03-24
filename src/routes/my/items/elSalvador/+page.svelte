@@ -15,7 +15,7 @@
 	{:else}
 		{#each data.items as item}
 			<MyItem {item} />
-			<div class="divider mt-0 mb-2" />
+			<div class="py-2" />
 		{/each}
 	{/if}
 </div>

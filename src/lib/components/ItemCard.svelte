@@ -1,5 +1,21 @@
 <script>
 	export let item;
+	let url = '';
+	if (item.country === 'guatemala') {
+		url = 'my/items/guatemala';
+	} else if (item.country === 'honduras') {
+		url = 'my/items/honduras';
+	} else if (item.country === 'elSalvador') {
+		url = 'my/items/elSalvador';
+	} else if (item.country === 'nicaragua') {
+		url = 'my/items/nicaragua';
+	} else if (item.country === 'costaRica') {
+		url = 'my/items/costaRica';
+	} else if (item.country === 'panama') {
+		url = 'my/items/panama';
+	} else {
+		url = '/home';
+	}
 </script>
 
 <div class="card w-72 bg-base-100 shadow-xl">
@@ -11,7 +27,7 @@
 			<p class="text-secondary font-medium">Product Renewal</p>
 		{/if}
 		<div class="card-actions justify-center pt-5">
-			<a href="/items/{item.id}" class="btn btn-primary">View Item</a>
+			<a href={url} class="btn btn-primary">View Item</a>
 		</div>
 	</div>
 </div>
