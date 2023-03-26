@@ -3,7 +3,7 @@
 		<!-- head -->
 		<thead>
 			<tr>
-				<th />
+				<th style="z-index: 0" />
 				<th>Task</th>
 				<th>Status</th>
 			</tr>
@@ -11,7 +11,7 @@
 		<tbody>
 			<!-- row 1 -->
 			<tr>
-				<th>
+				<th style="z-index: 0">
 					<label>
 						<input type="checkbox" class="checkbox checkbox-success" />
 					</label>
@@ -25,7 +25,7 @@
 			</tr>
 			<!-- row 2 -->
 			<tr>
-				<th>
+				<th style="z-index: 0">
 					<label>
 						<input type="checkbox" class="checkbox checkbox-success" />
 					</label>
@@ -39,7 +39,7 @@
 			</tr>
 			<!-- row 3 -->
 			<tr>
-				<th>
+				<th style="z-index: 0">
 					<label>
 						<input type="checkbox" class="checkbox checkbox-success" />
 					</label>

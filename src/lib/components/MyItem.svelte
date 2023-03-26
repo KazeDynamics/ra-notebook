@@ -26,11 +26,7 @@
 	$: modalOpen = false;
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div
-	tabindex="0"
-	class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box"
->
+<div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
 	<input type="checkbox" />
 	<div class="collapse-title text-xl font-medium">
 		<div class="w-full h-28 flex items-center justify-between">
@@ -47,7 +43,7 @@
 					>
 				</p>
 			</div>
-			<div class="flex items-center justify-end w-full">
+			<div class="flex items-center justify-end w-full z-10">
 				<div class="radial-progress text-primary mx-4" style="--value:70;">
 					<span class="text-primary">70%</span>
 				</div>
@@ -71,6 +67,7 @@
 			</div>
 		</div>
 	</div>
+
 	<div class="collapse-content">
 		<!-- Guatemala -->
 		{#if item.country === 'guatemala' && item.process === 'productSubmission'}
@@ -78,27 +75,27 @@
 		{:else if item.country === 'guatemala' && item.process === 'productRenewal'}
 			<ChecklistGMPS />
 			<!-- Honduras -->
-		{:else if item.country === 'honduras' && item.process === 'productRenewal'}
+		{:else if item.country === 'honduras' && item.process === 'productSubmission'}
 			<ChecklistGMPS />
 		{:else if item.country === 'honduras' && item.process === 'productRenewal'}
 			<ChecklistGMPS />
 			<!-- El Salvador -->
-		{:else if item.country === 'elSalvador' && item.process === 'productRenewal'}
+		{:else if item.country === 'elSalvador' && item.process === 'productSubmission'}
 			<ChecklistGMPS />
 		{:else if item.country === 'elSalvador' && item.process === 'productRenewal'}
 			<ChecklistGMPS />
 			<!-- Nicaragua -->
-		{:else if item.country === 'nicaragua' && item.process === 'productRenewal'}
+		{:else if item.country === 'nicaragua' && item.process === 'productSubmission'}
 			<ChecklistGMPS />
 		{:else if item.country === 'nicaragua' && item.process === 'productRenewal'}
 			<ChecklistGMPS />
 			<!-- Costa Rica -->
-		{:else if item.country === 'costaRica' && item.process === 'productRenewal'}
+		{:else if item.country === 'costaRica' && item.process === 'productSubmission'}
 			<ChecklistGMPS />
 		{:else if item.country === 'costaRica' && item.process === 'productRenewal'}
 			<ChecklistGMPS />
 			<!-- Panama -->
-		{:else if item.country === 'panama' && item.process === 'productRenewal'}
+		{:else if item.country === 'panama' && item.process === 'productSubmission'}
 			<ChecklistGMPS />
 		{:else if item.country === 'panama' && item.process === 'productRenewal'}
 			<ChecklistGMPS />
