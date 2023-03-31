@@ -1,9 +1,9 @@
 <script>
 	import { writable } from 'svelte/store';
 
-	export let tasks = [];
+	export let tasks2 = [];
 
-	const checkboxes = writable(tasks.map(() => false));
+	const checkboxes = writable(tasks2.map(() => false));
 
 	function handleCheckboxChange(index, event) {
 		checkboxes.update((values) => {
@@ -24,7 +24,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			{#each tasks as task, index}
+			{#each tasks2 as task2, index}
 				<tr>
 					<th style="z-index: 0">
 						<label>
@@ -36,7 +36,7 @@
 							/>
 						</label>
 					</th>
-					<td>{task}</td>
+					<td>{task2}</td>
 					<td
 						>{#if checkboxes[index]}<span class="badge badge-success gap-2">Completed</span
 							>{:else}<span class="badge badge-info gap-2">In Progress</span>{/if}</td

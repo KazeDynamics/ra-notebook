@@ -6,6 +6,7 @@ import DropdownBusinessUnit from './DropdownBusinessUnit.svelte';
 import DropdownCountry from './DropdownCountry.svelte';
 import DropdownProcess from './DropdownProcess.svelte';
 import ChecklistGMPS from './ChecklistGMPS.svelte';
+import ChecklistGMPR from './ChecklistGMPR.svelte';
 
 export {
 	Input,
@@ -15,5 +16,6 @@ export {
 	DropdownBusinessUnit,
 	DropdownCountry,
 	DropdownProcess,
-	ChecklistGMPS
+	ChecklistGMPS,
+	ChecklistGMPR
 };

@@ -3,6 +3,7 @@
 	import { Modal } from '$lib/components';
 	import toast from 'svelte-french-toast';
 	import ChecklistGMPS from './ChecklistGMPS.svelte';
+	import ChecklistGMPR from './ChecklistGMPR.svelte';
 	export let item;
 	let modalOpen;
 	let loading = false;
@@ -24,6 +25,9 @@
 		};
 	};
 	$: modalOpen = false;
+
+	const tasks = ['Task 1', 'Task 2', 'Task 3'];
+	const tasks2 = ['Item 1', 'Item 2', 'Item 3'];
 </script>
 
 <div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
@@ -71,9 +75,9 @@
 	<div class="collapse-content">
 		<!-- Guatemala -->
 		{#if item.country === 'guatemala' && item.process === 'productSubmission'}
-			<ChecklistGMPS />
+			<ChecklistGMPS {tasks} />
 		{:else if item.country === 'guatemala' && item.process === 'productRenewal'}
-			<ChecklistGMPS />
+			<ChecklistGMPR {tasks2} />
 			<!-- Honduras -->
 		{:else if item.country === 'honduras' && item.process === 'productSubmission'}
 			<ChecklistGMPS />
