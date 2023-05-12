@@ -6,11 +6,14 @@
 	export let tasks = [];
 	export let item;
 
+	let completedPercentage = 0;
+
 	function handleCheckboxClick(task) {
 		task.completed = !task.completed;
 		if (typeof localStorage !== 'undefined') {
 			localStorage.setItem(`${item.id}_${task.name}`, task.completed.toString());
 		}
+		updateCompletedPercentage();
 		dispatch('update', tasks);
 	}
 
@@ -23,7 +26,18 @@
 		}
 	}
 
-	$: tasks.forEach((task) => getSavedState(task));
+	function updateCompletedPercentage() {
+		let completedTasks = 0;
+		tasks.forEach((task) => {
+			getSavedState(task);
+			if (task.completed) {
+				completedTasks++;
+			}
+		});
+		completedPercentage = (completedTasks / tasks.length) * 100;
+	}
+
+	$: updateCompletedPercentage();
 
 	$: dispatch('update', tasks);
 </script>
@@ -59,3 +73,26 @@
 		{/each}
 	</tbody>
 </table>
+
+<div class="relative pt-1">
+	<div class="flex mb-2 items-center justify-between">
+		<div>
+			<span
+				class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-blue-600 bg-blue-200"
+			>
+				Progress
+			</span>
+		</div>
+		<div class="text-right">
+			<span class="text-xs font-semibold inline-block text-blue-600">
+				{completedPercentage.toFixed(0)}%
+			</span>
+		</div>
+	</div>
+	<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
+		<div
+			class="bg-blue-600 w-0 transition-all duration-500"
+			style={`width: ${completedPercentage}%;`}
+		/>
+	</div>
+</div>
