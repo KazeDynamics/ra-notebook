@@ -1,5 +1,37 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
+	import { enhance } from '$app/forms';
+	import { Modal } from '$lib/components';
+	import toast from 'svelte-french-toast';
+
+	let modalOpen = false;
+	const label = 'modal1';
+
+	function openModal() {
+		modalOpen = true;
+	}
+
+	function closeModal() {
+		modalOpen = false;
+	}
+	let loading = false;
+	const submitDeleteItem = () => {
+		loading = true;
+		return async ({ result, update }) => {
+			switch (result.type) {
+				case 'success':
+					toast.success('Item completed!');
+					await update();
+					break;
+				case 'error':
+					toast.error('Could not complete item. Try again later.');
+					break;
+				default:
+					await update();
+			}
+			loading = false;
+		};
+	};
 
 	const dispatch = createEventDispatcher();
 
@@ -35,6 +67,10 @@
 			}
 		});
 		completedPercentage = (completedTasks / tasks.length) * 100;
+
+		if (completedPercentage === 100) {
+			openModal();
+		}
 	}
 
 	$: updateCompletedPercentage();
@@ -105,3 +141,17 @@
 		/>
 	</div>
 </div>
+
+<Modal {label} checked={modalOpen}>
+	<div slot="heading">
+		<h3 class="text-2xl">Congratulations!</h3>
+		<p class="text-base font-normal mt-2">You've completed all the tasks for this product.</p>
+	</div>
+	<div slot="actions" class="flex w-full items-center justify-center space-x-2">
+		<!-- <button on:click={closeModal}>Close</button> -->
+		<form action="?/deleteItem" method="POST" use:enhance={submitDeleteItem}>
+			<input type="hidden" name="id" value={item.id} />
+			<button type="submit" class="btn btn-success" disabled={loading}>Complete</button>
+		</form>
+	</div>
+</Modal>

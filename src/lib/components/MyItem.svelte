@@ -51,10 +51,10 @@
 					>
 				</p>
 			</div>
-			<div class="flex items-center justify-end w-full z-10">
-				<a href="/items/{item.id}/edit" class="btn btn-outline">Edit Item</a>
+			<div class="flex items-center justify-end w-full">
+				<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
 				<Modal label={item.id} checked={modalOpen}>
-					<span slot="trigger" class="btn btn-error ml-2">Delete</span>
+					<span slot="trigger" class="btn btn-error ml-2 z-10 relative">Delete</span>
 					<div slot="heading">
 						<h3 class="text-2xl">Delete {item.name}</h3>
 						<p class="text-base font-normal mt-2">
