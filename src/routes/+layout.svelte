@@ -88,18 +88,15 @@
 			<div class=" flex flex-row">
 				{#if data.user}
 					<ul class="menu bg-base-100 w-56 hidden lg:block border border-solid border-r-gray-300">
-						<li>
+						<!-- <li>
 							<span
 								><Icon icon="material-symbols:map" class="inline text-xl" />Map
 								<div class="badge badge-accent  min-w-fit">Coming soon!</div></span
 							>
-						</li>
+						</li> -->
 						<li class="pb-4">
 							<a href="/items/new"
-								>Add Item<Icon
-									icon="material-symbols:add"
-									class="text-green-700 inline text-xl"
-								/></a
+								><Icon icon="bi:plus-circle" class="text-green-700 inline text-xl" />Add Item</a
 							>
 						</li>
 						<li class="menu-title">
@@ -161,12 +158,12 @@
 	<div class="drawer-side">
 		<label for="my-drawer-3" class="drawer-overlay" />
 		<ul class="menu p-4 w-80 bg-base-100">
-			<li class="py-2 h-12">
+			<!-- <li class="py-2 h-12">
 				<span
 					><Icon icon="material-symbols:map" class="inline text-xl" />Map
 					<div class="badge badge-accent">Coming soon!</div></span
 				>
-			</li>
+			</li> -->
 			<li class="py-2">
 				<a
 					on:click={() => {
