@@ -48,11 +48,6 @@
 							<a href="/register" class="btn btn-secondary">Register</a>
 						</div>
 					{:else}
-						<!-- <div class="dropdown dropdown-end mr-4">
-							<a href="/items/new" class="btn btn-text-base-100 btn-outline text-base-100"
-								>Add Item</a
-							>
-						</div> -->
 						<div class="dropdown dropdown-end">
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 							<!-- svelte-ignore a11y-label-has-associated-control -->
