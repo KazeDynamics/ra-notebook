@@ -2,8 +2,8 @@
 	import { enhance } from '$app/forms';
 	import { Modal } from '$lib/components';
 	import toast from 'svelte-french-toast';
-	import ChecklistGMPS from './ChecklistGMPS.svelte';
-	import ChecklistGMPR from './ChecklistGMPR.svelte';
+	import Checklist from './Checklist.svelte';
+
 	export let item;
 	let modalOpen;
 	let loading = false;
@@ -26,8 +26,21 @@
 	};
 	$: modalOpen = false;
 
-	const tasks = ['Task 1', 'Task 2', 'Task 3'];
-	const tasks2 = ['Item 1', 'Item 2', 'Item 3'];
+	// const tasks = [
+	// 	{ id: item.id, name: 'Task 1', completed: false },
+	// 	{ id: item.id, name: 'Task 2', completed: false },
+	// 	{ id: item.id, name: 'Task 3', completed: false }
+	// ];
+	const tasks = [
+		{ name: 'Task 1', completed: false },
+		{ name: 'Task 2', completed: false },
+		{ name: 'Task 3', completed: false }
+	];
+	// const tasks2 = [
+	// 	{ name: 'Task 1', completed: false },
+	// 	{ name: 'Task 2', completed: false },
+	// 	{ name: 'Task 3', completed: false }
+	// ];
 </script>
 
 <div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
@@ -48,9 +61,9 @@
 				</p>
 			</div>
 			<div class="flex items-center justify-end w-full z-10">
-				<div class="radial-progress text-primary mx-4" style="--value:70;">
+				<!-- <div class="radial-progress text-primary mx-4" style="--value:70;">
 					<span class="text-primary">70%</span>
-				</div>
+				</div> -->
 				<a href="/items/{item.id}/edit" class="btn btn-outline">Edit Item</a>
 				<Modal label={item.id} checked={modalOpen}>
 					<span slot="trigger" class="btn btn-error ml-2">Delete</span>
@@ -75,34 +88,34 @@
 	<div class="collapse-content">
 		<!-- Guatemala -->
 		{#if item.country === 'guatemala' && item.process === 'productSubmission'}
-			<ChecklistGMPS {tasks} />
+			<Checklist {tasks} {item} />
 		{:else if item.country === 'guatemala' && item.process === 'productRenewal'}
-			<ChecklistGMPR {tasks2} />
+			<Checklist {tasks} {item} />
 			<!-- Honduras -->
 		{:else if item.country === 'honduras' && item.process === 'productSubmission'}
-			<ChecklistGMPS />
+			<Checklist {tasks} {item} />
 		{:else if item.country === 'honduras' && item.process === 'productRenewal'}
-			<ChecklistGMPS />
+			<Checklist {tasks} {item} />
 			<!-- El Salvador -->
 		{:else if item.country === 'elSalvador' && item.process === 'productSubmission'}
-			<ChecklistGMPS />
+			<Checklist {tasks} {item} />
 		{:else if item.country === 'elSalvador' && item.process === 'productRenewal'}
-			<ChecklistGMPS />
+			<Checklist {tasks} {item} />
 			<!-- Nicaragua -->
 		{:else if item.country === 'nicaragua' && item.process === 'productSubmission'}
-			<ChecklistGMPS />
+			<Checklist {tasks} {item} />
 		{:else if item.country === 'nicaragua' && item.process === 'productRenewal'}
-			<ChecklistGMPS />
+			<Checklist {tasks} {item} />
 			<!-- Costa Rica -->
 		{:else if item.country === 'costaRica' && item.process === 'productSubmission'}
-			<ChecklistGMPS />
+			<Checklist {tasks} {item} />
 		{:else if item.country === 'costaRica' && item.process === 'productRenewal'}
-			<ChecklistGMPS />
+			<Checklist {tasks} {item} />
 			<!-- Panama -->
 		{:else if item.country === 'panama' && item.process === 'productSubmission'}
-			<ChecklistGMPS />
+			<Checklist {tasks} {item} />
 		{:else if item.country === 'panama' && item.process === 'productRenewal'}
-			<ChecklistGMPS />
+			<Checklist {tasks} {item} />
 		{/if}
 	</div>
 </div>

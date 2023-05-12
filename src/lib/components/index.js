@@ -5,8 +5,7 @@ import ItemCard from './ItemCard.svelte';
 import DropdownBusinessUnit from './DropdownBusinessUnit.svelte';
 import DropdownCountry from './DropdownCountry.svelte';
 import DropdownProcess from './DropdownProcess.svelte';
-import ChecklistGMPS from './ChecklistGMPS.svelte';
-import ChecklistGMPR from './ChecklistGMPR.svelte';
+import Checklist from './Checklist.svelte';
 
 export {
 	Input,
@@ -16,6 +15,5 @@ export {
 	DropdownBusinessUnit,
 	DropdownCountry,
 	DropdownProcess,
-	ChecklistGMPS,
-	ChecklistGMPR
+	Checklist
 };
