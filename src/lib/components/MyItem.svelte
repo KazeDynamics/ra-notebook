@@ -26,22 +26,12 @@
 	};
 	$: modalOpen = false;
 
-	// const tasks = [
-	// 	{ id: item.id, name: 'Task 1', completed: false },
-	// 	{ id: item.id, name: 'Task 2', completed: false },
-	// 	{ id: item.id, name: 'Task 3', completed: false }
-	// ];
 	const tasks = [
 		{ name: 'Task 1', completed: false },
 		{ name: 'Task 2', completed: false },
 		{ name: 'Task 3', completed: false },
 		{ name: 'Task 4', completed: false }
 	];
-	// const tasks2 = [
-	// 	{ name: 'Task 1', completed: false },
-	// 	{ name: 'Task 2', completed: false },
-	// 	{ name: 'Task 3', completed: false }
-	// ];
 </script>
 
 <div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
@@ -62,9 +52,6 @@
 				</p>
 			</div>
 			<div class="flex items-center justify-end w-full z-10">
-				<!-- <div class="radial-progress text-primary mx-4" style="--value:70;">
-					<span class="text-primary">70%</span>
-				</div> -->
 				<a href="/items/{item.id}/edit" class="btn btn-outline">Edit Item</a>
 				<Modal label={item.id} checked={modalOpen}>
 					<span slot="trigger" class="btn btn-error ml-2">Delete</span>
