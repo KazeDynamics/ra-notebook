@@ -78,20 +78,29 @@
 	<div class="flex mb-2 items-center justify-between">
 		<div>
 			<span
-				class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded text-blue-600 bg-blue-200"
+				class="text-xs font-semibold inline-block py-1 px-2 uppercase rounded {completedPercentage ===
+				100
+					? 'text-green-500 bg-green-100'
+					: 'text-blue-600 bg-blue-200'}"
 			>
-				Progress
+				{completedPercentage === 100 ? 'Completed' : 'Progress'}
 			</span>
 		</div>
 		<div class="text-right">
-			<span class="text-xs font-semibold inline-block text-blue-600">
+			<span
+				class="text-xs font-semibold inline-block {completedPercentage === 100
+					? 'text-success'
+					: 'text-blue-600'}"
+			>
 				{completedPercentage.toFixed(0)}%
 			</span>
 		</div>
 	</div>
 	<div class="overflow-hidden h-2 mb-4 text-xs flex rounded bg-blue-200">
 		<div
-			class="bg-blue-600 w-0 transition-all duration-500"
+			class="{completedPercentage === 100
+				? 'bg-green-600'
+				: 'bg-blue-600'} w-0 transition-all duration-500"
 			style={`width: ${completedPercentage}%;`}
 		/>
 	</div>
