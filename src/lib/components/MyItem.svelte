@@ -37,7 +37,9 @@
 <div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
 	<input type="checkbox" />
 	<div class="collapse-title text-xl font-medium">
-		<div class="w-full h-28 flex items-center justify-between">
+		<div
+			class="w-full md:h-28 h:30 flex items-center md:justify-between flex-col min-[460px]:flex-row"
+		>
 			<div class="flex flex-col w-full ml-4 h-full justify-center">
 				<a href="/items/{item.id}" class="font-semibold text-4xl">{item.name}</a>
 				{#if item.process === 'productSubmission'}
@@ -51,7 +53,9 @@
 					>
 				</p>
 			</div>
-			<div class="flex items-center justify-end w-full">
+			<div
+				class="flex items-center justify-center min-[460px]:justify-end w-full mt-6 xs:mt-0 ml-4 xs:ml-0"
+			>
 				<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
 				<Modal label={item.id} checked={modalOpen}>
 					<span slot="trigger" class="btn btn-error ml-2 z-10 relative">Delete</span>
