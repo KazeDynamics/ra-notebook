@@ -26,11 +26,915 @@
 	};
 	$: modalOpen = false;
 
-	const tasks = [
-		{ name: 'Task 1', completed: false },
-		{ name: 'Task 2', completed: false },
-		{ name: 'Task 3', completed: false },
-		{ name: 'Task 4', completed: false }
+	const tasksGuaPS = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL  1', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN APOSTILLADO DIGITAL', completed: false },
+		{ name: 'ISO 13485 APOSTILLADO DIGITAL (EN CASO DE NO TENER CFG)', completed: false },
+		{ name: 'INSTRUCCIONES DE USO (DFU)', completed: false },
+		{ name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO (PIF)', completed: false },
+		{ name: 'EMPAQUE PRIMARIO Y SECUNDARIO (PIF)', completed: false },
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE  (PIF)',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA)',
+			completed: false
+		},
+		{ name: 'ETIQUETADO (CARTON & POUCH)', completed: false }
+	];
+	const tasksGuaPR = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN APOSTILLADO DIGITAL', completed: false },
+		{ name: 'ISO 13485 APOSTILLADO DIGITAL (EN CASO DE NO TENER CFG)', completed: false },
+		{ name: 'INSTRUCCIONES DE USO', completed: false },
+		{ name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO (PIF)', completed: false },
+		{ name: 'EMPAQUE PRIMARIO Y SECUNDARIO', completed: false },
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA)',
+			completed: false
+		},
+		{ name: 'ETIQUETADO', completed: false }
+	];
+	const tasksHonPS = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL', completed: false },
+		{ name: 'CÓDIGO INTERNACIONAL GMDN O UMDNS (PIF)', completed: false },
+		{ name: 'DESCRIPCIÓN DEL PRODUCTO (PIF)', completed: false },
+		{ name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO (PIF)', completed: false },
+		{ name: 'EMPAQUE PRIMARIO Y SECUNDARIO (POUCH AND CARTON LABELS)', completed: false },
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE (PIF)',
+			completed: false
+		},
+		{ name: 'INSTRUCCIONES DE FUNCIONAMIENTO', completed: false },
+		{
+			name: 'ETIQUETAS (COUCH AND CARTON) *NO CONTINUAR SIN LOS REQUISITOS PREVIOS COMPLETOS',
+			completed: false
+		},
+		{
+			name: 'PODER DE REPRESENTACÓN',
+			completed: false
+		},
+		{ name: 'DECLARACIÓN JURADA FORMATO ARSA HONDURAS', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN', completed: false },
+		{ name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA', completed: false },
+		{ name: 'DESCRIPCIÓN DEL PRODUCTO', completed: false },
+		{ name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO', completed: false },
+		{ name: 'EMPAQUE PRIMARIO Y SECUNDARIO', completed: false },
+		{ name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE', completed: false }
+	];
+	const tasksHonPR = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL', completed: false },
+		{ name: 'DECLARACIÓN JURADA FORMATO ARSA HONDURAS', completed: false },
+		{ name: 'CÓDIGO INTERNACIONAL GMDN O UMDNS', completed: false },
+		{ name: 'EMPAQUE PRIMARIO Y SECUNDARIO', completed: false },
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{ name: 'ETIQUETAS PRIMARIAS Y SECUNDARIAS', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA',
+			completed: false
+		},
+		{
+			name: 'DFU',
+			completed: false
+		},
+		{ name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO (PIF)', completed: false }
+	];
+	const tasksSalPS = [
+		{ name: 'NUMERO DE MANDAMIENTO DE PAGO CANCELADO', completed: false },
+		{ name: 'FORMULARIO DE REGISTRO DE DISPOSITIVOS MÉDICOS', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA (CLV)', completed: false },
+		{
+			name: 'CERTIFICADO BUENAS PRACTICAS DE MANUFACTURA (BMP) O DOCUMENTO QUE CERTIQUE EL CUMPLIMIENTO DE GARANTÍA DE MANUFACTURA',
+			completed: false
+		},
+		{
+			name: 'PODER DE REPRESENTACIÓN LEGAL (APODERADO LEGAL)',
+			completed: false
+		},
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA (PROFESIONAL RESPONSABLE)', completed: false },
+		{ name: 'DOCUMENTO CON ESPECIFICACIONES PARA EL CONTROL DE CALIDAD  CoA', completed: false },
+		{
+			name: 'CONTRATO DE FABRICACIÓN O MAQUILA_CUANDO APLIQUE APOSTILLADO',
+			completed: false
+		},
+		{
+			name: 'FICHA TÉCNICA DEL DISPOSITIVO MÉDICO (PIF)',
+			completed: false
+		},
+		{ name: 'INFORMACIÓN TÉCNICA DEL DISPOSITIVO MÉDICO (TECH FILE)', completed: false },
+		{ name: 'PROYECTO DE ETIQUETA DEL ENVASE/ EMPAQUE PRIMARIO', completed: false },
+		{ name: 'PROYECTO DE ETIQUETA DEL ENVASE/ EMPAQUE SECUNDARIO', completed: false },
+		{ name: 'INFORME DE GESTIÓN DE RIESGOS', completed: false },
+		{ name: 'CARTA DE INFORME DE SEGURIDAD Y ALERTAS SANITARIO', completed: false },
+		{ name: 'INFORME DE QUEJAS', completed: false }
+	];
+	const tasksSalPR = [
+		{ name: 'NUMERO DE MANDAMIENTO DE PAGO CANCELADO', completed: false },
+		{ name: 'FORMULARIO DE REGISTRO DE DISPOSITIVOS MÉDICOS', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA (CLV)', completed: false },
+		{
+			name: 'CERTIFICADO BUENAS PRACTICAS DE MANUFACTURA (BMP) O DOCUMENTO QUE CERTIQUE EL CUMPLIMIENTO DE GARANTÍA DE MANUFACTURA',
+			completed: false
+		},
+		{
+			name: 'PODER DE REPRESENTACIÓN LEGAL (APODERADO LEGAL)',
+			completed: false
+		},
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA (PROFESIONAL RESPONSABLE)', completed: false },
+		{ name: 'DOCUMENTO CON ESPECIFICACIONES PARA EL CONTROL DE CALIDAD', completed: false },
+		{
+			name: 'CONTRATO DE FABRICACIÓN O MAQUILA CUANDO APLIQUE APOSTILLADO',
+			completed: false
+		},
+		{
+			name: 'FICHA TÉCNICA DEL DISPOSITIVO MÉDICO',
+			completed: false
+		},
+		{ name: 'INFORMACIÓN TÉCNICA DEL DISPOSITIVO MÉDICO', completed: false },
+		{ name: 'PROYECTO DE ETIQUETA DEL ENVASE/ EMPAQUE PRIMARIO', completed: false },
+		{ name: 'PROYECTO DE ETIQUETA DEL ENVASE/ EMPAQUE SECUNDARIO', completed: false },
+		{ name: 'INFORME DE GESTIÓN DE RIESGOS', completed: false },
+		{ name: 'INFORME DE SEGURIDAD Y ALERTAS SANITARIO', completed: false }
+	];
+	const tasksNicPSclass1 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL APOSTILLADO', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA APOSTILLADO', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN  APOSTILLADO', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA 1SO13485 ORIGINAL APOSTILADO',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (FDA,CE,TUV) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROS APOSTILLADO',
+			completed: false
+		},
+		{ name: 'DESCRIPCIÓN DEL PRODUCTO  (PIF)', completed: false },
+		{
+			name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO (DESIGN VERIFICATION REPORT)',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO (PIF)',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA)',
+			completed: false
+		}
+	];
+	const tasksNicPSclass2 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL APOSTILLADO', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA APOSTILLADO', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN  APOSTILLADO', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA 1SO13485 ORIGINAL APOSTILADO',
+			completed: false
+		},
+		{
+			name: 'REGISTRO SANITARIO DEL PAÍS DE ORIGEN',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (FDA,CE,TUV) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROS APOSTILLADO',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (UL, IEC, CSA) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROS APOSTILLADO',
+			completed: false
+		},
+		{
+			name: 'DESCRIPCIÓN DEL PRODUCTO',
+			completed: false
+		},
+		{
+			name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO, INCLUIR MATERIALES DE FABRICACIÓN',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'MUESTRAS DEL PRODUCTO CON MÍNIMO 18 MESES DE VIGENCIA',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA), DEL LOTE CORRESPONDIENTE A LA MUESTRA PRESENTADA',
+			completed: false
+		},
+		{
+			name: 'PROGRAMA DE VIGILANCIA POR PARTE DE FABRICANTE (PARA EQUIPOS DE ALTA TECNOLOGÍA)',
+			completed: false
+		},
+		{
+			name: 'DECLARACIÓN PREVIA DE MÉTODO DE ESTERILIZACIÓN (CUANDO APLIQUE)',
+			completed: false
+		}
+	];
+	const tasksNicPSclass3 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL APOSTILLADO', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA ISO13485 ORIGINAL APOSTILLADO ',
+			completed: false
+		},
+		{
+			name: 'REGISTRO SANITARIO DEL PAÍS DE ORIGEN',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (FDA,CE,TUV) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROSO',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (UL, IEC, CSA) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE,ENTRE OTROS.',
+			completed: false
+		},
+		{
+			name: 'DESCRIPCIÓN DEL PRODUCTO  INCLUIR MATERIALES USADOS EN SU FABRICACIÓN (PIF, TECH FILE, BICOMPATIBILIDAD)',
+			completed: false
+		},
+		{
+			name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO (DESIGN VERIFICATION REPORT)',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO (PIF)',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'MUESTRAS DEL PRODUCTO CON MÍNIMO 18 MESES DE VIGENCIA',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA), DEL LOTE CORRESPONDIENTE A LA MUESTRA PRESENTADA',
+			completed: false
+		},
+		{
+			name: 'PROGRAMA DE VIGILANCIA POR PARTE DE FABRICANTE (PARA EQUIPOS DE ALTA TECNOLOGÍA)',
+			completed: false
+		},
+		{
+			name: 'DECLARACIÓN PREVIA DE MÉTODO DE ESTERILIZACIÓN (CUANDO APLIQUE)',
+			completed: false
+		},
+		{
+			name: 'ESTUDIOS CLÍNICOS DE TERCER NIVEL SOBRE EL USO PARA LA DEMOSTRAR LA SEGURIDAD Y EFECTIVIDAD',
+			completed: false
+		},
+		{
+			name: 'LISTA DE LOS PAÍSES DONDE EL DISPOSITIVO MÉDICO HA SIDO VENDIDO Y UN RESUMEN DE CUALQUIER PROBLEMA REPORTADO A LA SALIDA POST MERCADO, SI LOS HUBIERA EN CUALQUIERA DE ESOS PAÍSES',
+			completed: false
+		},
+		{
+			name: 'PRESENTACIÓN DE UN PROGRAMA DE REPORTE DE FALLAS TERAPÉUTICAS E INCIDENTES ADVERSOS PARA LOS DISPOSITIVOS MÉDICOS EMITIDOS POR EL FABRICANTE. DEBERÁN LLEVAR ESTUDIOS CLÍNICOS DE LAS FASE II Y III, SOBRE EL USO PARA LA DEMOSTRAR LA SEGURIDAD Y EFECTIVIDAD',
+			completed: false
+		}
+	];
+	const tasksNicPSclass4 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN ', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA',
+			completed: false
+		},
+		{
+			name: 'REGISTRO SANITARIO DEL PAÍS DE ORIGEN',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (FDA,CE,TUV) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROS',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (UL, IEC, CSA) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROS',
+			completed: false
+		},
+		{
+			name: 'DESCRIPCIÓN DEL PRODUCTO  INCLUIR MATERIALES USADOS EN SU FABRICACIÓN',
+			completed: false
+		},
+		{
+			name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'MUESTRAS DEL PRODUCTO CON MÍNIMO 18 MESES DE VIGENCIA',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA), DEL LOTE CORRESPONDIENTE A LA MUESTRA PRESENTADA',
+			completed: false
+		},
+		{
+			name: 'PROGRAMA DE VIGILANCIA POR PARTE DE FABRICANTE (PARA EQUIPOS DE ALTA TECNOLOGÍA)',
+			completed: false
+		},
+		{
+			name: 'DECLARACIÓN PREVIA DE MÉTODO DE ESTERILIZACIÓN (CUANDO APLIQUE)',
+			completed: false
+		},
+		{
+			name: 'LICENCIA SANITARIA DEL ESTABLECIMIENTO, EMITIDO POR LA DIRECCIÓN DE REGISTRO DE DISPOSITIVOS MÉDICOS',
+			completed: false
+		},
+		{
+			name: 'ESTUDIOS CLÍNICOS DE TERCER NIVEL SOBRE EL USO PARA LA DEMOSTRAR LA SEGURIDAD Y EFECTIVIDAD',
+			completed: false
+		},
+		{
+			name: 'LISTA DE LOS PAÍSES DONDE EL DISPOSITIVO MÉDICO HA SIDO VENDIDO Y UN RESUMEN DE CUALQUIER PROBLEMA REPORTADO A LA SALIDA POST MERCADO, SI LOS HUBIERA EN CUALQUIERA DE ESOS PAÍSES',
+			completed: false
+		},
+		{
+			name: 'PRESENTACIÓN DE UN PROGRAMA DE REPORTE DE FALLAS TERAPÉUTICAS E INCIDENTES ADVERSOS PARA LOS DISPOSITIVOS MÉDICOS EMITIDOS POR EL FABRICANTE. DEBERÁN LLEVAR ESTUDIOS CLÍNICOS DE LAS FASE II Y III, SOBRE EL USO PARA LA DEMOSTRAR LA SEGURIDAD Y EFECTIVIDAD',
+			completed: false
+		},
+		{
+			name: 'ANÁLISIS Y EVALUACIÓN DE RIESGOS Y LAS MEDIDAS A ADOPTAR PARA LA REDUCCIÓN DE ELLOS, QUE SATISFAGAN LOS REQUERIMIENTOS DE SEGURIDAD Y EFICACIA, ELABORADOS POR LA CASA FABRICANTE',
+			completed: false
+		},
+		{
+			name: 'BIBLIOGRAFÍA DE REPORTES PUBLICADOS RELACIONADOS SOBRE EL USO, SEGURIDAD Y EFICACIA DEL DISPOSITIVO MÉDICO',
+			completed: false
+		}
+	];
+	const tasksNicPR = [
+		{ name: 'DECLARACION JURADA (TEMPLATES, NICARAGUA) ', completed: false },
+		{ name: 'CE CERTIFICATE APOSTILLADO', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO)', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA (APOSTILLADO)',
+			completed: false
+		},
+		{
+			name: 'ETIQUETADO (POUCH Y CARTON)',
+			completed: false
+		},
+		{
+			name: 'MATERIAL DE EMPAQUE (PIF)',
+			completed: false
+		},
+		{
+			name: 'PROGRAMA DE VIGILANCIA',
+			completed: false
+		},
+		{
+			name: 'ANALISIS DE RIESGOS (DDR)',
+			completed: false
+		}
+	];
+	const tasksCRPSclass2 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
+		{
+			name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO DIGITAL) / PERMISO SANITARIO DE FUNCIONAMIENTO SI EL PRODUCTO SE MANUFACTURA EN CR',
+			completed: false
+		},
+		{
+			name: 'CERTIFICACION NOTARIAL DE CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO DIGITAL)',
+			completed: false
+		},
+		{
+			name: 'TRADUCCION OFICIAL DE CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO DIGITAL)',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA  EMITIDO EN PAIS DE ORIGEN (1SO13485 APOSTILLADO DIGITAL)',
+			completed: false
+		},
+		{
+			name: 'CERTIFICACION NOTARIAL DEL 1SO13485 APOSTILLADO',
+			completed: false
+		},
+		{
+			name: 'TRADUCCION OFICIAL DE CERTIFICADO DEL ISO13485',
+			completed: false
+		},
+		{
+			name: 'DESCRIPCIÓN DEL PRODUCTO  - INSTRUCCIONES DE USO (IFU)',
+			completed: false
+		},
+		{
+			name: 'RESUMEN DE ESPECIFICACIONES TECNICAS Y MEDICAS',
+			completed: false
+		},
+		{
+			name: 'SI ES ESTSERIL PRESENTAR INFORME DE EVALUACION DE ESTERILIZACION',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO (ORIGINAL)',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA)',
+			completed: false
+		},
+		{
+			name: 'AUTORIZACIÓN DE LA FUENTE DE EMISIÓN PARA LOS EMB QUE EMITEN RADIACIONES',
+			completed: false
+		},
+		{
+			name: 'CONTRATO DE MANUFACTURA EN CASO DE FABRICACION POR TERCEROS',
+			completed: false
+		},
+		{
+			name: 'CARTA ACLARATORIA DE TITULARIDAD EN CASO DE QUE APLIQUE',
+			completed: false
+		}
+	];
+	const tasksCRPSclass3 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
+		{
+			name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO DIGITAL) / PERMISO SANITARIO DE FUNCIONAMIENTO SI EL PRODUCTO SE MANUFACTURA EN CR',
+			completed: false
+		},
+		{
+			name: 'CERTIFICACION NOTARIAL DE CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO DIGITAL)',
+			completed: false
+		},
+		{
+			name: 'TRADUCCION OFICIAL DE CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO DIGITAL)',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA  EMITIDO EN PAIS DE ORIGEN (1SO13485 APOSTILLADO DIGITAL)',
+			completed: false
+		},
+		{
+			name: 'CERTIFICACION NOTARIAL DEL 1SO13485 APOSTILLADO',
+			completed: false
+		},
+		{
+			name: 'TRADUCCION OFICIAL DE CERTIFICADO DEL ISO13485',
+			completed: false
+		},
+		{
+			name: 'DESCRIPCIÓN DEL PRODUCTO  - INSTRUCCIONES DE USO (IFU)',
+			completed: false
+		},
+		{
+			name: 'RESUMEN DE ESPECIFICACIONES TECNICAS Y MEDICAS',
+			completed: false
+		},
+		{
+			name: 'SI ES ESTSERIL PRESENTAR INFORME DE EVALUACION DE ESTERILIZACION',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO (ORIGINAL)',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA)',
+			completed: false
+		},
+		{
+			name: 'AUTORIZACIÓN DE LA FUENTE DE EMISIÓN PARA LOS EMB QUE EMITEN RADIACIONES',
+			completed: false
+		},
+		{
+			name: 'CONTRATO DE MANUFACTURA EN CASO DE FABRICACION POR TERCEROS',
+			completed: false
+		},
+		{
+			name: 'CARTA ACLARATORIA DE TITULARIDAD EN CASO DE QUE APLIQUE',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA)',
+			completed: false
+		},
+		{
+			name: 'INDICAR NORMA INTERNACIONAL QUE CONTENGA LOS ESTÁNDARES DE EXACTITUD Y PRECISIÓN APLICABLES AL EMB',
+			completed: false
+		},
+		{
+			name: 'LISTA DE LOS PAÍSES EN DONDE SE COMERCIALIZA',
+			completed: false
+		},
+		{
+			name: 'PRESENTACIÓN DE UN PROGRAMA DE VIGILANCIA PARA EL EMB POR PARTE DEL FABRICANTE',
+			completed: false
+		},
+		{
+			name: 'RESUMEN EN ESPAÑOL DE LOS ENSAYOS CLÍNICOS INCLUYENDO LAS REFERENCIAS BIBLIOGRÁFICAS, DONDE SE DEMUESTRA LA SEGURIDAD Y EFICACIA DEL EMB Y EL ESTUDIO COMPLETO EN FORMA DIGITAL EN LOS DIGITAL O IMPRESA',
+			completed: false
+		}
+	];
+	const tasksCRPSclass4 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
+		{
+			name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO DIGITAL) / PERMISO SANITARIO DE FUNCIONAMIENTO SI EL PRODUCTO SE MANUFACTURA EN CR',
+			completed: false
+		},
+		{
+			name: 'CERTIFICACION NOTARIAL DE CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO DIGITAL)',
+			completed: false
+		},
+		{
+			name: 'TRADUCCION OFICIAL DE CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO DIGITAL)',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA  EMITIDO EN PAIS DE ORIGEN (1SO13485 APOSTILLADO DIGITAL)',
+			completed: false
+		},
+		{
+			name: 'CERTIFICACION NOTARIAL DEL 1SO13485 APOSTILLADO',
+			completed: false
+		},
+		{
+			name: 'TRADUCCION OFICIAL DE CERTIFICADO DEL ISO13485',
+			completed: false
+		},
+		{
+			name: 'DESCRIPCIÓN DEL PRODUCTO  - INSTRUCCIONES DE USO (IFU)',
+			completed: false
+		},
+		{
+			name: 'RESUMEN DE ESPECIFICACIONES TECNICAS Y MEDICAS',
+			completed: false
+		},
+		{
+			name: 'SI ES ESTSERIL PRESENTAR INFORME DE EVALUACION DE ESTERILIZACION',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO (ORIGINAL)',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA)',
+			completed: false
+		},
+		{
+			name: 'AUTORIZACIÓN DE LA FUENTE DE EMISIÓN PARA LOS EMB QUE EMITEN RADIACIONES',
+			completed: false
+		},
+		{
+			name: 'CONTRATO DE MANUFACTURA EN CASO DE FABRICACION POR TERCEROS',
+			completed: false
+		},
+		{
+			name: 'CARTA ACLARATORIA DE TITULARIDAD EN CASO DE QUE APLIQUE',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA)',
+			completed: false
+		},
+		{
+			name: 'INDICAR NORMA INTERNACIONAL QUE CONTENGA LOS ESTÁNDARES DE EXACTITUD Y PRECISIÓN APLICABLES AL EMB',
+			completed: false
+		},
+		{
+			name: 'LISTA DE LOS PAÍSES EN DONDE SE COMERCIALIZA',
+			completed: false
+		},
+		{
+			name: 'PRESENTACIÓN DE UN PROGRAMA DE VIGILANCIA PARA EL EMB POR PARTE DEL FABRICANTE',
+			completed: false
+		},
+		{
+			name: 'RESUMEN EN ESPAÑOL DE LOS ENSAYOS CLÍNICOS INCLUYENDO LAS REFERENCIAS BIBLIOGRÁFICAS, DONDE SE DEMUESTRA LA SEGURIDAD Y EFICACIA DEL EMB Y EL ESTUDIO COMPLETO EN FORMA DIGITAL EN LOS DIGITAL O IMPRESA',
+			completed: false
+		},
+		{
+			name: 'COPIA DEL ESTUDIO DE ANÁLISIS Y EVALUACIÓN DE RIESGOS Y LAS MEDIDAS A ADOPTAR PARA LA REDUCCIÓN DE ELLOS, QUE SATISFAGAN LOS REQUERIMIENTOS DE SEGURIDAD Y EFICACIA, ELABORADOS PARA LA CASA FABRICANTE',
+			completed: false
+		},
+		{
+			name: 'REFERENCIAS BIBLIOGRÁFICAS DE REPORTES PUBLICADOS RELACIONADOS SOBRE EL USO, SEGURIDAD Y EFICACIA DEL EMB',
+			completed: false
+		}
+	];
+	const tasksCRPR = [
+		{
+			name: 'CONTRATO DE FABRICACIÓN, CUANDO SE TRATE DE UNA FABRICACIÓN POR TERCEROS',
+			completed: false
+		},
+		{
+			name: 'DECLARACIÓN JURADA EMITIDA POR EL FABRICANTE O EL TITULAR DEL PRODUCTO O SU REPRESENTANTE LEGAL ',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE BUENAS PRÁCTICAS DE MANUFACTURA',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE LIBRE VENTA - PSF',
+			completed: false
+		},
+		{
+			name: 'ETIQUETA',
+			completed: false
+		}
+	];
+	const tasksPanPSclass1 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL APOSTILLADO', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA APOSTILLADO', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN  APOSTILLADO', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA 1SO13485 ORIGINAL APOSTILADO',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (FDA,CE,TUV) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROS APOSTILLADO',
+			completed: false
+		},
+		{ name: 'DESCRIPCIÓN DEL PRODUCTO  (PIF)', completed: false },
+		{
+			name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO (DESIGN VERIFICATION REPORT)',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO (PIF)',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA)',
+			completed: false
+		}
+	];
+	const tasksPanPSclass2 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL APOSTILLADO', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA APOSTILLADO', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN  APOSTILLADO', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA 1SO13485 ORIGINAL APOSTILADO',
+			completed: false
+		},
+		{
+			name: 'REGISTRO SANITARIO DEL PAÍS DE ORIGEN',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (FDA,CE,TUV) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROS APOSTILLADO',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (UL, IEC, CSA) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROS APOSTILLADO',
+			completed: false
+		},
+		{
+			name: 'DESCRIPCIÓN DEL PRODUCTO',
+			completed: false
+		},
+		{
+			name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO, INCLUIR MATERIALES DE FABRICACIÓN',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'MUESTRAS DEL PRODUCTO CON MÍNIMO 18 MESES DE VIGENCIA',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA), DEL LOTE CORRESPONDIENTE A LA MUESTRA PRESENTADA',
+			completed: false
+		},
+		{
+			name: 'PROGRAMA DE VIGILANCIA POR PARTE DE FABRICANTE (PARA EQUIPOS DE ALTA TECNOLOGÍA)',
+			completed: false
+		},
+		{
+			name: 'DECLARACIÓN PREVIA DE MÉTODO DE ESTERILIZACIÓN (CUANDO APLIQUE)',
+			completed: false
+		}
+	];
+	const tasksPanPSclass3 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL APOSTILLADO', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA ISO13485 ORIGINAL APOSTILLADO ',
+			completed: false
+		},
+		{
+			name: 'REGISTRO SANITARIO DEL PAÍS DE ORIGEN',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (FDA,CE,TUV) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROSO',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (UL, IEC, CSA) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE,ENTRE OTROS.',
+			completed: false
+		},
+		{
+			name: 'DESCRIPCIÓN DEL PRODUCTO  INCLUIR MATERIALES USADOS EN SU FABRICACIÓN (PIF, TECH FILE, BICOMPATIBILIDAD)',
+			completed: false
+		},
+		{
+			name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO (DESIGN VERIFICATION REPORT)',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO (PIF)',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'MUESTRAS DEL PRODUCTO CON MÍNIMO 18 MESES DE VIGENCIA',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA), DEL LOTE CORRESPONDIENTE A LA MUESTRA PRESENTADA',
+			completed: false
+		},
+		{
+			name: 'PROGRAMA DE VIGILANCIA POR PARTE DE FABRICANTE (PARA EQUIPOS DE ALTA TECNOLOGÍA)',
+			completed: false
+		},
+		{
+			name: 'DECLARACIÓN PREVIA DE MÉTODO DE ESTERILIZACIÓN (CUANDO APLIQUE)',
+			completed: false
+		},
+		{
+			name: 'ESTUDIOS CLÍNICOS DE TERCER NIVEL SOBRE EL USO PARA LA DEMOSTRAR LA SEGURIDAD Y EFECTIVIDAD',
+			completed: false
+		},
+		{
+			name: 'LISTA DE LOS PAÍSES DONDE EL DISPOSITIVO MÉDICO HA SIDO VENDIDO Y UN RESUMEN DE CUALQUIER PROBLEMA REPORTADO A LA SALIDA POST MERCADO, SI LOS HUBIERA EN CUALQUIERA DE ESOS PAÍSES',
+			completed: false
+		},
+		{
+			name: 'PRESENTACIÓN DE UN PROGRAMA DE REPORTE DE FALLAS TERAPÉUTICAS E INCIDENTES ADVERSOS PARA LOS DISPOSITIVOS MÉDICOS EMITIDOS POR EL FABRICANTE. DEBERÁN LLEVAR ESTUDIOS CLÍNICOS DE LAS FASE II Y III, SOBRE EL USO PARA LA DEMOSTRAR LA SEGURIDAD Y EFECTIVIDAD',
+			completed: false
+		}
+	];
+	const tasksPanPSclass4 = [
+		{ name: 'PODER DE REPRESENTACIÓN LEGAL', completed: false },
+		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN ', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA',
+			completed: false
+		},
+		{
+			name: 'REGISTRO SANITARIO DEL PAÍS DE ORIGEN',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (FDA,CE,TUV) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROS',
+			completed: false
+		},
+		{
+			name: 'SEGÚN CORRESPONDA AL DISPOSITIVO MÉDICO DEBE CUMPLIR CON ALGUNO DE LOS CERTIFICADOS INTERNACIONALES (UL, IEC, CSA) O SU EQUIVALENTE PLENAMENTE DEMOSTRABLE ENTRE OTROS',
+			completed: false
+		},
+		{
+			name: 'DESCRIPCIÓN DEL PRODUCTO  INCLUIR MATERIALES USADOS EN SU FABRICACIÓN',
+			completed: false
+		},
+		{
+			name: 'ESPECIFICACIONES DEL PRODUCTO TERMINADO',
+			completed: false
+		},
+		{
+			name: 'EMPAQUE PRIMARIO Y SECUNDARIO',
+			completed: false
+		},
+		{
+			name: 'LITERATURA TÉCNICA DEL PRODUCTO (CATALOGO, INSERTO) CUANDO APLIQUE',
+			completed: false
+		},
+		{
+			name: 'MUESTRAS DEL PRODUCTO CON MÍNIMO 18 MESES DE VIGENCIA',
+			completed: false
+		},
+		{
+			name: 'CERTIFICADO DE CONTROL DE CALIDAD EMITIDA POR EL LABORATORIO FABRICANTE (CoA), DEL LOTE CORRESPONDIENTE A LA MUESTRA PRESENTADA',
+			completed: false
+		},
+		{
+			name: 'PROGRAMA DE VIGILANCIA POR PARTE DE FABRICANTE (PARA EQUIPOS DE ALTA TECNOLOGÍA)',
+			completed: false
+		},
+		{
+			name: 'DECLARACIÓN PREVIA DE MÉTODO DE ESTERILIZACIÓN (CUANDO APLIQUE)',
+			completed: false
+		},
+		{
+			name: 'LICENCIA SANITARIA DEL ESTABLECIMIENTO, EMITIDO POR LA DIRECCIÓN DE REGISTRO DE DISPOSITIVOS MÉDICOS',
+			completed: false
+		},
+		{
+			name: 'ESTUDIOS CLÍNICOS DE TERCER NIVEL SOBRE EL USO PARA LA DEMOSTRAR LA SEGURIDAD Y EFECTIVIDAD',
+			completed: false
+		},
+		{
+			name: 'LISTA DE LOS PAÍSES DONDE EL DISPOSITIVO MÉDICO HA SIDO VENDIDO Y UN RESUMEN DE CUALQUIER PROBLEMA REPORTADO A LA SALIDA POST MERCADO, SI LOS HUBIERA EN CUALQUIERA DE ESOS PAÍSES',
+			completed: false
+		},
+		{
+			name: 'PRESENTACIÓN DE UN PROGRAMA DE REPORTE DE FALLAS TERAPÉUTICAS E INCIDENTES ADVERSOS PARA LOS DISPOSITIVOS MÉDICOS EMITIDOS POR EL FABRICANTE. DEBERÁN LLEVAR ESTUDIOS CLÍNICOS DE LAS FASE II Y III, SOBRE EL USO PARA LA DEMOSTRAR LA SEGURIDAD Y EFECTIVIDAD',
+			completed: false
+		},
+		{
+			name: 'ANÁLISIS Y EVALUACIÓN DE RIESGOS Y LAS MEDIDAS A ADOPTAR PARA LA REDUCCIÓN DE ELLOS, QUE SATISFAGAN LOS REQUERIMIENTOS DE SEGURIDAD Y EFICACIA, ELABORADOS POR LA CASA FABRICANTE',
+			completed: false
+		},
+		{
+			name: 'BIBLIOGRAFÍA DE REPORTES PUBLICADOS RELACIONADOS SOBRE EL USO, SEGURIDAD Y EFICACIA DEL DISPOSITIVO MÉDICO',
+			completed: false
+		}
+	];
+	const tasksPanPR = [
+		{ name: 'CE CERTIFICATE APOSTILLADO', completed: false },
+		{ name: 'CERTIFICADO DE LIBRE VENTA DEL PAÍS DE ORIGEN (APOSTILLADO)', completed: false },
+		{
+			name: 'CERTIFICADO DE BUENAS PRACTICAS DE MANUFACTURA (APOSTILLADO)',
+			completed: false
+		},
+		{
+			name: 'ETIQUETADO (POUCH Y CARTON)',
+			completed: false
+		},
+		{
+			name: 'MATERIAL DE EMPAQUE (PIF)',
+			completed: false
+		},
+		{
+			name: 'PROGRAMA DE VIGILANCIA',
+			completed: false
+		},
+		{
+			name: 'ANALISIS DE RIESGOS (DDR)',
+			completed: false
+		}
 	];
 </script>
 
@@ -78,36 +982,64 @@
 	</div>
 
 	<div class="collapse-content">
-		<!-- Guatemala -->
-		{#if item.country === 'guatemala' && item.process === 'productSubmission'}
-			<Checklist {tasks} {item} />
-		{:else if item.country === 'guatemala' && item.process === 'productRenewal'}
-			<Checklist {tasks} {item} />
-			<!-- Honduras -->
-		{:else if item.country === 'honduras' && item.process === 'productSubmission'}
-			<Checklist {tasks} {item} />
-		{:else if item.country === 'honduras' && item.process === 'productRenewal'}
-			<Checklist {tasks} {item} />
-			<!-- El Salvador -->
-		{:else if item.country === 'elSalvador' && item.process === 'productSubmission'}
-			<Checklist {tasks} {item} />
-		{:else if item.country === 'elSalvador' && item.process === 'productRenewal'}
-			<Checklist {tasks} {item} />
-			<!-- Nicaragua -->
-		{:else if item.country === 'nicaragua' && item.process === 'productSubmission'}
-			<Checklist {tasks} {item} />
-		{:else if item.country === 'nicaragua' && item.process === 'productRenewal'}
-			<Checklist {tasks} {item} />
-			<!-- Costa Rica -->
-		{:else if item.country === 'costaRica' && item.process === 'productSubmission'}
-			<Checklist {tasks} {item} />
-		{:else if item.country === 'costaRica' && item.process === 'productRenewal'}
-			<Checklist {tasks} {item} />
-			<!-- Panama -->
-		{:else if item.country === 'panama' && item.process === 'productSubmission'}
-			<Checklist {tasks} {item} />
-		{:else if item.country === 'panama' && item.process === 'productRenewal'}
-			<Checklist {tasks} {item} />
+		{#if item.country === 'guatemala'}
+			{#if item.process === 'productSubmission'}
+				<Checklist {tasksGuaPS} {item} />
+			{:else if item.process === 'productRenewal'}
+				<Checklist {tasksGuaPR} {item} />
+			{/if}
+		{:else if item.country === 'honduras'}
+			{#if item.process === 'productSubmission'}
+				<Checklist {tasksHonPS} {item} />
+			{:else if item.process === 'productRenewal'}
+				<Checklist {tasksHonPR} {item} />
+			{/if}
+		{:else if item.country === 'elSalvador'}
+			{#if item.process === 'productSubmission'}
+				<Checklist {tasksSalPS} {item} />
+			{:else if item.process === 'productRenewal'}
+				<Checklist {tasksSalPR} {item} />
+			{/if}
+		{:else if item.country === 'nicaragua'}
+			{#if item.process === 'productSubmission'}
+				{#if item.class === 'class1'}
+					<Checklist {tasksNicPSclass1} {item} />
+				{:else if item.class === 'class2'}
+					<Checklist {tasksNicPSclass2} {item} />
+				{:else if item.class === 'class3'}
+					<Checklist {tasksNicPSclass3} {item} />
+				{:else if item.class === 'class4'}
+					<Checklist {tasksNicPSclass4} {item} />
+				{/if}
+			{:else if item.process === 'productRenewal'}
+				<Checklist {tasksNicPR} {item} />
+			{/if}
+		{:else if item.country === 'costaRica'}
+			{#if item.process === 'productSubmission'}
+				{#if item.class === 'class2'}
+					<Checklist {tasksCRPSclass2} {item} />
+				{:else if item.class === 'class3'}
+					<Checklist {tasksCRPSclass3} {item} />
+				{:else if item.class === 'class4'}
+					<Checklist {tasksCRPSclass4} {item} />
+				{/if}
+			{:else if item.process === 'productRenewal'}
+				<Checklist {tasksCRPR} {item} />
+			{/if}
+		{:else if item.country === 'panama'}
+			{#if item.process === 'productSubmission'}
+				{#if item.class === 'class1'}
+					<Checklist {tasksPanPSclass1} {item} />
+				{:else if item.class === 'class2'}
+					<Checklist {tasksPanPSclass2} {item} />
+				{:else if item.class === 'class3'}
+					<Checklist {tasksPanPSclass3} {item} />
+				{:else if item.class === 'class4'}
+					<Checklist {tasksPanPSclass4} {item} />
+				{/if}
+			{:else if item.process === 'productRenewal'}
+				<Checklist {tasksPanPR} {item} />
+			{/if}
 		{/if}
 	</div>
 </div>
