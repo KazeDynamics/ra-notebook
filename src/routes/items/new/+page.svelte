@@ -1,6 +1,12 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Input, DropdownCountry, DropdownProcess, DropdownBusinessUnit } from '$lib/components';
+	import {
+		Input,
+		DropdownCountry,
+		DropdownProcess,
+		DropdownClass,
+		DropdownBusinessUnit
+	} from '$lib/components';
 	export let form;
 </script>
 
@@ -26,6 +32,14 @@
 				value={form?.data?.process}
 				errors={form?.errors?.process}
 			/>
+			{#if form?.data?.country === 'nicaragua' || 'costaRica' || 'panama'}
+				<DropdownClass
+					id="class"
+					label="Class"
+					value={form?.data?.class}
+					errors={form?.errors?.class}
+				/>
+			{/if}
 			<DropdownBusinessUnit
 				id="businessUnit"
 				label="Business Unit"
