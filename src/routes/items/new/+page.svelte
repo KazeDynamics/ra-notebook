@@ -32,19 +32,17 @@
 				value={form?.data?.process}
 				errors={form?.errors?.process}
 			/>
-			{#if form?.data?.country === 'nicaragua' || 'costaRica' || 'panama'}
-				<DropdownClass
-					id="class"
-					label="Class"
-					value={form?.data?.class}
-					errors={form?.errors?.class}
-				/>
-			{/if}
 			<DropdownBusinessUnit
 				id="businessUnit"
 				label="Business Unit"
 				value={form?.data?.businessUnit}
 				errors={form?.errors?.businessUnit}
+			/>
+			<DropdownClass
+				id="class"
+				label="Class (optional)"
+				value={form?.data?.class}
+				errors={form?.errors?.class}
 			/>
 			<div class="w-full max-w-lg pt-3">
 				<button type="submit" class="btn btn-primary w-full max-w-lg">Create Item</button>

@@ -26,6 +26,19 @@
 	};
 	$: modalOpen = false;
 
+	const tasks1 = [
+		{ name: 'Task 1', completed: false },
+		{ name: 'Task 2', completed: false },
+		{ name: 'Task 3', completed: false },
+		{ name: 'Task 4', completed: false }
+	];
+	const tasks2 = [
+		{ name: 'item 1', completed: false },
+		{ name: 'Task 2', completed: false },
+		{ name: 'Task 3', completed: false },
+		{ name: 'Task 4', completed: false }
+	];
+
 	const tasksGuaPS = [
 		{ name: 'PODER DE REPRESENTACIÓN LEGAL  1', completed: false },
 		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
@@ -982,7 +995,7 @@
 	</div>
 
 	<div class="collapse-content">
-		{#if item.country === 'guatemala'}
+		<!-- {#if item.country === 'guatemala'}
 			{#if item.process === 'productSubmission'}
 				<Checklist {tasksGuaPS} {item} />
 			{:else if item.process === 'productRenewal'}
@@ -1040,6 +1053,11 @@
 			{:else if item.process === 'productRenewal'}
 				<Checklist {tasksPanPR} {item} />
 			{/if}
+		{/if} -->
+		{#if item.country === 'guatemala' && item.process === 'productSubmission'}
+			<Checklist {tasks1} {item} />
+		{:else if item.country === 'guatemala' && item.process === 'productRenewal'}
+			<Checklist {tasks2} {item} />
 		{/if}
 	</div>
 </div>

@@ -11,9 +11,6 @@
 		modalOpen = true;
 	}
 
-	function closeModal() {
-		modalOpen = false;
-	}
 	let loading = false;
 	const submitDeleteItem = () => {
 		loading = true;
@@ -148,7 +145,6 @@
 		<p class="text-base font-normal mt-2">You've completed all the tasks for this product.</p>
 	</div>
 	<div slot="actions" class="flex w-full items-center justify-center space-x-2">
-		<!-- <button on:click={closeModal}>Close</button> -->
 		<form action="?/deleteItem" method="POST" use:enhance={submitDeleteItem}>
 			<input type="hidden" name="id" value={item.id} />
 			<button type="submit" class="btn btn-success" disabled={loading}>Complete</button>
