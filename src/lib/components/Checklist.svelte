@@ -4,11 +4,17 @@
 	import { Modal } from '$lib/components';
 	import toast from 'svelte-french-toast';
 
-	let modalOpen = false;
+	let modalOpen;
 	const label = 'modal1';
 
 	function openModal() {
-		modalOpen = true;
+		// Checking local storage if modal was previously opened
+		const modalShown = localStorage.getItem(`${item.id}_modalShown`);
+		if (modalShown !== 'true') {
+			modalOpen = true;
+			// Set flag in local storage to remember the modal was opened
+			localStorage.setItem(`${item.id}_modalShown`, 'true');
+		}
 	}
 
 	let loading = false;
@@ -142,9 +148,14 @@
 <Modal {label} checked={modalOpen}>
 	<div slot="heading">
 		<h3 class="text-2xl">Congratulations!</h3>
-		<p class="text-base font-normal mt-2">You've completed all the tasks for this product.</p>
+		<p class="text-base font-normal mt-2">You've completed all the tasks for <b>{item.name}</b></p>
 	</div>
 	<div slot="actions" class="flex w-full items-center justify-center space-x-2">
+		<button
+			type="button"
+			class="btn btn-outline bg-error text-white"
+			on:click={() => (modalOpen = false)}>Delete later</button
+		>
 		<form action="?/deleteItem" method="POST" use:enhance={submitDeleteItem}>
 			<input type="hidden" name="id" value={item.id} />
 			<button type="submit" class="btn btn-success" disabled={loading}>Complete</button>

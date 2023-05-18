@@ -1,6 +1,12 @@
 <script>
 	import { enhance } from '$app/forms';
-	import { Input, DropdownCountry, DropdownProcess, DropdownBusinessUnit } from '$lib/components';
+	import {
+		Input,
+		DropdownCountry,
+		DropdownProcess,
+		DropdownBusinessUnit,
+		DropdownClass
+	} from '$lib/components';
 	export let data;
 	export let form;
 
@@ -49,12 +55,20 @@
 				label="Item process"
 				value={form?.data?.process ?? data.item.process}
 				errors={form?.errors?.process}
+				disabled
 			/>
 			<DropdownBusinessUnit
 				id="businessUnit"
 				label="Item business unit"
 				value={form?.data?.businessUnit ?? data.item.businessUnit}
 				errors={form?.errors?.businessUnit}
+			/>
+			<DropdownClass
+				id="class"
+				label="Class (optional)"
+				value={form?.data?.class ?? form?.data?.class}
+				errors={form?.errors?.class}
+				disabled
 			/>
 			<div class="w-full max-w-lg pt-3">
 				<button type="submit" class="btn btn-primary w-full max-w-lg">Save Changes</button>
