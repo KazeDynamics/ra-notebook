@@ -33,10 +33,10 @@
 		{ name: 'Task 4', completed: false }
 	];
 	const tasks2 = [
-		{ name: 'item 1', completed: false },
-		{ name: 'Task 2', completed: false },
-		{ name: 'Task 3', completed: false },
-		{ name: 'Task 4', completed: false }
+		{ name: 'ITEM 1', completed: false },
+		{ name: 'ITEM 2', completed: false },
+		{ name: 'ITEM 3', completed: false },
+		{ name: 'ITEM 4', completed: false }
 	];
 
 	const tasksGuaPS = [
