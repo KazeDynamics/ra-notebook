@@ -37,3 +37,15 @@
 		{/each}
 	{/if}
 </div>
+
+<style>
+	.label:after {
+		content: '(Required for Nicaragua, Costa Rica & Panama)';
+		color: #f87272;
+		font-size: 0.875rem;
+		line-height: 1.25rem;
+	}
+	.label {
+		justify-content: flex-start;
+	}
+</style>

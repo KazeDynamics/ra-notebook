@@ -897,7 +897,7 @@
 	<input type="checkbox" />
 	<div class="collapse-title text-xl font-medium">
 		<div
-			class="w-full md:h-28 h:30 flex items-center md:justify-between flex-col min-[460px]:flex-row"
+			class="w-full md:h-32 h-30 flex items-center md:justify-between flex-col min-[460px]:flex-row"
 		>
 			<div class="flex flex-col w-full ml-4 h-full justify-center">
 				<a href="/items/{item.id}" class="font-semibold text-4xl">{item.name}</a>
@@ -910,6 +910,20 @@
 					Business Unit: <span class="text-base text-col font-medium text-primary"
 						>{item.businessUnit}</span
 					>
+				</p>
+				<p class="font-light text-base">
+					Class: {#if item.class === 'class1'}<span
+							class="text-base text-col font-medium text-red-600">1/A</span
+						>
+					{:else if item.class === 'class2'}
+						<span class="text-base text-col font-medium text-error">2/B</span>
+					{:else if item.class === 'class3'}
+						<span class="text-base text-col font-medium text-error">3/C</span>
+					{:else if item.class === 'class4'}
+						<span class="text-base text-col font-medium text-error">4/D</span>
+					{:else}
+						<span class="text-base text-col font-medium text-error">none</span>
+					{/if}
 				</p>
 			</div>
 			<div

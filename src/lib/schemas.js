@@ -65,7 +65,8 @@ export const createItemSchema = z.object({
 	country: z.string({ required_error: 'Country is required.' }),
 	process: z.string({ required_error: 'Type of process is required.' }),
 	businessUnit: z.string({ required_error: 'Business Unit is required.' }),
-	user: z.string({ required_error: 'User is required.' })
+	user: z.string({ required_error: 'User is required.' }),
+	class: z.optional(z.string({ required_error: 'Class is required.' }))
 });
 
 export const updateItemSchema = createItemSchema.omit({ user: true, country: true });

@@ -40,7 +40,7 @@
 			/>
 			<DropdownClass
 				id="class"
-				label="Class (optional)"
+				label="Class&nbsp"
 				value={form?.data?.class}
 				errors={form?.errors?.class}
 			/>

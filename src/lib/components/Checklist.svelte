@@ -81,37 +81,39 @@
 	$: dispatch('update', tasks);
 </script>
 
-<table class="table w-full">
-	<thead>
-		<tr>
-			<th />
-			<th>Task</th>
-			<th>Status</th>
-		</tr>
-	</thead>
-	<tbody>
-		{#each tasks as task}
+<div class="overflow-x-auto">
+	<table class="table w-full">
+		<thead>
 			<tr>
-				<td>
-					<input
-						type="checkbox"
-						class="checkbox checkbox-success"
-						bind:checked={task.completed}
-						on:click={() => handleCheckboxClick(task)}
-					/>
-				</td>
-				<td>{task.name}</td>
-				<td>
-					{#if task.completed}
-						<span class="badge badge-success gap-2">Completed</span>
-					{:else}
-						<span class="badge badge-info gap-2">In Progress</span>
-					{/if}
-				</td>
+				<th />
+				<th class="whitespace-nowrap">Task</th>
+				<th class="whitespace-nowrap">Status</th>
 			</tr>
-		{/each}
-	</tbody>
-</table>
+		</thead>
+		<tbody>
+			{#each tasks as task}
+				<tr class="md:table-row overflow-x-auto">
+					<td class="md:table-cell">
+						<input
+							type="checkbox"
+							class="checkbox checkbox-success"
+							bind:checked={task.completed}
+							on:click={() => handleCheckboxClick(task)}
+						/>
+					</td>
+					<td class="md:table-cell whitespace-normal">{task.name}</td>
+					<td>
+						{#if task.completed}
+							<span class="badge badge-success gap-2">Completed</span>
+						{:else}
+							<span class="badge badge-info gap-2">In Progress</span>
+						{/if}
+					</td>
+				</tr>
+			{/each}
+		</tbody>
+	</table>
+</div>
 
 <div class="relative pt-1">
 	<div class="flex mb-2 items-center justify-between">
