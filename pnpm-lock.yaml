@@ -4,9 +4,6 @@ dependencies:
   pocketbase:
     specifier: ^0.12.0
     version: 0.12.0
-  svelte-persistent-store:
-    specifier: ^0.1.6
-    version: 0.1.6(svelte@3.55.1)
   uuid:
     specifier: ^9.0.0
     version: 9.0.0
@@ -1705,14 +1702,6 @@ packages:
       svelte: 3.55.1
     dev: true
 
-  /svelte-persistent-store@0.1.6(svelte@3.55.1):
-    resolution: {integrity: sha512-QIiKRKfeWfxi3Mva83BBSvETT9/a6EBiFVv0yPxNHt9/uFCgbBa0Mewe4+1Koat4y8NG4XJEqtqH2UEzj8FH5A==}
-    peerDependencies:
-      svelte: ^3.9.1
-    dependencies:
-      svelte: 3.55.1
-    dev: false
-
   /svelte-preprocess@4.10.7(postcss-load-config@4.0.1)(postcss@8.4.21)(svelte@3.55.1):
     resolution: {integrity: sha512-sNPBnqYD6FnmdBrUmBCaqS00RyCsCpj2BG58A1JBswNF7b0OKviwxqVrOL/CKyJrLSClrSeqQv5BXNg2RUbPOw==}
     engines: {node: '>= 9.11.2'}
@@ -1776,6 +1765,7 @@ packages:
   /svelte@3.55.1:
     resolution: {integrity: sha512-S+87/P0Ve67HxKkEV23iCdAh/SX1xiSfjF1HOglno/YTbSTW7RniICMCofWGdJJbdjw3S+0PfFb1JtGfTXE0oQ==}
     engines: {node: '>= 8'}
+    dev: true
 
   /tailwindcss@3.2.7(postcss@8.4.21):
     resolution: {integrity: sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ==}
