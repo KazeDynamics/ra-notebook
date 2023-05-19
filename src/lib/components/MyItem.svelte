@@ -3,6 +3,7 @@
 	import { Modal } from '$lib/components';
 	import toast from 'svelte-french-toast';
 	import Checklist from './Checklist.svelte';
+	import Icon from '@iconify/svelte';
 
 	export let item;
 	let modalOpen;
@@ -929,6 +930,7 @@
 			<div
 				class="flex items-center justify-center min-[460px]:justify-end w-full mt-6 xs:mt-0 ml-4 xs:ml-0"
 			>
+				<Icon class="text-xl text-green-600" icon="material-symbols:check-circle" />
 				<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
 				<Modal label={item.id} checked={modalOpen}>
 					<span slot="trigger" class="btn btn-error ml-2 z-10 relative">Delete</span>

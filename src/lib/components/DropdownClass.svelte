@@ -22,6 +22,7 @@
 		{value}
 	>
 		<option disabled selected>Choose a Class</option>
+		<option value="none">none</option>
 		<option value="class1">Class 1/A</option>
 		<option value="class2">Class 2/B</option>
 		<option value="class3">Class 3/C</option>
@@ -37,15 +38,3 @@
 		{/each}
 	{/if}
 </div>
-
-<style>
-	.label:after {
-		content: '(Required for Nicaragua, Costa Rica & Panama)';
-		color: #f87272;
-		font-size: 0.875rem;
-		line-height: 1.25rem;
-	}
-	.label {
-		justify-content: flex-start;
-	}
-</style>

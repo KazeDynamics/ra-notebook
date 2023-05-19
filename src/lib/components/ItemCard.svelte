@@ -20,7 +20,7 @@
 	}
 </script>
 
-<div class="card w-72 bg-base-100 shadow-xl">
+<div class="card w-72 m-4 bg-base-100 shadow-xl">
 	<div class="card-body">
 		<div class="w-full md:h-28 h:30 flex items-center md:justify-between basis-1/2 flex-row">
 			<div class="flex flex-col w-full h-full justify-center">
