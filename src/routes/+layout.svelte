@@ -82,7 +82,9 @@
 			</nav>
 			<div class=" flex flex-row">
 				{#if data.user}
-					<ul class="menu bg-base-100 w-80 hidden lg:block border border-solid border-r-gray-300">
+					<ul
+						class="menu bg-base-100 min-w-[12rem] hidden lg:block border border-solid border-r-gray-300"
+					>
 						<!-- <li>
 							<span
 								><Icon icon="material-symbols:map" class="inline text-xl" />Map

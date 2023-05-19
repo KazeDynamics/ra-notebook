@@ -20,7 +20,7 @@
 	<h3 class="text-2xl font-medium">Settings</h3>
 	<div class="divider" />
 </div>
-<div class="flex w-full h-full space-x-4">
+<div class="flex w-full h-full space-x-4 flex-col sm:flex-row">
 	<ul class="menu bg-base-100 w-56 p-2 rounded-box">
 		{#each navigation as navItem}
 			<li>

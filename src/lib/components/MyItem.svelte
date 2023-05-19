@@ -897,11 +897,9 @@
 <div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
 	<input type="checkbox" />
 	<div class="collapse-title text-xl font-medium">
-		<div
-			class="w-full md:h-32 h-30 flex items-center md:justify-between flex-col min-[460px]:flex-row"
-		>
+		<div class="w-full h-auto flex items-center md:justify-between flex-col min-[575px]:flex-row">
 			<div class="flex flex-col w-full ml-4 h-full justify-center">
-				<a href="/items/{item.id}" class="font-semibold text-4xl">{item.name}</a>
+				<a href="/items/{item.id}" class="font-semibold sm:text-2xl text-sm">{item.name}</a>
 				{#if item.process === 'productSubmission'}
 					<p class="text-base my-2 text-col font-medium text-primary">Product Submission</p>
 				{:else if item.process === 'productRenewal'}
@@ -928,9 +926,12 @@
 				</p>
 			</div>
 			<div
-				class="flex items-center justify-center min-[460px]:justify-end w-full mt-6 xs:mt-0 ml-4 xs:ml-0"
+				class="flex items-center justify-center min-[640px]:justify-end mt-6 xs:mt-0 xs:ml-0 min-w-[50%] min-[720px]:min-w-[40%] xl:min-w-[30%] "
 			>
-				<Icon class="text-xl text-green-600" icon="material-symbols:check-circle" />
+				<Icon
+					class="text-xl text-green-600 scale-150 pr-1 sm:mr-4 sm:pr-0"
+					icon="material-symbols:check-circle"
+				/>
 				<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
 				<Modal label={item.id} checked={modalOpen}>
 					<span slot="trigger" class="btn btn-error ml-2 z-10 relative">Delete</span>
