@@ -22,7 +22,7 @@
 		{value}
 	>
 		<option disabled selected>Choose a Class</option>
-		<option value="none">none</option>
+		<option value="none">None</option>
 		<option value="class1">Class 1/A</option>
 		<option value="class2">Class 2/B</option>
 		<option value="class3">Class 3/C</option>

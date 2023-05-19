@@ -8,11 +8,11 @@
 		{
 			title: 'Account',
 			href: '/my/settings/account'
-		},
-		{
-			title: 'Security',
-			href: '/my/settings/security'
 		}
+		// {
+		// 	title: 'Security',
+		// 	href: '/my/settings/security'
+		// }
 	];
 </script>
 

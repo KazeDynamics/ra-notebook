@@ -899,11 +899,11 @@
 	<div class="collapse-title text-xl font-medium">
 		<div class="w-full h-auto flex items-center md:justify-between flex-col min-[575px]:flex-row">
 			<div class="flex flex-col w-full ml-4 h-full justify-center">
-				<a href="/items/{item.id}" class="font-semibold sm:text-2xl text-sm">{item.name}</a>
+				<a href="/items/{item.id}" class="font-semibold sm:text-2xl mb-2 text-sm">{item.name}</a>
 				{#if item.process === 'productSubmission'}
-					<p class="text-base my-2 text-col font-medium text-primary">Product Submission</p>
+					<p class="text-base text-col font-medium text-primary">Product Submission</p>
 				{:else if item.process === 'productRenewal'}
-					<p class="text-base my-2 text-col font-medium text-primary">Product Renewal</p>
+					<p class="text-base text-col font-medium text-primary">Product Renewal</p>
 				{/if}
 				<p class="font-light text-base">
 					Business Unit: <span class="text-base text-col font-medium text-primary"
@@ -921,7 +921,7 @@
 					{:else if item.class === 'class4'}
 						<span class="text-base text-col font-medium text-error">4/D</span>
 					{:else}
-						<span class="text-base text-col font-medium text-error">none</span>
+						<span class="text-base text-col font-medium text-error">None</span>
 					{/if}
 				</p>
 			</div>
