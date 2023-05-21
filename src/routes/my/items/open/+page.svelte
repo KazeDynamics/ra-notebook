@@ -12,7 +12,7 @@
 	{#if data.items.length === 0}
 		<p class="text-center text-3xl">😮</p>
 		<p class="text-center text-3xl m-3">
-			Looks like you don't have any products for in your notebook.
+			Looks like you don't have any open products in your notebook.
 		</p>
 		<a href="/items/new" class="btn btn-primary max-w-md mt-4">Add One</a>
 	{:else}

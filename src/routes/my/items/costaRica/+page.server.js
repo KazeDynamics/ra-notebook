@@ -38,5 +38,18 @@ export const actions = {
 		return {
 			success: true
 		};
+	},
+	updateItem: async ({ request, locals }) => {
+		const { id } = Object.fromEntries(await request.formData());
+
+		try {
+			await locals.pb.collection('items').update(id, { status: true });
+		} catch (err) {
+			console.log('Error: ', err);
+			throw error(err.status, err.message);
+		}
+		return {
+			success: true
+		};
 	}
 };
