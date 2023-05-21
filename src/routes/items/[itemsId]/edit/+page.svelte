@@ -65,8 +65,8 @@
 			/>
 			<DropdownClass
 				id="class"
-				label="Class&nbsp"
-				value={form?.data?.class ?? form?.data?.class}
+				label="Class"
+				value={form?.data?.class ?? data.item.class}
 				errors={form?.errors?.class}
 				disabled
 			/>

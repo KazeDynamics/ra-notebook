@@ -8,11 +8,9 @@
 	const label = 'modal1';
 
 	function openModal() {
-		// Checking local storage if modal was previously opened
 		const modalShown = localStorage.getItem(`${item.id}_modalShown`);
 		if (modalShown !== 'true') {
 			modalOpen = true;
-			// Set flag in local storage to remember the modal was opened
 			localStorage.setItem(`${item.id}_modalShown`, 'true');
 		}
 	}
@@ -28,6 +26,23 @@
 					break;
 				case 'error':
 					toast.error('Could not complete item. Try again later.');
+					break;
+				default:
+					await update();
+			}
+			loading = false;
+		};
+	};
+
+	const submitUpdateItem = () => {
+		loading = true;
+		return async ({ result, update }) => {
+			switch (result.type) {
+				case 'success':
+					toast.success('Item updated successfully!');
+					await invalidateAll();
+					break;
+				case 'error':
 					break;
 				default:
 					await update();
@@ -153,14 +168,20 @@
 		<p class="text-base font-normal mt-2">You've completed all the tasks for <b>{item.name}</b></p>
 	</div>
 	<div slot="actions" class="flex w-full items-center justify-center space-x-2">
-		<button
-			type="button"
-			class="btn btn-outline bg-error text-white"
-			on:click={() => (modalOpen = false)}>Delete later</button
-		>
+		<form method="POST" action="?/updateItem" use:enhance={submitUpdateItem}>
+			<input type="hidden" name="id" value={item.id} />
+			<button
+				type="submit"
+				class="btn btn-success"
+				disabled={loading}
+				on:click={() => (modalOpen = false)}>Complete</button
+			>
+		</form>
 		<form action="?/deleteItem" method="POST" use:enhance={submitDeleteItem}>
 			<input type="hidden" name="id" value={item.id} />
-			<button type="submit" class="btn btn-success" disabled={loading}>Complete</button>
+			<button type="submit" class="btn btn-outline bg-error text-white" disabled={loading}
+				>Delete</button
+			>
 		</form>
 	</div>
 </Modal>

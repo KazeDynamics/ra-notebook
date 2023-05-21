@@ -4,6 +4,8 @@
 	import { Icon, Pencil } from 'svelte-hero-icons';
 	import { Input } from '$lib/components';
 	import { getImageURL } from '$lib/utils';
+	import toast from 'svelte-french-toast';
+
 	export let data;
 	export let form;
 	let loading;
@@ -22,6 +24,7 @@
 		return async ({ result }) => {
 			switch (result.type) {
 				case 'success':
+					toast.success('Profile updated');
 					await invalidateAll();
 					break;
 				case 'error':

@@ -6,11 +6,11 @@ export const load = ({ locals }) => {
 		throw redirect(303, '/login');
 	}
 
-	const getItemsByCountry = async () => {
+	const getItemsByStatus = async () => {
 		try {
 			const items = serializeNonPOJOs(
 				await locals.pb.collection('items').getFullList(undefined, {
-					filter: `country = "guatemala"`
+					filter: `status = True`
 				})
 			);
 			return items;
@@ -21,7 +21,7 @@ export const load = ({ locals }) => {
 	};
 
 	return {
-		items: getItemsByCountry()
+		items: getItemsByStatus()
 	};
 };
 
@@ -31,19 +31,6 @@ export const actions = {
 
 		try {
 			await locals.pb.collection('items').delete(id);
-		} catch (err) {
-			console.log('Error: ', err);
-			throw error(err.status, err.message);
-		}
-		return {
-			success: true
-		};
-	},
-	updateItem: async ({ request, locals }) => {
-		const { id } = Object.fromEntries(await request.formData());
-
-		try {
-			await locals.pb.collection('items').update(id, { status: true });
 		} catch (err) {
 			console.log('Error: ', err);
 			throw error(err.status, err.message);

@@ -2,6 +2,8 @@
 	import { enhance, applyAction } from '$app/forms';
 	import { invalidateAll } from '$app/navigation';
 	import { Input, Modal } from '$lib/components';
+	import toast from 'svelte-french-toast';
+
 	export let form;
 	export let data;
 	let emailModalOpen;
@@ -16,6 +18,7 @@
 		return async ({ result }) => {
 			switch (result.type) {
 				case 'success':
+					toast.success('Email updated');
 					await invalidateAll();
 					emailModalOpen = false;
 					break;
@@ -33,6 +36,7 @@
 		return async ({ result }) => {
 			switch (result.type) {
 				case 'success':
+					toast.success('Username updated');
 					await invalidateAll();
 					usernameModalOpen = false;
 					break;

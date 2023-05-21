@@ -8,6 +8,7 @@
 	export let item;
 	let modalOpen;
 	let loading = false;
+	let showCheckIcon = false; // Variable to determine whether to show the check icon
 	const submitDeleteItem = () => {
 		loading = true;
 		return async ({ result, update }) => {
@@ -25,6 +26,12 @@
 			loading = false;
 		};
 	};
+
+	$: {
+		// Watch for changes in item.status
+		showCheckIcon = item.status;
+	}
+
 	$: modalOpen = false;
 
 	const tasksGuaPS = [
@@ -926,12 +933,14 @@
 				</p>
 			</div>
 			<div
-				class="flex items-center justify-center min-[640px]:justify-end mt-6 xs:mt-0 xs:ml-0 min-w-[50%] min-[720px]:min-w-[40%] xl:min-w-[30%] "
+				class="flex items-center justify-center min-[640px]:justify-end mt-6 sm:mt-0  min-w-[50%] min-[720px]:min-w-[40%] xl:min-w-[30%] "
 			>
-				<Icon
-					class="text-xl text-green-600 scale-150 pr-1 sm:mr-4 sm:pr-0"
-					icon="material-symbols:check-circle"
-				/>
+				{#if showCheckIcon}
+					<Icon
+						class="text-xl text-green-600 scale-150 pr-1 sm:mr-4 sm:pr-0"
+						icon="material-symbols:check-circle"
+					/>
+				{/if}
 				<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
 				<Modal label={item.id} checked={modalOpen}>
 					<span slot="trigger" class="btn btn-error ml-2 z-10 relative">Delete</span>

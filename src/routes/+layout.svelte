@@ -69,6 +69,12 @@
 								<li>
 									<a href="/my/items" class="justify-between">My Items</a>
 								</li>
+								<li>
+									<a href="/my/items/open" class="justify-between">Open Items</a>
+								</li>
+								<li>
+									<a href="/my/items/completed" class="justify-between">Completed Items</a>
+								</li>
 								<li><a href="/my/settings">Settings</a></li>
 								<li>
 									<form action="/logout" method="POST">
