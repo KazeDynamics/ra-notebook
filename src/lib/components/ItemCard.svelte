@@ -31,21 +31,31 @@
 					<p class="text-secondary font-medium">Product Renewal</p>
 				{/if}
 			</div>
-			<h2 class="text-3xl font-bold">
-				{#if item.country === 'guatemala'}
-					<Icon icon="twemoji:flag-guatemala" class="text-xxl ml-4 mb-2 inline" />
-				{:else if item.country === 'honduras'}
-					<Icon icon="twemoji:flag-honduras" class="text-xxl ml-4 mb-2 inline" />
-				{:else if item.country === 'elSalvador'}
-					<Icon icon="twemoji:flag-el-salvador" class="text-xxl ml-4 mb-2 inline" />
-				{:else if item.country === 'nicaragua'}
-					<Icon icon="twemoji:flag-nicaragua" class="text-xxl ml-4 mb-2 inline" />
-				{:else if item.country === 'costaRica'}
-					<Icon icon="twemoji:flag-costa-rica" class="text-xxl ml-4 mb-2 inline" />
-				{:else if item.country === 'panama'}
-					<Icon icon="twemoji:flag-panama" class="text-xxl ml-4 mb-2 inline" />
-				{/if}
-			</h2>
+			<div class="flex flex-col items-center justify-center">
+				<h2 class="text-3xl">
+					{#if item.country === 'guatemala'}
+						<Icon icon="twemoji:flag-guatemala" class="text-xxl ml-4 mb-2 inline" />
+					{:else if item.country === 'honduras'}
+						<Icon icon="twemoji:flag-honduras" class="text-xxl ml-4 mb-2 inline" />
+					{:else if item.country === 'elSalvador'}
+						<Icon icon="twemoji:flag-el-salvador" class="text-xxl ml-4 mb-2 inline" />
+					{:else if item.country === 'nicaragua'}
+						<Icon icon="twemoji:flag-nicaragua" class="text-xxl ml-4 mb-2 inline" />
+					{:else if item.country === 'costaRica'}
+						<Icon icon="twemoji:flag-costa-rica" class="text-xxl ml-4 mb-2 inline" />
+					{:else if item.country === 'panama'}
+						<Icon icon="twemoji:flag-panama" class="text-xxl ml-4 mb-2 inline" />
+					{/if}
+				</h2>
+				<h2>
+					{#if item.status === true}
+						<Icon
+							class="text-xl ml-4 mb-2 mt-1 text-green-600 scale-150 text-center"
+							icon="material-symbols:check-circle"
+						/>
+					{/if}
+				</h2>
+			</div>
 		</div>
 		<div class="card-actions justify-center pt-5">
 			<a href={url} class="btn btn-primary">View Item</a>
