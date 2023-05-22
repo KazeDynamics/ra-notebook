@@ -15,7 +15,7 @@
 		<form
 			action="?/create"
 			method="POST"
-			class="flex flex-col space-y-2 w-full items-center"
+			class="flex flex-col space-y-2 w-full items-center p-4"
 			use:enhance
 		>
 			<h3 class="text-3xl font-bold">Please provide the product information</h3>
