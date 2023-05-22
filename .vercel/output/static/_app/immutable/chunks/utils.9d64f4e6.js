@@ -1,0 +1,1 @@
+import{_ as i}from"./preload-helper.41c905a7.js";await i(()=>import("./__vite-browser-external.b25bb000.js"),[],import.meta.url);const _=(t,r,e,a="0x0")=>`http://198.74.53.179:80/api/files/${t}/${r}/${e}?thumb=${a}`;export{_ as g};
