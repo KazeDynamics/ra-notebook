@@ -1,6 +1,6 @@
 import { r as redirect, f as fail, e as error } from "../../../../../chunks/index.js";
 import { d as updateProfileSchema } from "../../../../../chunks/schemas.js";
-import { v as validateData } from "../../../../../chunks/utils2.js";
+import { v as validateData } from "../../../../../chunks/utils.js";
 import { serialize } from "object-to-formdata";
 const load = ({ locals }) => {
   if (!locals.pb.authStore.isValid) {

@@ -14,6 +14,7 @@ const stringToIcon = (value, validate, allowSimpleName, provider = "") => {
     const name2 = colonSeparated.pop();
     const prefix = colonSeparated.pop();
     const result = {
+      // Allow provider without '@': "provider:prefix:name"
       provider: colonSeparated.length > 0 ? colonSeparated[0] : provider,
       prefix,
       name: name2
@@ -294,7 +295,9 @@ const defaultIconSizeCustomisations = Object.freeze({
   height: null
 });
 const defaultIconCustomisations = Object.freeze({
+  // Dimensions
   ...defaultIconSizeCustomisations,
+  // Transformations
   ...defaultIconTransformations
 });
 const unitsSplit = /(-?[0-9.]*[0-9]+[0-9.]*)/g;
@@ -458,6 +461,8 @@ function replaceIDs(body, prefix = randomPrefix) {
     const newID = typeof prefix === "function" ? prefix(id) : prefix + (counter++).toString();
     const escapedID = id.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
     body = body.replace(
+      // Allowed characters before id: [#;"]
+      // Allowed characters after id: [)"], .[a-z]
       new RegExp('([#;"])(' + escapedID + ')([")]|\\.[a-z])', "g"),
       "$1" + newID + suffix + "$3"
     );
@@ -483,13 +488,21 @@ function createAPIConfig(source) {
     }
   }
   const result = {
+    // API hosts
     resources,
+    // Root path
     path: source.path || "/",
+    // URL length limit
     maxURL: source.maxURL || 500,
+    // Timeout before next host is used.
     rotate: source.rotate || 750,
+    // Timeout before failing query.
     timeout: source.timeout || 5e3,
+    // Randomise default API end point.
     random: source.random === true,
+    // Start index
     index: source.index || 0,
+    // Receive data after time out (used if time out kicks in first, then API module sends data anyway).
     dataAfterTimeout: source.dataAfterTimeout !== false
   };
   return result;
@@ -1123,7 +1136,8 @@ function iterateBrowserStorage(key, callback) {
     }
     try {
       const data = JSON.parse(item);
-      if (typeof data === "object" && typeof data.cached === "number" && data.cached > minTime && typeof data.provider === "string" && typeof data.data === "object" && typeof data.data.prefix === "string" && callback(data, index)) {
+      if (typeof data === "object" && typeof data.cached === "number" && data.cached > minTime && typeof data.provider === "string" && typeof data.data === "object" && typeof data.data.prefix === "string" && // Valid item: run callback
+      callback(data, index)) {
         return true;
       }
     } catch (err) {
@@ -1167,7 +1181,10 @@ function initBrowserStorage() {
 }
 function updateLastModified(storage2, lastModified) {
   const lastValue = storage2.lastModifiedCached;
-  if (lastValue && lastValue >= lastModified) {
+  if (
+    // Matches or newer
+    lastValue && lastValue >= lastModified
+  ) {
     return lastValue === lastModified;
   }
   storage2.lastModifiedCached = lastModified;
@@ -1412,8 +1429,11 @@ function iconToHTML(body, attributes) {
 function encodeSVGforURL(svg) {
   return svg.replace(/"/g, "'").replace(/%/g, "%25").replace(/#/g, "%23").replace(/</g, "%3C").replace(/>/g, "%3E").replace(/\s+/g, " ");
 }
+function svgToData(svg) {
+  return "data:image/svg+xml," + encodeSVGforURL(svg);
+}
 function svgToURL(svg) {
-  return 'url("data:image/svg+xml,' + encodeSVGforURL(svg) + '")';
+  return 'url("' + svgToData(svg) + '")';
 }
 const defaultExtendedIconCustomisations = {
   ...defaultIconCustomisations,

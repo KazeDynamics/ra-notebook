@@ -126,6 +126,7 @@ const options = {
   app_template_contains_nonce: false,
   csp: { "mode": "auto", "directives": { "upgrade-insecure-requests": false, "block-all-mixed-content": false }, "reportOnly": { "upgrade-insecure-requests": false, "block-all-mixed-content": false } },
   csrf_check_origin: true,
+  track_server_fetches: false,
   embedded: false,
   env_public_prefix: "PUBLIC_",
   hooks: null,
@@ -139,6 +140,11 @@ const options = {
 
 		<style>
 			body {
+				--bg: white;
+				--fg: #222;
+				--divider: #ccc;
+				background: var(--bg);
+				color: var(--fg);
 				font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
 					Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 				display: flex;
@@ -163,7 +169,7 @@ const options = {
 			}
 
 			.message {
-				border-left: 1px solid #ccc;
+				border-left: 1px solid var(--divider);
 				padding: 0 0 0 1rem;
 				margin: 0 0 0 1rem;
 				min-height: 2.5rem;
@@ -176,13 +182,21 @@ const options = {
 				font-size: 1em;
 				margin: 0;
 			}
+
+			@media (prefers-color-scheme: dark) {
+				body {
+					--bg: #222;
+					--fg: #ddd;
+					--divider: #666;
+				}
+			}
 		</style>
 	</head>
 	<body>
 		<div class="error">
 			<span class="status">` + status + '</span>\n			<div class="message">\n				<h1>' + message + "</h1>\n			</div>\n		</div>\n	</body>\n</html>\n"
   },
-  version_hash: "140m4ex"
+  version_hash: "q50zub"
 };
 function get_hooks() {
   return import("./hooks.server.js");

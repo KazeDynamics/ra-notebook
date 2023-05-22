@@ -22,10 +22,6 @@ const Icon = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   }
   onDestroy(() => {
     state.destroyed = true;
-    if (state.loading) {
-      state.loading.abort();
-      state.loading = null;
-    }
   });
   {
     {

@@ -4,8 +4,8 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  return `<div class="${"flex flex-col w-full mt-4"}"><h2>Product Name: <h1 class="${"text-3xl font-bold"}">${escape(data.item.name)}</h1></h2>
-	<h2 class="${"mt-6"}">Country:
+  return `<div class="flex flex-col w-full mt-4"><h2>Product Name: <h1 class="text-3xl font-bold">${escape(data.item.name)}</h1></h2>
+	<h2 class="mt-6">Country:
 		${data.item.country === "guatemala" ? `<div>${validate_component(Icon, "Icon").$$render(
     $$result,
     {
@@ -55,10 +55,10 @@ const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}</div>` : ``}`}`}`}`}`}</h2>
-	<h2 class="${"mt-6"}">Process Type:
-		${data.item.process === "productSubmission" ? `<h1 class="${"text-3xl font-bold"}">Product Submission</h1>` : `${data.item.process === "productRenewal" ? `<h1 class="${"text-3xl font-bold"}">Product Renewal</h1>` : ``}`}</h2>
-	<h2 class="${"mt-6"}">Business Unit: <h1 class="${"text-3xl font-bold"}">${escape(data.item.businessUnit)}</h1></h2>
-	<h2 class="${"mt-6"}">Created on: <h1 class="${"text-3xl font-bold"}">${escape(data.item.created.split(" ")[0])}</h1></h2></div>`;
+	<h2 class="mt-6">Process Type:
+		${data.item.process === "productSubmission" ? `<h1 class="text-3xl font-bold">Product Submission</h1>` : `${data.item.process === "productRenewal" ? `<h1 class="text-3xl font-bold">Product Renewal</h1>` : ``}`}</h2>
+	<h2 class="mt-6">Business Unit: <h1 class="text-3xl font-bold">${escape(data.item.businessUnit)}</h1></h2>
+	<h2 class="mt-6">Created on: <h1 class="text-3xl font-bold">${escape(data.item.created.split(" ")[0])}</h1></h2></div>`;
 });
 export {
   Page as default

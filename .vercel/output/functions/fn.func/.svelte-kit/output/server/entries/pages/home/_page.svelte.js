@@ -1,6 +1,4 @@
-import { c as create_ssr_component, e as escape, v as validate_component, g as add_attribute, i as each } from "../../../chunks/index3.js";
-import "../../../chunks/utils.js";
-import "../../../chunks/Toaster.svelte_svelte_type_style_lang.js";
+import { c as create_ssr_component, e as escape, v as validate_component, h as add_attribute, j as each } from "../../../chunks/index3.js";
 import "../../../chunks/functions.js";
 import { I as Icon } from "../../../chunks/Icon.js";
 const ItemCard = create_ssr_component(($$result, $$props, $$bindings, slots) => {
@@ -23,9 +21,9 @@ const ItemCard = create_ssr_component(($$result, $$props, $$bindings, slots) => 
   }
   if ($$props.item === void 0 && $$bindings.item && item !== void 0)
     $$bindings.item(item);
-  return `<div class="${"card w-72 m-4 bg-base-100 shadow-xl"}"><div class="${"card-body"}"><div class="${"w-full md:h-28 h:30 flex items-center md:justify-between basis-1/2 flex-row"}"><div class="${"flex flex-col w-full h-full justify-center"}"><h2 class="${"card-title font-bold"}">${escape(item.name)}</h2>
-				${item.process === "productSubmission" ? `<p class="${"text-secondary font-medium"}">Product Submission</p>` : `${item.process === "productRenewal" ? `<p class="${"text-secondary font-medium"}">Product Renewal</p>` : ``}`}</div>
-			<div class="${"flex flex-col items-center justify-center"}"><h2 class="${"text-3xl"}">${item.country === "guatemala" ? `${validate_component(Icon, "Icon").$$render(
+  return `<div class="card w-72 m-4 bg-base-100 shadow-xl"><div class="card-body"><div class="w-full md:h-28 h:30 flex items-center md:justify-between basis-1/2 flex-row"><div class="flex flex-col w-full h-full justify-center"><h2 class="card-title font-bold">${escape(item.name)}</h2>
+				${item.process === "productSubmission" ? `<p class="text-secondary font-medium">Product Submission</p>` : `${item.process === "productRenewal" ? `<p class="text-secondary font-medium">Product Renewal</p>` : ``}`}</div>
+			<div class="flex flex-col items-center justify-center"><h2 class="text-3xl">${item.country === "guatemala" ? `${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "twemoji:flag-guatemala",
@@ -83,16 +81,16 @@ const ItemCard = create_ssr_component(($$result, $$props, $$bindings, slots) => 
     {},
     {}
   )}` : ``}</h2></div></div>
-		<div class="${"card-actions justify-center pt-5"}"><a${add_attribute("href", url, 0)} class="${"btn btn-primary"}">View Item</a></div></div></div>`;
+		<div class="card-actions justify-center pt-5"><a${add_attribute("href", url, 0)} class="btn btn-primary">View Item</a></div></div></div>`;
 });
 const Page = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  return `<div class="${"flex flex-col gap-3"}"><h1 class="${"text-xl font-bold"}">Recent Items</h1>
-	${data.items.length === 0 ? `<div class="${"w-full mt-4 flex flex-col items-center"}"><p class="${"text-center text-3xl"}">😮</p>
-			<p class="${"text-center text-3xl m-3"}">Looks like you don&#39;t have any products.</p>
-			<a href="${"/items/new"}" class="${"btn btn-primary max-w-md mt-4"}">Add One</a></div>` : `<div class="${"flex flex-wrap justify-center sm:justify-start"}">${each(data.items, (item) => {
+  return `<div class="flex flex-col gap-3"><h1 class="text-xl font-bold">Recent Items</h1>
+	${data.items.length === 0 ? `<div class="w-full mt-4 flex flex-col items-center"><p class="text-center text-3xl">😮</p>
+			<p class="text-center text-3xl m-3">Looks like you don&#39;t have any products.</p>
+			<a href="/items/new" class="btn btn-primary max-w-md mt-4">Add One</a></div>` : `<div class="flex flex-wrap justify-center sm:justify-start">${each(data.items, (item) => {
     return `${validate_component(ItemCard, "ItemCard").$$render($$result, { item }, {}, {})}`;
   })}</div>`}</div>`;
 });

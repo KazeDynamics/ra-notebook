@@ -1,9 +1,256 @@
-import { o as onDestroy, c as create_ssr_component, a as add_styles, e as escape, v as validate_component, m as missing_component, b as spread, d as escape_object, f as merge_ssr_styles, g as add_attribute, h as subscribe, i as each } from "../../chunks/index3.js";
-import { g as getImageURL } from "../../chunks/utils2.js";
-import { u as useToasterStore, t as toast, s as startPause, e as endPause, a as update, p as prefersReducedMotion } from "../../chunks/Toaster.svelte_svelte_type_style_lang.js";
+import { g as get_store_value, o as onDestroy, c as create_ssr_component, a as add_styles, e as escape, v as validate_component, m as missing_component, b as spread, d as escape_object, f as merge_ssr_styles, h as add_attribute, i as subscribe, j as each } from "../../chunks/index3.js";
+import { g as getImageURL } from "../../chunks/utils.js";
+import { d as derived, w as writable } from "../../chunks/index2.js";
 import { I as Icon } from "../../chunks/Icon.js";
 import { inject } from "@vercel/analytics";
 const app = "";
+function writableDerived(origins, derive, reflect, initial) {
+  var childDerivedSetter, originValues, blockNextDerive = false;
+  var reflectOldValues = "withOld" in reflect;
+  var wrappedDerive = (got, set) => {
+    childDerivedSetter = set;
+    if (reflectOldValues) {
+      originValues = got;
+    }
+    if (!blockNextDerive) {
+      let returned = derive(got, set);
+      if (derive.length < 2) {
+        set(returned);
+      } else {
+        return returned;
+      }
+    }
+    blockNextDerive = false;
+  };
+  var childDerived = derived(origins, wrappedDerive, initial);
+  var singleOrigin = !Array.isArray(origins);
+  var sendUpstream = (setWith) => {
+    if (singleOrigin) {
+      blockNextDerive = true;
+      origins.set(setWith);
+    } else {
+      setWith.forEach((value, i) => {
+        blockNextDerive = true;
+        origins[i].set(value);
+      });
+    }
+    blockNextDerive = false;
+  };
+  if (reflectOldValues) {
+    reflect = reflect.withOld;
+  }
+  var reflectIsAsync = reflect.length >= (reflectOldValues ? 3 : 2);
+  var cleanup = null;
+  function doReflect(reflecting) {
+    if (cleanup) {
+      cleanup();
+      cleanup = null;
+    }
+    if (reflectOldValues) {
+      var returned = reflect(reflecting, originValues, sendUpstream);
+    } else {
+      var returned = reflect(reflecting, sendUpstream);
+    }
+    if (reflectIsAsync) {
+      if (typeof returned == "function") {
+        cleanup = returned;
+      }
+    } else {
+      sendUpstream(returned);
+    }
+  }
+  var tryingSet = false;
+  function update2(fn) {
+    var isUpdated, mutatedBySubscriptions, oldValue, newValue;
+    if (tryingSet) {
+      newValue = fn(get_store_value(childDerived));
+      childDerivedSetter(newValue);
+      return;
+    }
+    var unsubscribe = childDerived.subscribe((value) => {
+      if (!tryingSet) {
+        oldValue = value;
+      } else if (!isUpdated) {
+        isUpdated = true;
+      } else {
+        mutatedBySubscriptions = true;
+      }
+    });
+    newValue = fn(oldValue);
+    tryingSet = true;
+    childDerivedSetter(newValue);
+    unsubscribe();
+    tryingSet = false;
+    if (mutatedBySubscriptions) {
+      newValue = get_store_value(childDerived);
+    }
+    if (isUpdated) {
+      doReflect(newValue);
+    }
+  }
+  return {
+    subscribe: childDerived.subscribe,
+    set(value) {
+      update2(() => value);
+    },
+    update: update2
+  };
+}
+const TOAST_LIMIT = 20;
+const toasts = writable([]);
+const pausedAt = writable(null);
+const toastTimeouts = /* @__PURE__ */ new Map();
+const addToRemoveQueue = (toastId) => {
+  if (toastTimeouts.has(toastId)) {
+    return;
+  }
+  const timeout = setTimeout(() => {
+    toastTimeouts.delete(toastId);
+    remove(toastId);
+  }, 1e3);
+  toastTimeouts.set(toastId, timeout);
+};
+const clearFromRemoveQueue = (toastId) => {
+  const timeout = toastTimeouts.get(toastId);
+  if (timeout) {
+    clearTimeout(timeout);
+  }
+};
+function update(toast2) {
+  if (toast2.id) {
+    clearFromRemoveQueue(toast2.id);
+  }
+  toasts.update(($toasts) => $toasts.map((t) => t.id === toast2.id ? { ...t, ...toast2 } : t));
+}
+function add(toast2) {
+  toasts.update(($toasts) => [toast2, ...$toasts].slice(0, TOAST_LIMIT));
+}
+function upsert(toast2) {
+  if (get_store_value(toasts).find((t) => t.id === toast2.id)) {
+    update(toast2);
+  } else {
+    add(toast2);
+  }
+}
+function dismiss(toastId) {
+  toasts.update(($toasts) => {
+    if (toastId) {
+      addToRemoveQueue(toastId);
+    } else {
+      $toasts.forEach((toast2) => {
+        addToRemoveQueue(toast2.id);
+      });
+    }
+    return $toasts.map((t) => t.id === toastId || toastId === void 0 ? { ...t, visible: false } : t);
+  });
+}
+function remove(toastId) {
+  toasts.update(($toasts) => {
+    if (toastId === void 0) {
+      return [];
+    }
+    return $toasts.filter((t) => t.id !== toastId);
+  });
+}
+function startPause(time) {
+  pausedAt.set(time);
+}
+function endPause(time) {
+  let diff;
+  pausedAt.update(($pausedAt) => {
+    diff = time - ($pausedAt || 0);
+    return null;
+  });
+  toasts.update(($toasts) => $toasts.map((t) => ({
+    ...t,
+    pauseDuration: t.pauseDuration + diff
+  })));
+}
+const defaultTimeouts = {
+  blank: 4e3,
+  error: 4e3,
+  success: 2e3,
+  loading: Infinity,
+  custom: 4e3
+};
+function useToasterStore(toastOptions = {}) {
+  const mergedToasts = writableDerived(toasts, ($toasts) => $toasts.map((t) => ({
+    ...toastOptions,
+    ...toastOptions[t.type],
+    ...t,
+    duration: t.duration || toastOptions[t.type]?.duration || toastOptions?.duration || defaultTimeouts[t.type],
+    style: [toastOptions.style, toastOptions[t.type]?.style, t.style].join(";")
+  })), ($toasts) => $toasts);
+  return {
+    toasts: mergedToasts,
+    pausedAt
+  };
+}
+const isFunction = (valOrFunction) => typeof valOrFunction === "function";
+const resolveValue = (valOrFunction, arg) => isFunction(valOrFunction) ? valOrFunction(arg) : valOrFunction;
+const genId = (() => {
+  let count = 0;
+  return () => {
+    count += 1;
+    return count.toString();
+  };
+})();
+const prefersReducedMotion = (() => {
+  let shouldReduceMotion;
+  return () => {
+    if (shouldReduceMotion === void 0 && typeof window !== "undefined") {
+      const mediaQuery = matchMedia("(prefers-reduced-motion: reduce)");
+      shouldReduceMotion = !mediaQuery || mediaQuery.matches;
+    }
+    return shouldReduceMotion;
+  };
+})();
+const createToast = (message, type = "blank", opts) => ({
+  createdAt: Date.now(),
+  visible: true,
+  type,
+  ariaProps: {
+    role: "status",
+    "aria-live": "polite"
+  },
+  message,
+  pauseDuration: 0,
+  ...opts,
+  id: opts?.id || genId()
+});
+const createHandler = (type) => (message, options) => {
+  const toast2 = createToast(message, type, options);
+  upsert(toast2);
+  return toast2.id;
+};
+const toast = (message, opts) => createHandler("blank")(message, opts);
+toast.error = createHandler("error");
+toast.success = createHandler("success");
+toast.loading = createHandler("loading");
+toast.custom = createHandler("custom");
+toast.dismiss = (toastId) => {
+  dismiss(toastId);
+};
+toast.remove = (toastId) => remove(toastId);
+toast.promise = (promise, msgs, opts) => {
+  const id = toast.loading(msgs.loading, { ...opts, ...opts?.loading });
+  promise.then((p) => {
+    toast.success(resolveValue(msgs.success, p), {
+      id,
+      ...opts,
+      ...opts?.success
+    });
+    return p;
+  }).catch((e) => {
+    toast.error(resolveValue(msgs.error, e), {
+      id,
+      ...opts,
+      ...opts?.error
+    });
+  });
+  return promise;
+};
+const toast$1 = toast;
 function calculateOffset(toast2, $toasts, opts) {
   const { reverseOrder, gutter = 8, defaultPosition } = opts || {};
   const relevantToasts = $toasts.filter((t) => (t.position || defaultPosition) === (toast2.position || defaultPosition) && t.height);
@@ -25,11 +272,11 @@ const handlers = {
   calculateOffset
 };
 function useToaster(toastOptions) {
-  const { toasts, pausedAt } = useToasterStore(toastOptions);
+  const { toasts: toasts2, pausedAt: pausedAt2 } = useToasterStore(toastOptions);
   const timeouts = /* @__PURE__ */ new Map();
   let _pausedAt;
   const unsubscribes = [
-    pausedAt.subscribe(($pausedAt) => {
+    pausedAt2.subscribe(($pausedAt) => {
       if ($pausedAt) {
         for (const [, timeoutId] of timeouts) {
           clearTimeout(timeoutId);
@@ -38,7 +285,7 @@ function useToaster(toastOptions) {
       }
       _pausedAt = $pausedAt;
     }),
-    toasts.subscribe(($toasts) => {
+    toasts2.subscribe(($toasts) => {
       if (_pausedAt) {
         return;
       }
@@ -53,11 +300,11 @@ function useToaster(toastOptions) {
         const durationLeft = (t.duration || 0) + t.pauseDuration - (now - t.createdAt);
         if (durationLeft < 0) {
           if (t.visible) {
-            toast.dismiss(t.id);
+            toast$1.dismiss(t.id);
           }
           return null;
         }
-        timeouts.set(t.id, setTimeout(() => toast.dismiss(t.id), durationLeft));
+        timeouts.set(t.id, setTimeout(() => toast$1.dismiss(t.id), durationLeft));
       }
     })
   ];
@@ -66,8 +313,9 @@ function useToaster(toastOptions) {
       unsubscribe();
     }
   });
-  return { toasts, handlers };
+  return { toasts: toasts2, handlers };
 }
+const CheckmarkIcon_svelte_svelte_type_style_lang = "";
 const css$7 = {
   code: "div.svelte-lzwg39{width:20px;opacity:0;height:20px;border-radius:10px;background:var(--primary, #61d345);position:relative;transform:rotate(45deg);animation:svelte-lzwg39-circleAnimation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;animation-delay:100ms}div.svelte-lzwg39::after{content:'';box-sizing:border-box;animation:svelte-lzwg39-checkmarkAnimation 0.2s ease-out forwards;opacity:0;animation-delay:200ms;position:absolute;border-right:2px solid;border-bottom:2px solid;border-color:var(--secondary, #fff);bottom:6px;left:6px;height:10px;width:6px}@keyframes svelte-lzwg39-circleAnimation{from{transform:scale(0) rotate(45deg);opacity:0}to{transform:scale(1) rotate(45deg);opacity:1}}@keyframes svelte-lzwg39-checkmarkAnimation{0%{height:0;width:0;opacity:0}40%{height:0;width:6px;opacity:1}100%{opacity:1;height:10px}}",
   map: null
@@ -83,11 +331,13 @@ const CheckmarkIcon = create_ssr_component(($$result, $$props, $$bindings, slots
   return `
 
 
-<div class="${"svelte-lzwg39"}"${add_styles({
+<div class="svelte-lzwg39"${add_styles({
     "--primary": primary,
     "--secondary": secondary
   })}></div>`;
 });
+const CheckmarkIcon$1 = CheckmarkIcon;
+const ErrorIcon_svelte_svelte_type_style_lang = "";
 const css$6 = {
   code: "div.svelte-10jnndo{width:20px;opacity:0;height:20px;border-radius:10px;background:var(--primary, #ff4b4b);position:relative;transform:rotate(45deg);animation:svelte-10jnndo-circleAnimation 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;animation-delay:100ms}div.svelte-10jnndo::after,div.svelte-10jnndo::before{content:'';animation:svelte-10jnndo-firstLineAnimation 0.15s ease-out forwards;animation-delay:150ms;position:absolute;border-radius:3px;opacity:0;background:var(--secondary, #fff);bottom:9px;left:4px;height:2px;width:12px}div.svelte-10jnndo:before{animation:svelte-10jnndo-secondLineAnimation 0.15s ease-out forwards;animation-delay:180ms;transform:rotate(90deg)}@keyframes svelte-10jnndo-circleAnimation{from{transform:scale(0) rotate(45deg);opacity:0}to{transform:scale(1) rotate(45deg);opacity:1}}@keyframes svelte-10jnndo-firstLineAnimation{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}@keyframes svelte-10jnndo-secondLineAnimation{from{transform:scale(0) rotate(90deg);opacity:0}to{transform:scale(1) rotate(90deg);opacity:1}}",
   map: null
@@ -103,11 +353,13 @@ const ErrorIcon = create_ssr_component(($$result, $$props, $$bindings, slots) =>
   return `
 
 
-<div class="${"svelte-10jnndo"}"${add_styles({
+<div class="svelte-10jnndo"${add_styles({
     "--primary": primary,
     "--secondary": secondary
   })}></div>`;
 });
+const ErrorIcon$1 = ErrorIcon;
+const LoaderIcon_svelte_svelte_type_style_lang = "";
 const css$5 = {
   code: "div.svelte-bj4lu8{width:12px;height:12px;box-sizing:border-box;border:2px solid;border-radius:100%;border-color:var(--secondary, #e0e0e0);border-right-color:var(--primary, #616161);animation:svelte-bj4lu8-rotate 1s linear infinite}@keyframes svelte-bj4lu8-rotate{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}",
   map: null
@@ -123,11 +375,13 @@ const LoaderIcon = create_ssr_component(($$result, $$props, $$bindings, slots) =
   return `
 
 
-<div class="${"svelte-bj4lu8"}"${add_styles({
+<div class="svelte-bj4lu8"${add_styles({
     "--primary": primary,
     "--secondary": secondary
   })}></div>`;
 });
+const LoaderIcon$1 = LoaderIcon;
+const ToastIcon_svelte_svelte_type_style_lang = "";
 const css$4 = {
   code: ".indicator.svelte-1c92bpz{position:relative;display:flex;justify-content:center;align-items:center;min-width:20px;min-height:20px}.status.svelte-1c92bpz{position:absolute}.animated.svelte-1c92bpz{position:relative;transform:scale(0.6);opacity:0.4;min-width:20px;animation:svelte-1c92bpz-enter 0.3s 0.12s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards}@keyframes svelte-1c92bpz-enter{from{transform:scale(0.6);opacity:0.4}to{transform:scale(1);opacity:1}}",
   map: null
@@ -141,9 +395,11 @@ const ToastIcon = create_ssr_component(($$result, $$props, $$bindings, slots) =>
     $$bindings.toast(toast2);
   $$result.css.add(css$4);
   ({ type, icon, iconTheme } = toast2);
-  return `${typeof icon === "string" ? `<div class="${"animated svelte-1c92bpz"}">${escape(icon)}</div>` : `${typeof icon !== "undefined" ? `${validate_component(icon || missing_component, "svelte:component").$$render($$result, {}, {}, {})}` : `${type !== "blank" ? `<div class="${"indicator svelte-1c92bpz"}">${validate_component(LoaderIcon, "LoaderIcon").$$render($$result, Object.assign({}, iconTheme), {}, {})}
-		${type !== "loading" ? `<div class="${"status svelte-1c92bpz"}">${type === "error" ? `${validate_component(ErrorIcon, "ErrorIcon").$$render($$result, Object.assign({}, iconTheme), {}, {})}` : `${validate_component(CheckmarkIcon, "CheckmarkIcon").$$render($$result, Object.assign({}, iconTheme), {}, {})}`}</div>` : ``}</div>` : ``}`}`}`;
+  return `${typeof icon === "string" ? `<div class="animated svelte-1c92bpz">${escape(icon)}</div>` : `${typeof icon !== "undefined" ? `${validate_component(icon || missing_component, "svelte:component").$$render($$result, {}, {}, {})}` : `${type !== "blank" ? `<div class="indicator svelte-1c92bpz">${validate_component(LoaderIcon$1, "LoaderIcon").$$render($$result, Object.assign({}, iconTheme), {}, {})}
+		${type !== "loading" ? `<div class="status svelte-1c92bpz">${type === "error" ? `${validate_component(ErrorIcon$1, "ErrorIcon").$$render($$result, Object.assign({}, iconTheme), {}, {})}` : `${validate_component(CheckmarkIcon$1, "CheckmarkIcon").$$render($$result, Object.assign({}, iconTheme), {}, {})}`}</div>` : ``}</div>` : ``}`}`}`;
 });
+const ToastIcon$1 = ToastIcon;
+const ToastMessage_svelte_svelte_type_style_lang = "";
 const css$3 = {
   code: ".message.svelte-o805t1{display:flex;justify-content:center;margin:4px 10px;color:inherit;flex:1 1 auto;white-space:pre-line}",
   map: null
@@ -156,6 +412,8 @@ const ToastMessage = create_ssr_component(($$result, $$props, $$bindings, slots)
   return `<div${spread([{ class: "message" }, escape_object(toast2.ariaProps)], { classes: "svelte-o805t1" })}>${typeof toast2.message === "string" ? `${escape(toast2.message)}` : `${validate_component(toast2.message || missing_component, "svelte:component").$$render($$result, { toast: toast2 }, {}, {})}`}
 </div>`;
 });
+const ToastMessage$1 = ToastMessage;
+const ToastBar_svelte_svelte_type_style_lang = "";
 const css$2 = {
   code: "@keyframes svelte-15lyehg-enterAnimation{0%{transform:translate3d(0, calc(var(--factor) * -200%), 0) scale(0.6);opacity:0.5}100%{transform:translate3d(0, 0, 0) scale(1);opacity:1}}@keyframes svelte-15lyehg-exitAnimation{0%{transform:translate3d(0, 0, -1px) scale(1);opacity:1}100%{transform:translate3d(0, calc(var(--factor) * -150%), -1px) scale(0.6);opacity:0}}@keyframes svelte-15lyehg-fadeInAnimation{0%{opacity:0}100%{opacity:1}}@keyframes svelte-15lyehg-fadeOutAnimation{0%{opacity:1}100%{opacity:0}}.base.svelte-15lyehg{display:flex;align-items:center;background:#fff;color:#363636;line-height:1.3;will-change:transform;box-shadow:0 3px 10px rgba(0, 0, 0, 0.1), 0 3px 3px rgba(0, 0, 0, 0.05);max-width:350px;pointer-events:auto;padding:8px 10px;border-radius:8px}.transparent.svelte-15lyehg{opacity:0}.enter.svelte-15lyehg{animation:svelte-15lyehg-enterAnimation 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) forwards}.exit.svelte-15lyehg{animation:svelte-15lyehg-exitAnimation 0.4s cubic-bezier(0.06, 0.71, 0.55, 1) forwards}.fadeIn.svelte-15lyehg{animation:svelte-15lyehg-fadeInAnimation 0.35s cubic-bezier(0.21, 1.02, 0.73, 1) forwards}.fadeOut.svelte-15lyehg{animation:svelte-15lyehg-fadeOutAnimation 0.4s cubic-bezier(0.06, 0.71, 0.55, 1) forwards}",
   map: null
@@ -186,17 +444,19 @@ const ToastBar = create_ssr_component(($$result, $$props, $$bindings, slots) => 
   }
   return `<div class="${"base " + escape(toast2.height ? animation : "transparent", true) + " " + escape(toast2.className || "", true) + " svelte-15lyehg"}"${add_styles(merge_ssr_styles(escape(style, true) + "; " + escape(toast2.style, true), { "--factor": factor }))}>${Component ? `${validate_component(Component || missing_component, "svelte:component").$$render($$result, {}, {}, {
     message: () => {
-      return `${validate_component(ToastMessage, "ToastMessage").$$render($$result, { toast: toast2, slot: "message" }, {}, {})}`;
+      return `${validate_component(ToastMessage$1, "ToastMessage").$$render($$result, { toast: toast2, slot: "message" }, {}, {})}`;
     },
     icon: () => {
-      return `${validate_component(ToastIcon, "ToastIcon").$$render($$result, { toast: toast2, slot: "icon" }, {}, {})}`;
+      return `${validate_component(ToastIcon$1, "ToastIcon").$$render($$result, { toast: toast2, slot: "icon" }, {}, {})}`;
     }
-  })}` : `${slots.default ? slots.default({ ToastIcon, ToastMessage, toast: toast2 }) : `
-			${validate_component(ToastIcon, "ToastIcon").$$render($$result, { toast: toast2 }, {}, {})}
-			${validate_component(ToastMessage, "ToastMessage").$$render($$result, { toast: toast2 }, {}, {})}
+  })}` : `${slots.default ? slots.default({ ToastIcon: ToastIcon$1, ToastMessage: ToastMessage$1, toast: toast2 }) : `
+			${validate_component(ToastIcon$1, "ToastIcon").$$render($$result, { toast: toast2 }, {}, {})}
+			${validate_component(ToastMessage$1, "ToastMessage").$$render($$result, { toast: toast2 }, {}, {})}
 		`}`}
 </div>`;
 });
+const ToastBar$1 = ToastBar;
+const ToastWrapper_svelte_svelte_type_style_lang = "";
 const css$1 = {
   code: ".wrapper.svelte-1pakgpd{left:0;right:0;display:flex;position:absolute;transform:translateY(calc(var(--offset, 16px) * var(--factor) * 1px))}.transition.svelte-1pakgpd{transition:all 230ms cubic-bezier(0.21, 1.02, 0.73, 1)}.active.svelte-1pakgpd{z-index:9999}.active.svelte-1pakgpd>*{pointer-events:auto}",
   map: null
@@ -227,11 +487,13 @@ const ToastWrapper = create_ssr_component(($$result, $$props, $$bindings, slots)
     top,
     bottom,
     "justify-content": justifyContent
-  })}${add_attribute("this", wrapperEl, 0)}>${toast2.type === "custom" ? `${validate_component(ToastMessage, "ToastMessage").$$render($$result, { toast: toast2 }, {}, {})}` : `${slots.default ? slots.default({ toast: toast2 }) : `
-			${validate_component(ToastBar, "ToastBar").$$render($$result, { toast: toast2, position: toast2.position }, {}, {})}
+  })}${add_attribute("this", wrapperEl, 0)}>${toast2.type === "custom" ? `${validate_component(ToastMessage$1, "ToastMessage").$$render($$result, { toast: toast2 }, {}, {})}` : `${slots.default ? slots.default({ toast: toast2 }) : `
+			${validate_component(ToastBar$1, "ToastBar").$$render($$result, { toast: toast2, position: toast2.position }, {}, {})}
 		`}`}
 </div>`;
 });
+const ToastWrapper$1 = ToastWrapper;
+const Toaster_svelte_svelte_type_style_lang = "";
 const css = {
   code: ".toaster.svelte-jyff3d{--default-offset:16px;position:fixed;z-index:9999;top:var(--default-offset);left:var(--default-offset);right:var(--default-offset);bottom:var(--default-offset);pointer-events:none}",
   map: null
@@ -244,8 +506,8 @@ const Toaster = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { gutter = 8 } = $$props;
   let { containerStyle = void 0 } = $$props;
   let { containerClassName = void 0 } = $$props;
-  const { toasts, handlers: handlers2 } = useToaster(toastOptions);
-  $$unsubscribe_toasts = subscribe(toasts, (value) => $toasts = value);
+  const { toasts: toasts2, handlers: handlers2 } = useToaster(toastOptions);
+  $$unsubscribe_toasts = subscribe(toasts2, (value) => $toasts = value);
   let _toasts;
   if ($$props.reverseOrder === void 0 && $$bindings.reverseOrder && reverseOrder !== void 0)
     $$bindings.reverseOrder(reverseOrder);
@@ -271,7 +533,7 @@ const Toaster = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   }));
   $$unsubscribe_toasts();
   return `<div class="${"toaster " + escape(containerClassName || "", true) + " svelte-jyff3d"}"${add_attribute("style", containerStyle, 0)}>${each(_toasts, (toast2) => {
-    return `${validate_component(ToastWrapper, "ToastWrapper").$$render(
+    return `${validate_component(ToastWrapper$1, "ToastWrapper").$$render(
       $$result,
       {
         toast: toast2,
@@ -283,31 +545,32 @@ const Toaster = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   })}
 </div>`;
 });
+const Toaster$1 = Toaster;
 const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
   let { data } = $$props;
   inject({ mode: "production" });
   if ($$props.data === void 0 && $$bindings.data && data !== void 0)
     $$bindings.data(data);
-  return `${validate_component(Toaster, "Toaster").$$render($$result, {}, {}, {})}
-<div class="${"drawer"}"><input id="${"my-drawer-3"}" type="${"checkbox"}" class="${"drawer-toggle"}">
-	<div class="${"drawer-content flex flex-col"}"><div class="${"min-h-full"}"><nav class="${"navbar bg-primary z-50 relative"}">${data.user ? `<div class="${"flex-none lg:hidden"}"><label for="${"my-drawer-3"}" class="${"btn btn-square btn-ghost "}"><svg xmlns="${"http://www.w3.org/2000/svg"}" fill="${"none"}" viewBox="${"0 0 24 24"}" class="${"inline-block w-6 h-6 stroke-current text-base-100"}"><path stroke-linecap="${"round"}" stroke-linejoin="${"round"}" stroke-width="${"2"}" d="${"M4 6h16M4 12h16M4 18h16"}"></path></svg></label></div>` : ``}
-				${!data.user ? `<div class="${"flex-1"}"><a href="${"/"}" class="${"btn btn-ghost normal-case text-xl pl-2 text-base-100 e"}">Notebook</a></div>` : `<div class="${"flex-1"}"><a href="${"/home"}" class="${"btn btn-ghost normal-case text-xl pl-2 text-base-100"}">Regulatory Notebook</a></div>`}
-				<div class="${"flex-none"}">${!data.user ? `<div class="${"dropdown dropdown-end"}"><a href="${"/login"}" class="${"btn btn-primary bg-base-100 border-black text-black"}">Login</a>
-							<a href="${"/register"}" class="${"btn btn-secondary"}">Register</a></div>` : `<div class="${"dropdown dropdown-end"}">
+  return `${validate_component(Toaster$1, "Toaster").$$render($$result, {}, {}, {})}
+<div class="drawer"><input id="my-drawer-3" type="checkbox" class="drawer-toggle">
+	<div class="drawer-content flex flex-col"><div class="min-h-full"><nav class="navbar bg-primary z-50 relative">${data.user ? `<div class="flex-none lg:hidden"><label for="my-drawer-3" class="btn btn-square btn-ghost "><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-6 h-6 stroke-current text-base-100"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg></label></div>` : ``}
+				${!data.user ? `<div class="flex-1"><a href="/" class="btn btn-ghost normal-case text-xl pl-2 text-base-100 e">Notebook</a></div>` : `<div class="flex-1"><a href="/home" class="btn btn-ghost normal-case text-xl pl-2 text-base-100">Regulatory Notebook</a></div>`}
+				<div class="flex-none">${!data.user ? `<div class="dropdown dropdown-end"><a href="/login" class="btn btn-primary bg-base-100 border-black text-black">Login</a>
+							<a href="/register" class="btn btn-secondary">Register</a></div>` : `<div class="dropdown dropdown-end">
 							
-							<label tabindex="${"0"}" class="${"btn btn-ghost btn-circle avatar"}"><div class="${"w-10 rounded-full"}"><img${add_attribute(
+							<label tabindex="0" class="btn btn-ghost btn-circle avatar"><div class="w-10 rounded-full"><img${add_attribute(
     "src",
     data.user?.avatar ? getImageURL(data.user?.collectionId, data.user?.id, data.user?.avatar) : `https://ui-avatars.com/api/?name=${data.user?.name}`,
     0
-  )} alt="${"User avatar"}"></div></label>
+  )} alt="User avatar"></div></label>
 							
-							<ul tabindex="${"0"}" class="${"menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"}"><li><a href="${"/my/items"}" class="${"justify-between"}">My Items</a></li>
-								<li><a href="${"/my/items/open"}" class="${"justify-between"}">Open Items</a></li>
-								<li><a href="${"/my/items/completed"}" class="${"justify-between"}">Completed Items</a></li>
-								<li><a href="${"/my/settings"}">Settings</a></li>
-								<li><form action="${"/logout"}" method="${"POST"}"><button type="${"submit"}" class="${"w-full text-start"}">Logout</button></form></li></ul></div>`}</div></nav>
-			<div class="${"flex flex-row"}">${data.user ? `<ul class="${"menu bg-base-100 min-w-[12rem] hidden lg:block border border-solid border-r-gray-300"}">
-						<li class="${"pb-4"}"><a href="${"/items/new"}">${validate_component(Icon, "Icon").$$render(
+							<ul tabindex="0" class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"><li><a href="/my/items" class="justify-between">My Items</a></li>
+								<li><a href="/my/items/open" class="justify-between">Open Items</a></li>
+								<li><a href="/my/items/completed" class="justify-between">Completed Items</a></li>
+								<li><a href="/my/settings">Settings</a></li>
+								<li><form action="/logout" method="POST"><button type="submit" class="w-full text-start">Logout</button></form></li></ul></div>`}</div></nav>
+			<div class="flex flex-row">${data.user ? `<ul class="menu bg-base-100 min-w-[12rem] hidden lg:block border border-solid border-r-gray-300">
+						<li class="pb-4"><a href="/items/new">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "bi:plus-circle",
@@ -316,8 +579,8 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}Add Item</a></li>
-						<li class="${"menu-title"}"><span>LATAM Countries</span></li>
-						<li><a href="${"/my/items/guatemala"}">${validate_component(Icon, "Icon").$$render(
+						<li class="menu-title"><span>LATAM Countries</span></li>
+						<li><a href="/my/items/guatemala">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "game-icons:byzantin-temple",
@@ -326,7 +589,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}Guatemala</a></li>
-						<li><a href="${"/my/items/honduras"}">${validate_component(Icon, "Icon").$$render(
+						<li><a href="/my/items/honduras">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "noto:palm-tree",
@@ -335,7 +598,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}Honduras</a></li>
-						<li><a href="${"/my/items/elSalvador"}">${validate_component(Icon, "Icon").$$render(
+						<li><a href="/my/items/elSalvador">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "game-icons:mountain-cave",
@@ -345,7 +608,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {}
   )}El
 								Salvador</a></li>
-						<li><a href="${"/my/items/nicaragua"}">${validate_component(Icon, "Icon").$$render(
+						<li><a href="/my/items/nicaragua">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "emojione:volcano",
@@ -354,7 +617,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}Nicaragua</a></li>
-						<li><a href="${"/my/items/costaRica"}">${validate_component(Icon, "Icon").$$render(
+						<li><a href="/my/items/costaRica">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "game-icons:waterfall",
@@ -364,7 +627,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {}
   )}Costa
 								Rica</a></li>
-						<li><a href="${"/my/items/panama"}">${validate_component(Icon, "Icon").$$render(
+						<li><a href="/my/items/panama">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "openmoji:ship",
@@ -373,10 +636,10 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}Panama</a></li></ul>` : ``}
-				${!data.user ? `<div class="${"flex-auto"}"><div class="${"mx-auto"}">${slots.default ? slots.default({}) : ``}</div></div>` : `<div class="${"flex-auto py-4 px-4 md:px-0"}"><div class="${"mx-auto max-w-max xl:max-w-full px-8"}">${slots.default ? slots.default({}) : ``}</div></div>`}</div></div></div>
-	<div class="${"drawer-side"}"><label for="${"my-drawer-3"}" class="${"drawer-overlay"}"></label>
-		<ul class="${"menu p-4 w-80 bg-base-100"}">
-			<li class="${"py-2"}"><a href="${"/items/new"}">${validate_component(Icon, "Icon").$$render(
+				${!data.user ? `<div class="flex-auto"><div class="mx-auto">${slots.default ? slots.default({}) : ``}</div></div>` : `<div class="flex-auto py-4 px-4 md:px-0"><div class="mx-auto max-w-max xl:max-w-full px-8">${slots.default ? slots.default({}) : ``}</div></div>`}</div></div></div>
+	<div class="drawer-side"><label for="my-drawer-3" class="drawer-overlay"></label>
+		<ul class="menu p-4 w-80 bg-base-100">
+			<li class="py-2"><a href="/items/new">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "bi:plus-circle",
@@ -386,8 +649,8 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {}
   )}Add Item</a></li>
 			
-			<li class="${"menu-title"}"><span>LATAM Countries</span></li>
-			<li><a href="${"/my/items/guatemala"}">${validate_component(Icon, "Icon").$$render(
+			<li class="menu-title"><span>LATAM Countries</span></li>
+			<li><a href="/my/items/guatemala">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "game-icons:byzantin-temple",
@@ -396,7 +659,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}Guatemala</a></li>
-			<li><a href="${"/my/items/honduras"}">${validate_component(Icon, "Icon").$$render(
+			<li><a href="/my/items/honduras">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "noto:palm-tree",
@@ -405,7 +668,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}Honduras</a></li>
-			<li><a href="${"/my/items/elSalvador"}">${validate_component(Icon, "Icon").$$render(
+			<li><a href="/my/items/elSalvador">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "game-icons:mountain-cave",
@@ -414,7 +677,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}El Salvador</a></li>
-			<li><a href="${"/my/items/nicaragua"}">${validate_component(Icon, "Icon").$$render(
+			<li><a href="/my/items/nicaragua">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "emojione:volcano",
@@ -423,7 +686,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}Nicaragua</a></li>
-			<li><a href="${"/my/items/costaRica"}">${validate_component(Icon, "Icon").$$render(
+			<li><a href="/my/items/costaRica">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "game-icons:waterfall",
@@ -432,7 +695,7 @@ const Layout = create_ssr_component(($$result, $$props, $$bindings, slots) => {
     {},
     {}
   )}Costa Rica</a></li>
-			<li><a href="${"/my/items/panama"}">${validate_component(Icon, "Icon").$$render(
+			<li><a href="/my/items/panama">${validate_component(Icon, "Icon").$$render(
     $$result,
     {
       icon: "openmoji:ship",

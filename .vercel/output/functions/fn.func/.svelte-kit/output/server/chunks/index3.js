@@ -73,8 +73,7 @@ function setContext(key, context) {
 function getContext(key) {
   return get_current_component().$$.context.get(key);
 }
-Promise.resolve();
-const boolean_attributes = /* @__PURE__ */ new Set([
+const _boolean_attributes = [
   "allowfullscreen",
   "allowpaymentrequest",
   "async",
@@ -89,7 +88,6 @@ const boolean_attributes = /* @__PURE__ */ new Set([
   "hidden",
   "inert",
   "ismap",
-  "itemscope",
   "loop",
   "multiple",
   "muted",
@@ -101,7 +99,8 @@ const boolean_attributes = /* @__PURE__ */ new Set([
   "required",
   "reversed",
   "selected"
-]);
+];
+const boolean_attributes = /* @__PURE__ */ new Set([..._boolean_attributes]);
 const invalid_attribute_name_character = /[\s'">/=\u{FDD0}-\u{FDEF}\u{FFFE}\u{FFFF}\u{1FFFE}\u{1FFFF}\u{2FFFE}\u{2FFFF}\u{3FFFE}\u{3FFFF}\u{4FFFE}\u{4FFFF}\u{5FFFE}\u{5FFFF}\u{6FFFE}\u{6FFFF}\u{7FFFE}\u{7FFFF}\u{8FFFE}\u{8FFFF}\u{9FFFE}\u{9FFFF}\u{AFFFE}\u{AFFFF}\u{BFFFE}\u{BFFFF}\u{CFFFE}\u{CFFFF}\u{DFFFE}\u{DFFFF}\u{EFFFE}\u{EFFFF}\u{FFFFE}\u{FFFFF}\u{10FFFE}\u{10FFFF}]/u;
 function spread(args, attrs_to_add) {
   const attributes = Object.assign({}, ...args);
@@ -261,16 +260,16 @@ export {
   escape_object as d,
   escape as e,
   merge_ssr_styles as f,
-  add_attribute as g,
-  subscribe as h,
-  each as i,
-  getContext as j,
+  get_store_value as g,
+  add_attribute as h,
+  subscribe as i,
+  each as j,
   safe_not_equal as k,
   is_function as l,
   missing_component as m,
   noop as n,
   onDestroy as o,
-  get_store_value as p,
+  getContext as p,
   createEventDispatcher as q,
   run_all as r,
   setContext as s,

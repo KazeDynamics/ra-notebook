@@ -1,5 +1,5 @@
 import { r as redirect, e as error } from "../../../../../chunks/index.js";
-import { s as serializeNonPOJOs } from "../../../../../chunks/utils2.js";
+import { s as serializeNonPOJOs } from "../../../../../chunks/utils.js";
 const load = ({ locals }) => {
   if (!locals.pb.authStore.isValid) {
     throw redirect(303, "/login");

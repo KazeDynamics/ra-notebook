@@ -1,6 +1,6 @@
 import { f as fail, e as error, r as redirect } from "../../../chunks/index.js";
 import { r as registerUserSchema } from "../../../chunks/schemas.js";
-import { v as validateData, a as generateUsername } from "../../../chunks/utils2.js";
+import { v as validateData, a as generateUsername } from "../../../chunks/utils.js";
 const actions = {
   register: async ({ locals, request }) => {
     const { formData, errors } = await validateData(await request.formData(), registerUserSchema);
