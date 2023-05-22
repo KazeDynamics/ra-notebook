@@ -7,7 +7,7 @@
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
 
-	inject({ mode: dev ? 'development' : 'production' });
+	inject({ mode: dev ? 'development' : 'production' }); //analytics
 </script>
 
 <Toaster />
@@ -18,7 +18,7 @@
 			<nav class="navbar bg-primary z-50 relative">
 				{#if data.user}
 					<div class="flex-none lg:hidden">
-						<label for="my-drawer-3" class="btn btn-square btn-ghost ">
+						<label for="my-drawer-3" class="btn btn-square btn-ghost">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
