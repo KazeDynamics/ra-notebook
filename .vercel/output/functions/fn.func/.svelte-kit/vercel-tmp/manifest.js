@@ -1,10 +1,10 @@
 export const manifest = {
 	appDir: "_app",
 	appPath: "_app",
-	assets: new Set(["logoBSC.png"]),
+	assets: new Set(["favicon.png","logoBSC.png"]),
 	mimeTypes: {".png":"image/png"},
 	_: {
-		client: {"start":{"file":"_app/immutable/entry/start.154e0efe.js","imports":["_app/immutable/entry/start.154e0efe.js","_app/immutable/chunks/index.2c758050.js","_app/immutable/chunks/singletons.70c11545.js","_app/immutable/chunks/index.fdb981d4.js","_app/immutable/chunks/parse.5567e4e2.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.46ae5607.js","imports":["_app/immutable/entry/app.46ae5607.js","_app/immutable/chunks/preload-helper.41c905a7.js","_app/immutable/chunks/index.2c758050.js"],"stylesheets":[],"fonts":[]}},
+		client: {"start":{"file":"_app/immutable/entry/start.2f0b3933.js","imports":["_app/immutable/entry/start.2f0b3933.js","_app/immutable/chunks/index.2c758050.js","_app/immutable/chunks/singletons.4925ef2b.js","_app/immutable/chunks/index.fdb981d4.js","_app/immutable/chunks/parse.5567e4e2.js"],"stylesheets":[],"fonts":[]},"app":{"file":"_app/immutable/entry/app.c6f9fe03.js","imports":["_app/immutable/entry/app.c6f9fe03.js","_app/immutable/chunks/preload-helper.41c905a7.js","_app/immutable/chunks/index.2c758050.js"],"stylesheets":[],"fonts":[]}},
 		nodes: [
 			() => import('../output/server/nodes/0.js'),
 			() => import('../output/server/nodes/1.js'),
