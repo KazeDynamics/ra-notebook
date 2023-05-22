@@ -3,7 +3,7 @@ import { z } from 'zod';
 export const loginUserSchema = z.object({
 	email: z
 		.string({ required_error: 'Email is required' })
-		.email({ message: 'Email must be a valid email.' }),
+		.email({ message: 'Email must be valid' }),
 	password: z.string({ required_error: 'Password is required' })
 });
 
@@ -17,8 +17,8 @@ export const registerUserSchema = z
 			.trim(),
 		email: z
 			.string({ required_error: 'Email is required' })
-			.email({ message: 'Email must be a valid email' }),
-		// .includes('@bsc', { message: 'Email must be a valid email' }),
+			.email({ message: 'Email must be valid' })
+			.includes('@bsc', { message: 'Email must be valid' }),
 		password: z
 			.string({ required_error: 'Password is required' })
 			.regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
@@ -77,9 +77,7 @@ export const updateItemSchema = createItemSchema.omit({
 });
 
 export const updateEmailSchema = z.object({
-	email: z
-		.string({ required_error: 'Email is required' })
-		.email({ message: 'Email must be a valid email' })
+	email: z.string({ required_error: 'Email is required' }).email({ message: 'Email must be valid' })
 });
 
 export const updateUsernameSchema = z.object({
@@ -87,7 +85,7 @@ export const updateUsernameSchema = z.object({
 		.string({ required_error: 'Username is required' })
 		.min(3, { message: 'Username must be at least 3 characters' })
 		.max(24, { message: 'Username must be 24 characters or less' })
-		.regex(/^[a-zA-Z0-9]*$/, { message: 'Username can only contain letters or numbers.' })
+		.regex(/^[a-zA-Z0-9]*$/, { message: 'Username can only contain letters or numbers' })
 });
 
 export const updatePasswordSchema = z
@@ -97,13 +95,13 @@ export const updatePasswordSchema = z
 			.string({ required_error: 'Password is required' })
 			.regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
 				message:
-					'Password must be a minimum of 8 characters & contain at least one letter, one number, and one special character.'
+					'Password must be a minimum of 8 characters & contain at least one letter, one number, and one special character'
 			}),
 		passwordConfirm: z
 			.string({ required_error: 'Confirm Password is required' })
 			.regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
 				message:
-					'Password must be a minimum of 8 characters & contain at least one letter, one number, and one special character.'
+					'Password must be a minimum of 8 characters & contain at least one letter, one number, and one special character'
 			})
 	})
 	.superRefine(({ passwordConfirm, password }, ctx) => {

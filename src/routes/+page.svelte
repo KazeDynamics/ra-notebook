@@ -1,10 +1,10 @@
-<div class="flex-auto" style="margin-top: -4px">
+<div class="flex-auto" style="margin-top: -64px">
 	<div class="wrap-layer">
 		<div class="content w-full">
 			<h2>Regulatory Affairs</h2>
 			<h2>Regulatory Affairs</h2>
 		</div>
-		<div class="text-layer mt-8">
+		<div class="text-layer mt-[170px] sm:mt-8">
 			<div class="flex flex-col items-center h-full w-full">
 				<h2 class="mt-2 text-center text-3xl font-bold tracking-tight text-base-100 top-16">
 					<a href="/login">Login</a> or <a href="/register">Register</a>

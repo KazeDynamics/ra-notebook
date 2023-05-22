@@ -2,6 +2,10 @@ import { serializeNonPOJOs } from '$lib/utils';
 import { error } from '@sveltejs/kit';
 
 export const load = ({ locals, params }) => {
+	if (!locals.pb.authStore.isValid) {
+		throw error(401, 'Unauthorized');
+	}
+
 	const getItem = async (itemsId) => {
 		try {
 			const item = serializeNonPOJOs(await locals.pb.collection('items').getOne(itemsId));

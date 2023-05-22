@@ -11,7 +11,7 @@
 	<input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
 	<div class="drawer-content flex flex-col">
 		<div class="min-h-full">
-			<nav class="navbar border-b bg-primary">
+			<nav class="navbar bg-primary z-50 relative">
 				{#if data.user}
 					<div class="flex-none lg:hidden">
 						<label for="my-drawer-3" class="btn btn-square btn-ghost ">
