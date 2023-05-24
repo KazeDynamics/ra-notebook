@@ -83,7 +83,7 @@
 	</div>
 </div>
 
-<style>
+<style lang="postcss">
 	svg {
 		top: 0;
 		left: 0;
