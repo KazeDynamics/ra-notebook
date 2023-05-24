@@ -2,7 +2,7 @@ import PocketBase from 'pocketbase';
 import { serializeNonPOJOs } from '$lib/utils';
 
 export const handle = async ({ event, resolve }) => {
-	event.locals.pb = new PocketBase('https://198.74.53.179:443');
+	event.locals.pb = new PocketBase('https://kazedynamics.app');
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');
 
 	try {
