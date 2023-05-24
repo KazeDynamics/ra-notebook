@@ -16,13 +16,13 @@ const config = {
 				mytheme: {
 					primary: '#07457E',
 
-					secondary: '#581c87',
+					secondary: '#581C87',
 
 					accent: '#1FB2A5',
 
 					neutral: '#191D24',
 
-					'base-100': '#e5e7eb',
+					'base-100': '#E5E7EB',
 
 					info: '#3ABFF8',
 
