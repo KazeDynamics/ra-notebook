@@ -23,7 +23,7 @@
 <div class="flex w-full h-full space-x-4 flex-col sm:flex-row">
 	<ul class="menu bg-base-100 w-56 p-2 rounded-box">
 		{#each navigation as navItem}
-			<li>
+			<li class="first:mt-0 mt-1 mb-1">
 				<a
 					href={navItem.href}
 					class="font-medium {$page.url.pathname === navItem.href ? 'active' : ''}"

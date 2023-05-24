@@ -1,6 +1,23 @@
 import PocketBase from 'pocketbase';
 import { serializeNonPOJOs } from '$lib/utils';
 
+// export const selectTheme = async ({ event, resolve }) => {
+// 	let theme;
+// 	const newTheme = event.url.searchParams.get('theme');
+// 	const cookieTheme = event.cookies.get('colortheme');
+// 	if (newTheme) {
+// 		theme = newTheme;
+// 	} else if (cookieTheme) {
+// 		theme = cookieTheme;
+// 	}
+
+// 	if (theme) {
+// 		return await resolve(event, {
+// 			transformPageChunk: ({ html }) => html.replace('data-theme=""', `data-theme="${theme}"`)
+// 		});
+// 	}
+// };
+
 export const handle = async ({ event, resolve }) => {
 	event.locals.pb = new PocketBase('https://kazedynamics.app:8090');
 	event.locals.pb.authStore.loadFromCookie(event.request.headers.get('cookie') || '');

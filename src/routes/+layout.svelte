@@ -2,10 +2,57 @@
 	import '../app.postcss';
 	import { getImageURL } from '$lib/utils';
 	import { Toaster } from 'svelte-french-toast';
+	import { enhance } from '$app/forms';
+	import { page } from '$app/stores';
 	export let data;
 	import Icon from '@iconify/svelte';
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
+
+	let loading = false;
+
+	const submitUpdateTheme = ({ action }) => {
+		loading = true;
+		const theme = action.searchParams.get('theme');
+
+		if (theme) {
+			document.documentElement.setAttribute('data-theme', theme);
+		}
+		loading = false;
+	};
+
+	const themes = [
+		'boston',
+		'light',
+		'dark',
+		'cupcake',
+		'bumblebee',
+		'emerald',
+		'corporate',
+		'synthwave',
+		'retro',
+		'cyberpunk',
+		'valentine',
+		'halloween',
+		'garden',
+		'forest',
+		'aqua',
+		'lofi',
+		'pastel',
+		'fantasy',
+		'wireframe',
+		'black',
+		'luxury',
+		'dracula',
+		'cmyk',
+		'autumn',
+		'business',
+		'acid',
+		'lemonade',
+		'night',
+		'coffee',
+		'winter'
+	];
 
 	inject({ mode: dev ? 'development' : 'production' }); //analytics
 </script>
@@ -52,6 +99,28 @@
 							<a href="/register" class="btn btn-secondary">Register</a>
 						</div>
 					{:else}
+						<div class="dropdown">
+							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+							<!-- svelte-ignore a11y-label-has-associated-control -->
+							<label tabindex="0" class="btn btn-ghost btn-circle">🎨</label>
+							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+							<ul
+								tabindex="0"
+								class="flex flex-nowrap menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 max-h-60 right-0 overflow-y-scroll sticky border-4"
+							>
+								{#each themes as theme}
+									<form
+										method="POST"
+										use:enhance={submitUpdateTheme}
+										action="/?/setTheme&theme={theme}&redirectTo={$page.url.pathname}"
+									>
+										<li class="!rounded-none font-bold">
+											<button type="submit" class="capitalize" disabled={loading}>{theme}</button>
+										</li>
+									</form>
+								{/each}
+							</ul>
+						</div>
 						<div class="dropdown dropdown-end">
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 							<!-- svelte-ignore a11y-label-has-associated-control -->
@@ -92,9 +161,7 @@
 			</nav>
 			<div class=" flex flex-row">
 				{#if data.user}
-					<ul
-						class="menu bg-base-100 min-w-[12rem] hidden lg:block border border-solid border-r-gray-300"
-					>
+					<ul class="menu bg-base-100 min-w-[12rem] hidden lg:block first:mt-2">
 						<!-- <li>
 							<span
 								><Icon icon="material-symbols:map" class="inline text-xl" />Map

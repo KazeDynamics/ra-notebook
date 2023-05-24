@@ -1,19 +1,14 @@
-const colors = require('tailwindcss/colors');
-
 const config = {
 	content: ['./src/**/*.{html,js,svelte,ts}'],
 
 	theme: {
-		colors: {
-			...colors
-		},
 		extend: {}
 	},
 
 	daisyui: {
 		themes: [
 			{
-				mytheme: {
+				boston: {
 					primary: '#07457E',
 
 					secondary: '#581C87',
@@ -32,7 +27,36 @@ const config = {
 
 					error: '#F87272'
 				}
-			}
+			},
+			'light',
+			'dark',
+			'cupcake',
+			'bumblebee',
+			'emerald',
+			'corporate',
+			'synthwave',
+			'retro',
+			'cyberpunk',
+			'valentine',
+			'halloween',
+			'garden',
+			'forest',
+			'aqua',
+			'lofi',
+			'pastel',
+			'fantasy',
+			'wireframe',
+			'black',
+			'luxury',
+			'dracula',
+			'cmyk',
+			'autumn',
+			'business',
+			'acid',
+			'lemonade',
+			'night',
+			'coffee',
+			'winter'
 		]
 	},
 

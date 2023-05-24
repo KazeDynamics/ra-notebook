@@ -933,7 +933,7 @@
 				</p>
 			</div>
 			<div
-				class="flex items-center justify-center min-[640px]:justify-end mt-6 sm:mt-0  min-w-[50%] min-[720px]:min-w-[40%] xl:min-w-[30%] "
+				class="flex items-center justify-center min-[640px]:justify-end mt-6 sm:mt-0 min-w-[50%] min-[720px]:min-w-[40%] xl:min-w-[30%]"
 			>
 				{#if showCheckIcon}
 					<Icon
