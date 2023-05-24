@@ -10,7 +10,7 @@ export const generateUsername = (name) => {
 };
 
 export const getImageURL = (collectionId, recordId, fileName, size = '0x0') => {
-	return `http://198.74.53.179:80/api/files/${collectionId}/${recordId}/${fileName}?thumb=${size}`;
+	return `https://kazedynamics.app:8090/api/files/${collectionId}/${recordId}/${fileName}?thumb=${size}`;
 };
 
 export const validateData = async (formData, schema) => {
