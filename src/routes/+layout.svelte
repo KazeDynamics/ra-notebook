@@ -59,13 +59,13 @@
 
 <Toaster />
 <div class="drawer">
-	<input id="my-drawer-3" type="checkbox" class="drawer-toggle" />
+	<input id="my-drawer" type="checkbox" class="drawer-toggle" />
 	<div class="drawer-content flex flex-col">
 		<div class="min-h-full">
 			<nav class="navbar bg-primary z-50 relative">
 				{#if data.user}
 					<div class="flex-none lg:hidden">
-						<label for="my-drawer-3" class="btn btn-square btn-ghost">
+						<label for="my-drawer" class="btn btn-square btn-ghost">
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
@@ -227,7 +227,7 @@
 		</div>
 	</div>
 	<div class="drawer-side">
-		<label for="my-drawer-3" class="drawer-overlay" />
+		<label for="my-drawer" class="drawer-overlay" />
 		<ul class="menu p-4 w-80 bg-base-100">
 			<!-- <li class="py-2 h-12">
 				<span
@@ -238,7 +238,7 @@
 			<li class="py-2">
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer-3').click();
+						document.getElementById('my-drawer').click();
 					}}
 					href="/items/new"
 					><Icon icon="bi:plus-circle" class="text-green-700 inline text-xl" />Add Item</a
@@ -251,7 +251,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer-3').click();
+						document.getElementById('my-drawer').click();
 					}}
 					href="/my/items/guatemala"
 					><Icon
@@ -263,7 +263,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer-3').click();
+						document.getElementById('my-drawer').click();
 					}}
 					href="/my/items/honduras"><Icon icon="noto:palm-tree" class="inline text-xl" />Honduras</a
 				>
@@ -271,7 +271,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer-3').click();
+						document.getElementById('my-drawer').click();
 					}}
 					href="/my/items/elSalvador"
 					><Icon icon="game-icons:mountain-cave" class="inline text-xl text-amber-700" />El Salvador</a
@@ -280,7 +280,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer-3').click();
+						document.getElementById('my-drawer').click();
 					}}
 					href="/my/items/nicaragua"
 					><Icon icon="emojione:volcano" class="inline text-xl" />Nicaragua</a
@@ -289,7 +289,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer-3').click();
+						document.getElementById('my-drawer').click();
 					}}
 					href="/my/items/costaRica"
 					><Icon icon="game-icons:waterfall" class="inline text-xl text-lightBlue-600" />Costa Rica</a
@@ -298,7 +298,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer-3').click();
+						document.getElementById('my-drawer').click();
 					}}
 					href="/my/items/panama"><Icon icon="openmoji:ship" class="inline text-xl" />Panama</a
 				>
