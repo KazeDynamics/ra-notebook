@@ -4,7 +4,7 @@
 </script>
 
 <div class="flex flex-col gap-3">
-	<h1 class="text-xl font-bold">Recent Items</h1>
+	<h1 class="text-3xl font-bold">Recent Items</h1>
 	{#if data.items.length === 0}
 		<div class="w-full mt-4 flex flex-col items-center">
 			<p class="text-center text-3xl">😮</p>
