@@ -1,10 +1,10 @@
-import { redirect } from '@sveltejs/kit';
+// import { redirect } from '@sveltejs/kit';
 
-export const load = ({ locals }) => {
-	if (locals.pb.authStore.isValid) {
-		throw redirect(303, '/home');
-	}
-};
+// export const load = ({ locals }) => {
+// 	if (locals.pb.authStore.isValid) {
+// 		throw redirect(303, '/home');
+// 	}
+// };
 
 // export const actions = {
 // 	setTheme: async ({ url, cookies }) => {
