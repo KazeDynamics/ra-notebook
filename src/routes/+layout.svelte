@@ -55,6 +55,7 @@
 	// ];
 
 	inject({ mode: dev ? 'development' : 'production' }); //analytics
+	let document;
 </script>
 
 <Toaster />
