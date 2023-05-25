@@ -10,9 +10,7 @@
 	export let data;
 	export let form;
 
-	let loading = false;
 	const submitUpdateItem = () => {
-		loading = true;
 		return async ({ result, update }) => {
 			switch (result.type) {
 				case 'success':
@@ -23,7 +21,6 @@
 				default:
 					await update();
 			}
-			loading = false;
 		};
 	};
 </script>
