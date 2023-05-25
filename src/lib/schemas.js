@@ -17,8 +17,8 @@ export const registerUserSchema = z
 			.trim(),
 		email: z
 			.string({ required_error: 'Email is required' })
-			.email({ message: 'Email must be valid' })
-			.includes('@bsc', { message: 'Company email is required' }),
+			.email({ message: 'Email must be valid' }),
+		// .includes('@bsc', { message: 'Company email is required' }),
 		password: z
 			.string({ required_error: 'Password is required' })
 			.regex(/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/, {
