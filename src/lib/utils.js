@@ -5,7 +5,9 @@ export const serializeNonPOJOs = (obj) => {
 export const generateUsername = (name) => {
 	const randomBytes = (length) => {
 		const values = new Uint8Array(length);
-		window.crypto.getRandomValues(values);
+		if (typeof window !== 'undefined') {
+			window.crypto.getRandomValues(values);
+		}
 		return Array.from(values);
 	};
 
