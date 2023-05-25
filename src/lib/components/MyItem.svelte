@@ -902,9 +902,9 @@
 </script>
 
 <div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
-	<input type="checkbox" />
-	<div class="collapse-title text-xl font-medium">
-		<span class="z-[9]">
+	<label class="w-full h-full flex flex-col">
+		<input type="checkbox" class="m-auto" />
+		<div class="collapse-title text-xl font-medium">
 			<div class="w-full h-auto flex items-center md:justify-between flex-col min-[575px]:flex-row">
 				<div class="flex flex-col w-full ml-4 h-full justify-center">
 					<span class="font-semibold sm:text-2xl mb-2 text-md">{item.name}</span>
@@ -962,72 +962,72 @@
 					</Modal>
 				</div>
 			</div>
-		</span>
-	</div>
+		</div>
 
-	<div class="collapse-content">
-		{#if item.country === 'guatemala'}
-			{#if item.process === 'productSubmission'}
-				<Checklist tasks={tasksGuaPS} {item} />
-			{:else if item.process === 'productRenewal'}
-				<Checklist tasks={tasksGuaPR} {item} />
-			{/if}
-		{:else if item.country === 'honduras'}
-			{#if item.process === 'productSubmission'}
-				<Checklist tasks={tasksHonPS} {item} />
-			{:else if item.process === 'productRenewal'}
-				<Checklist tasks={tasksHonPR} {item} />
-			{/if}
-		{:else if item.country === 'elSalvador'}
-			{#if item.process === 'productSubmission'}
-				<Checklist tasks={tasksSalPS} {item} />
-			{:else if item.process === 'productRenewal'}
-				<Checklist tasks={tasksSalPR} {item} />
-			{/if}
-		{:else if item.country === 'nicaragua'}
-			{#if item.process === 'productSubmission'}
-				{#if item.class === 'class1'}
-					<Checklist tasks={tasksNicPSclass1} {item} />
-				{:else if item.class === 'class2'}
-					<Checklist tasks={tasksNicPSclass2} {item} />
-				{:else if item.class === 'class3'}
-					<Checklist tasks={tasksNicPSclass3} {item} />
-				{:else if item.class === 'class4'}
-					<Checklist tasks={tasksNicPSclass4} {item} />
+		<div class="collapse-content">
+			{#if item.country === 'guatemala'}
+				{#if item.process === 'productSubmission'}
+					<Checklist tasks={tasksGuaPS} {item} />
+				{:else if item.process === 'productRenewal'}
+					<Checklist tasks={tasksGuaPR} {item} />
 				{/if}
-			{:else if item.process === 'productRenewal'}
-				<Checklist tasks={tasksNicPR} {item} />
-			{/if}
-		{:else if item.country === 'costaRica'}
-			{#if item.process === 'productSubmission'}
-				{#if item.class === 'class2'}
-					<Checklist tasks={tasksCRPSclass2} {item} />
-				{:else if item.class === 'class3'}
-					<Checklist tasks={tasksCRPSclass3} {item} />
-				{:else if item.class === 'class4'}
-					<Checklist tasks={tasksCRPSclass4} {item} />
+			{:else if item.country === 'honduras'}
+				{#if item.process === 'productSubmission'}
+					<Checklist tasks={tasksHonPS} {item} />
+				{:else if item.process === 'productRenewal'}
+					<Checklist tasks={tasksHonPR} {item} />
 				{/if}
-			{:else if item.process === 'productRenewal'}
-				<Checklist tasks={tasksCRPR} {item} />
-			{/if}
-		{:else if item.country === 'panama'}
-			{#if item.process === 'productSubmission'}
-				{#if item.class === 'class1'}
-					<Checklist tasks={tasksPanPSclass1} {item} />
-				{:else if item.class === 'class2'}
-					<Checklist tasks={tasksPanPSclass2} {item} />
-				{:else if item.class === 'class3'}
-					<Checklist tasks={tasksPanPSclass3} {item} />
-				{:else if item.class === 'class4'}
-					<Checklist tasks={tasksPanPSclass4} {item} />
+			{:else if item.country === 'elSalvador'}
+				{#if item.process === 'productSubmission'}
+					<Checklist tasks={tasksSalPS} {item} />
+				{:else if item.process === 'productRenewal'}
+					<Checklist tasks={tasksSalPR} {item} />
 				{/if}
-			{:else if item.process === 'productRenewal'}
-				{#if item.class === 'class1' || 'class2'}
-					<Checklist tasks={tasksPanPRclass1and2} {item} />
-				{:else if item.class === 'class3' || 'class4'}
-					<Checklist tasks={tasksPanPRclass3and4} {item} />
+			{:else if item.country === 'nicaragua'}
+				{#if item.process === 'productSubmission'}
+					{#if item.class === 'class1'}
+						<Checklist tasks={tasksNicPSclass1} {item} />
+					{:else if item.class === 'class2'}
+						<Checklist tasks={tasksNicPSclass2} {item} />
+					{:else if item.class === 'class3'}
+						<Checklist tasks={tasksNicPSclass3} {item} />
+					{:else if item.class === 'class4'}
+						<Checklist tasks={tasksNicPSclass4} {item} />
+					{/if}
+				{:else if item.process === 'productRenewal'}
+					<Checklist tasks={tasksNicPR} {item} />
+				{/if}
+			{:else if item.country === 'costaRica'}
+				{#if item.process === 'productSubmission'}
+					{#if item.class === 'class2'}
+						<Checklist tasks={tasksCRPSclass2} {item} />
+					{:else if item.class === 'class3'}
+						<Checklist tasks={tasksCRPSclass3} {item} />
+					{:else if item.class === 'class4'}
+						<Checklist tasks={tasksCRPSclass4} {item} />
+					{/if}
+				{:else if item.process === 'productRenewal'}
+					<Checklist tasks={tasksCRPR} {item} />
+				{/if}
+			{:else if item.country === 'panama'}
+				{#if item.process === 'productSubmission'}
+					{#if item.class === 'class1'}
+						<Checklist tasks={tasksPanPSclass1} {item} />
+					{:else if item.class === 'class2'}
+						<Checklist tasks={tasksPanPSclass2} {item} />
+					{:else if item.class === 'class3'}
+						<Checklist tasks={tasksPanPSclass3} {item} />
+					{:else if item.class === 'class4'}
+						<Checklist tasks={tasksPanPSclass4} {item} />
+					{/if}
+				{:else if item.process === 'productRenewal'}
+					{#if item.class === 'class1' || 'class2'}
+						<Checklist tasks={tasksPanPRclass1and2} {item} />
+					{:else if item.class === 'class3' || 'class4'}
+						<Checklist tasks={tasksPanPRclass3and4} {item} />
+					{/if}
 				{/if}
 			{/if}
-		{/if}
-	</div>
+		</div>
+	</label>
 </div>
