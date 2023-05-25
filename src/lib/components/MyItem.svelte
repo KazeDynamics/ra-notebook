@@ -902,8 +902,8 @@
 </script>
 
 <div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
-	<input type="checkbox z-10" />
-	<div class="collapse-title text-xl font-medium">
+	<input type="checkbox" />
+	<div class="collapse-title text-xl font-medium z-10">
 		<div class="w-full h-auto flex items-center md:justify-between flex-col min-[575px]:flex-row">
 			<div class="flex flex-col w-full ml-4 h-full justify-center">
 				<a href="/items/{item.id}" class="font-semibold sm:text-2xl mb-2 text-sm">{item.name}</a>
