@@ -9,7 +9,6 @@
 	export let data;
 	export let form;
 	let loading;
-	let document;
 	$: loading = false;
 	const showPreview = (event) => {
 		const target = event.target;

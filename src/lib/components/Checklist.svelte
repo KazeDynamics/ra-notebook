@@ -7,6 +7,11 @@
 	let modalOpen;
 	const label = 'modal1';
 
+	function reverseDate(dateString) {
+		const [year, month, day] = dateString.split('-');
+		return `${month}-${day}-${year}`;
+	}
+
 	function openModal() {
 		const modalShown = localStorage.getItem(`${item.id}_modalShown`);
 		if (modalShown !== 'true') {
@@ -160,6 +165,9 @@
 			style={`width: ${completedPercentage}%;`}
 		/>
 	</div>
+	<h2 class="float-right text-xs text-gray-400 pr-1">
+		Created on: <h1 class="text-xs font-bold">{reverseDate(item.created.split(' ')[0])}</h1>
+	</h2>
 </div>
 
 <Modal {label} checked={modalOpen}>

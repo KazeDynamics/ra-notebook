@@ -903,10 +903,12 @@
 
 <div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
 	<input type="checkbox" />
-	<div class="collapse-title text-xl font-medium z-10">
+	<div class="collapse-title text-xl font-medium">
 		<div class="w-full h-auto flex items-center md:justify-between flex-col min-[575px]:flex-row">
 			<div class="flex flex-col w-full ml-4 h-full justify-center">
-				<a href="/items/{item.id}" class="font-semibold sm:text-2xl mb-2 text-sm">{item.name}</a>
+				<a href="/items/{item.id}" class="font-semibold sm:text-2xl mb-2 text-md z-10"
+					>{item.name}</a
+				>
 				{#if item.process === 'productSubmission'}
 					<p class="text-base text-col font-medium text-primary">Product Submission</p>
 				{:else if item.process === 'productRenewal'}
@@ -941,9 +943,9 @@
 						icon="material-symbols:check-circle"
 					/>
 				{/if}
-				<a href="/items/{item.id}/edit" class="btn btn-outline z-20">Edit Item</a>
+				<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
 				<Modal label={item.id} checked={modalOpen}>
-					<span slot="trigger" class="btn btn-error ml-2 z-20 relative">Delete</span>
+					<span slot="trigger" class="btn btn-error ml-2 relative z-10">Delete</span>
 					<div slot="heading">
 						<h3 class="text-2xl">Delete {item.name}</h3>
 						<p class="text-base font-normal mt-2">

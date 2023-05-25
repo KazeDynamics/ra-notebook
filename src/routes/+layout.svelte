@@ -55,7 +55,6 @@
 	// ];
 
 	inject({ mode: dev ? 'development' : 'production' }); //analytics
-	let document;
 </script>
 
 <Toaster />
@@ -219,7 +218,7 @@
 					</div>
 				{:else}
 					<div class="flex-auto py-4 px-4 md:px-0">
-						<div class="mx-auto sm:mx-0 max-w-max xl:max-w-full sm:px-8">
+						<div class="mx-auto lg:mx-0 max-w-max xl:max-w-full sm:px-8">
 							<slot />
 						</div>
 					</div>
@@ -239,7 +238,7 @@
 			<li class="py-2">
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer').click();
+						document.getElementById('my-drawer').checked = false;
 					}}
 					href="/items/new"
 					><Icon icon="bi:plus-circle" class="text-green-700 inline text-xl" />Add Item</a
@@ -252,7 +251,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer').click();
+						document.getElementById('my-drawer').checked = false;
 					}}
 					href="/my/items/guatemala"
 					><Icon
@@ -264,7 +263,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer').click();
+						document.getElementById('my-drawer').checked = false;
 					}}
 					href="/my/items/honduras"><Icon icon="noto:palm-tree" class="inline text-xl" />Honduras</a
 				>
@@ -272,7 +271,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer').click();
+						document.getElementById('my-drawer').checked = false;
 					}}
 					href="/my/items/elSalvador"
 					><Icon icon="game-icons:mountain-cave" class="inline text-xl text-amber-700" />El Salvador</a
@@ -281,7 +280,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer').click();
+						document.getElementById('my-drawer').checked = false;
 					}}
 					href="/my/items/nicaragua"
 					><Icon icon="emojione:volcano" class="inline text-xl" />Nicaragua</a
@@ -290,7 +289,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer').click();
+						document.getElementById('my-drawer').checked = false;
 					}}
 					href="/my/items/costaRica"
 					><Icon icon="game-icons:waterfall" class="inline text-xl text-lightBlue-600" />Costa Rica</a
@@ -299,7 +298,7 @@
 			<li>
 				<a
 					on:click={() => {
-						document.getElementById('my-drawer').click();
+						document.getElementById('my-drawer').checked = false;
 					}}
 					href="/my/items/panama"><Icon icon="openmoji:ship" class="inline text-xl" />Panama</a
 				>
