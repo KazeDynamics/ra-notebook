@@ -904,62 +904,65 @@
 <div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
 	<input type="checkbox" />
 	<div class="collapse-title text-xl font-medium">
-		<div class="w-full h-auto flex items-center md:justify-between flex-col min-[575px]:flex-row">
-			<div class="flex flex-col w-full ml-4 h-full justify-center">
-				<a href="/items/{item.id}" class="font-semibold sm:text-2xl mb-2 text-md">{item.name}</a>
-				{#if item.process === 'productSubmission'}
-					<p class="text-base text-col font-medium text-primary">Product Submission</p>
-				{:else if item.process === 'productRenewal'}
-					<p class="text-base text-col font-medium text-primary">Product Renewal</p>
-				{/if}
-				<p class="font-light text-base">
-					Business Unit: <span class="text-base text-col font-medium text-primary"
-						>{item.businessUnit}</span
-					>
-				</p>
-				<p class="font-light text-base">
-					Class: {#if item.class === 'class1'}<span
-							class="text-base text-col font-medium text-red-600">1/A</span
-						>
-					{:else if item.class === 'class2'}
-						<span class="text-base text-col font-medium text-error">2/B</span>
-					{:else if item.class === 'class3'}
-						<span class="text-base text-col font-medium text-error">3/C</span>
-					{:else if item.class === 'class4'}
-						<span class="text-base text-col font-medium text-error">4/D</span>
-					{:else}
-						<span class="text-base text-col font-medium text-error">None</span>
+		<span class="z-[9]">
+			<div class="w-full h-auto flex items-center md:justify-between flex-col min-[575px]:flex-row">
+				<div class="flex flex-col w-full ml-4 h-full justify-center">
+					<span class="font-semibold sm:text-2xl mb-2 text-md">{item.name}</span>
+					{#if item.process === 'productSubmission'}
+						<p class="text-base text-col font-medium text-primary">Product Submission</p>
+					{:else if item.process === 'productRenewal'}
+						<p class="text-base text-col font-medium text-primary">Product Renewal</p>
 					{/if}
-				</p>
+					<p class="font-light text-base">
+						Business Unit: <span class="text-base text-col font-medium text-primary"
+							>{item.businessUnit}</span
+						>
+					</p>
+					<p class="font-light text-base">
+						Class: {#if item.class === 'class1'}<span
+								class="text-base text-col font-medium text-red-600">1/A</span
+							>
+						{:else if item.class === 'class2'}
+							<span class="text-base text-col font-medium text-error">2/B</span>
+						{:else if item.class === 'class3'}
+							<span class="text-base text-col font-medium text-error">3/C</span>
+						{:else if item.class === 'class4'}
+							<span class="text-base text-col font-medium text-error">4/D</span>
+						{:else}
+							<span class="text-base text-col font-medium text-error">None</span>
+						{/if}
+					</p>
+				</div>
+				<div
+					class="flex items-center justify-center min-[640px]:justify-end mt-6 sm:mt-0 min-w-[50%] min-[720px]:min-w-[40%] xl:min-w-[30%]"
+				>
+					{#if showCheckIcon}
+						<Icon
+							class="text-xl text-green-600 scale-150 pr-1 sm:mr-4 sm:pr-0"
+							icon="material-symbols:check-circle"
+						/>
+					{/if}
+					<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
+					<Modal label={item.id} checked={modalOpen}>
+						<span slot="trigger" class="btn btn-error ml-2 relative z-10">Delete</span>
+						<div slot="heading">
+							<h3 class="text-2xl">Delete {item.name}</h3>
+							<p class="text-base font-normal mt-2">
+								Are you sure you want to delete this item? Once deleted, the item cannot be
+								restored.
+							</p>
+						</div>
+						<div slot="actions" class="flex w-full items-center justify-center space-x-2">
+							<label for={item.id} class="btn btn-outline">Cancel</label>
+							<form action="?/deleteItem" method="POST" use:enhance={submitDeleteItem}>
+								<input type="hidden" name="id" value={item.id} />
+								<button type="submit" class="btn btn-error" disabled={loading}>Delete</button>
+							</form>
+						</div>
+					</Modal>
+				</div>
 			</div>
-			<div
-				class="flex items-center justify-center min-[640px]:justify-end mt-6 sm:mt-0 min-w-[50%] min-[720px]:min-w-[40%] xl:min-w-[30%]"
-			>
-				{#if showCheckIcon}
-					<Icon
-						class="text-xl text-green-600 scale-150 pr-1 sm:mr-4 sm:pr-0"
-						icon="material-symbols:check-circle"
-					/>
-				{/if}
-				<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
-				<Modal label={item.id} checked={modalOpen}>
-					<span slot="trigger" class="btn btn-error ml-2 relative z-10">Delete</span>
-					<div slot="heading">
-						<h3 class="text-2xl">Delete {item.name}</h3>
-						<p class="text-base font-normal mt-2">
-							Are you sure you want to delete this item? Once deleted, the item cannot be restored.
-						</p>
-					</div>
-					<div slot="actions" class="flex w-full items-center justify-center space-x-2">
-						<label for={item.id} class="btn btn-outline">Cancel</label>
-						<form action="?/deleteItem" method="POST" use:enhance={submitDeleteItem}>
-							<input type="hidden" name="id" value={item.id} />
-							<button type="submit" class="btn btn-error" disabled={loading}>Delete</button>
-						</form>
-					</div>
-				</Modal>
-			</div>
-		</div>
+		</span>
 	</div>
 
 	<div class="collapse-content">
