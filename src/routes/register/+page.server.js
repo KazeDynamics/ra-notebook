@@ -1,4 +1,4 @@
-import { error, fail, redirect } from '@sveltejs/kit';
+import { error, fail } from '@sveltejs/kit';
 import { registerUserSchema } from '$lib/schemas';
 import { generateUsername, validateData } from '$lib/utils';
 
@@ -18,11 +18,12 @@ export const actions = {
 		try {
 			await locals.pb.collection('users').create({ username, ...formData });
 			await locals.pb.collection('users').requestVerification(formData.email);
+			return {
+				success: true
+			};
 		} catch (err) {
 			console.log('Error: ', err);
 			throw error(500, 'Something went wrong');
 		}
-
-		throw redirect(303, '/login');
 	}
 };
