@@ -941,6 +941,9 @@
 							class="text-xl text-green-600 scale-150 pr-1 sm:mr-4 sm:pr-0"
 							icon="material-symbols:check-circle"
 						/>
+						<!-- {:else}
+						<span>{completedPercentage}</span>
+					{/if} -->
 					{/if}
 					<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
 					<Modal label={item.id} checked={modalOpen}>
