@@ -940,7 +940,8 @@
 				>
 					{#if showCheckIcon}
 						<Icon
-							class="text-xl text-green-600 scale-150 pr-1 sm:mr-4 sm:pr-0"
+							class="text-xl text-green-600 sm:scale-150
+							scale-[3.0] pr-3 sm:mr-4 sm:pr-0"
 							icon="material-symbols:check-circle"
 						/>
 					{:else}
