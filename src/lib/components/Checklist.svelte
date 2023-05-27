@@ -61,7 +61,7 @@
 	export let tasks = [];
 	export let item;
 
-	let completedPercentage = 0;
+	export let completedPercentage = 0;
 
 	function handleCheckboxClick(task) {
 		task.completed = !task.completed;
@@ -101,7 +101,7 @@
 	$: dispatch('update', tasks);
 </script>
 
-<div class="relative pt-1">
+<div class="relative pt-1 min-[820px]:hidden">
 	<div class="flex mb-2 items-center justify-between">
 		<div>
 			<span

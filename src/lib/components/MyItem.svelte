@@ -34,6 +34,8 @@
 
 	$: modalOpen = false;
 
+	let completedPercentage = 0;
+
 	const tasksGuaPS = [
 		{ name: 'PODER DE REPRESENTACIÓN LEGAL  1', completed: false },
 		{ name: 'PODER DE REPRESENTACIÓN REGULATORIA', completed: false },
@@ -902,7 +904,7 @@
 </script>
 
 <div class="collapse w-full collapse-arrow border border-base-300 bg-base-100 rounded-box">
-	<label class="w-full h-full flex flex-col">
+	<label class="w-full h-full flex flex-col min-w-0">
 		<input type="checkbox" class="m-auto" />
 		<div class="collapse-title text-xl font-medium">
 			<div class="w-full h-auto flex items-center md:justify-between flex-col min-[575px]:flex-row">
@@ -941,9 +943,13 @@
 							class="text-xl text-green-600 scale-150 pr-1 sm:mr-4 sm:pr-0"
 							icon="material-symbols:check-circle"
 						/>
-						<!-- {:else}
-						<span>{completedPercentage}</span>
-					{/if} -->
+					{:else}
+						<div
+							class="radial-progress mr-3 text-primary max-[820px]:hidden"
+							style="--value:{completedPercentage}; --thickness:5px;"
+						>
+							{completedPercentage.toFixed(0)}%
+						</div>
 					{/if}
 					<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
 					<Modal label={item.id} checked={modalOpen}>
@@ -970,64 +976,64 @@
 		<div class="collapse-content">
 			{#if item.country === 'guatemala'}
 				{#if item.process === 'productSubmission'}
-					<Checklist tasks={tasksGuaPS} {item} />
+					<Checklist tasks={tasksGuaPS} {item} bind:completedPercentage />
 				{:else if item.process === 'productRenewal'}
-					<Checklist tasks={tasksGuaPR} {item} />
+					<Checklist tasks={tasksGuaPR} {item} bind:completedPercentage />
 				{/if}
 			{:else if item.country === 'honduras'}
 				{#if item.process === 'productSubmission'}
-					<Checklist tasks={tasksHonPS} {item} />
+					<Checklist tasks={tasksHonPS} {item} bind:completedPercentage />
 				{:else if item.process === 'productRenewal'}
-					<Checklist tasks={tasksHonPR} {item} />
+					<Checklist tasks={tasksHonPR} {item} bind:completedPercentage />
 				{/if}
 			{:else if item.country === 'elSalvador'}
 				{#if item.process === 'productSubmission'}
-					<Checklist tasks={tasksSalPS} {item} />
+					<Checklist tasks={tasksSalPS} {item} bind:completedPercentage />
 				{:else if item.process === 'productRenewal'}
-					<Checklist tasks={tasksSalPR} {item} />
+					<Checklist tasks={tasksSalPR} {item} bind:completedPercentage />
 				{/if}
 			{:else if item.country === 'nicaragua'}
 				{#if item.process === 'productSubmission'}
 					{#if item.class === 'class1'}
-						<Checklist tasks={tasksNicPSclass1} {item} />
+						<Checklist tasks={tasksNicPSclass1} {item} bind:completedPercentage />
 					{:else if item.class === 'class2'}
-						<Checklist tasks={tasksNicPSclass2} {item} />
+						<Checklist tasks={tasksNicPSclass2} {item} bind:completedPercentage />
 					{:else if item.class === 'class3'}
-						<Checklist tasks={tasksNicPSclass3} {item} />
+						<Checklist tasks={tasksNicPSclass3} {item} bind:completedPercentage />
 					{:else if item.class === 'class4'}
-						<Checklist tasks={tasksNicPSclass4} {item} />
+						<Checklist tasks={tasksNicPSclass4} {item} bind:completedPercentage />
 					{/if}
 				{:else if item.process === 'productRenewal'}
-					<Checklist tasks={tasksNicPR} {item} />
+					<Checklist tasks={tasksNicPR} {item} bind:completedPercentage />
 				{/if}
 			{:else if item.country === 'costaRica'}
 				{#if item.process === 'productSubmission'}
 					{#if item.class === 'class2'}
-						<Checklist tasks={tasksCRPSclass2} {item} />
+						<Checklist tasks={tasksCRPSclass2} {item} bind:completedPercentage />
 					{:else if item.class === 'class3'}
-						<Checklist tasks={tasksCRPSclass3} {item} />
+						<Checklist tasks={tasksCRPSclass3} {item} bind:completedPercentage />
 					{:else if item.class === 'class4'}
-						<Checklist tasks={tasksCRPSclass4} {item} />
+						<Checklist tasks={tasksCRPSclass4} {item} bind:completedPercentage />
 					{/if}
 				{:else if item.process === 'productRenewal'}
-					<Checklist tasks={tasksCRPR} {item} />
+					<Checklist tasks={tasksCRPR} {item} bind:completedPercentage />
 				{/if}
 			{:else if item.country === 'panama'}
 				{#if item.process === 'productSubmission'}
 					{#if item.class === 'class1'}
-						<Checklist tasks={tasksPanPSclass1} {item} />
+						<Checklist tasks={tasksPanPSclass1} {item} bind:completedPercentage />
 					{:else if item.class === 'class2'}
-						<Checklist tasks={tasksPanPSclass2} {item} />
+						<Checklist tasks={tasksPanPSclass2} {item} bind:completedPercentage />
 					{:else if item.class === 'class3'}
-						<Checklist tasks={tasksPanPSclass3} {item} />
+						<Checklist tasks={tasksPanPSclass3} {item} bind:completedPercentage />
 					{:else if item.class === 'class4'}
-						<Checklist tasks={tasksPanPSclass4} {item} />
+						<Checklist tasks={tasksPanPSclass4} {item} bind:completedPercentage />
 					{/if}
 				{:else if item.process === 'productRenewal'}
 					{#if item.class === 'class1' || 'class2'}
-						<Checklist tasks={tasksPanPRclass1and2} {item} />
+						<Checklist tasks={tasksPanPRclass1and2} {item} bind:completedPercentage />
 					{:else if item.class === 'class3' || 'class4'}
-						<Checklist tasks={tasksPanPRclass3and4} {item} />
+						<Checklist tasks={tasksPanPRclass3and4} {item} bind:completedPercentage />
 					{/if}
 				{/if}
 			{/if}
