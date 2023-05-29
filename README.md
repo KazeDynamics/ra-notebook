@@ -1,3 +1,17 @@
+This project was built using PNPM, SvelteKit & daisyUI. Make sure to install the neccesary dependencies!
+
+Lighthouse tests:
+
+# mobile
+
+![mobile](https://github.com/KazeDynamics/ra-notebook/assets/103229941/5f1365d5-d4ec-4d6b-b855-3805cb0558f6)
+
+# desktop
+
+![desktop](https://github.com/KazeDynamics/ra-notebook/assets/103229941/0f0403f9-700f-4e81-908f-3a8a6226f9f6)
+
+DEFAULT Svelte instructions:
+
 # create-svelte
 
 Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
