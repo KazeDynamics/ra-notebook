@@ -2,57 +2,78 @@
 	import '../app.postcss';
 	import { getImageURL } from '$lib/utils';
 	import { Toaster } from 'svelte-french-toast';
-	// import { enhance } from '$app/forms';
-	// import { page } from '$app/stores';
+	import { enhance } from '$app/forms';
+	import { page } from '$app/stores';
 	export let data;
 	import Icon from '@iconify/svelte';
 	import { dev } from '$app/environment';
 	import { inject } from '@vercel/analytics';
+	import { onMount } from 'svelte';
 
-	// let loading = false;
+	let loading = false;
 
-	// const submitUpdateTheme = ({ action }) => {
-	// 	loading = true;
-	// 	const theme = action.searchParams.get('theme');
+	const submitUpdateTheme = ({ action }) => {
+		loading = true;
+		const theme = action.searchParams.get('theme');
 
-	// 	if (theme) {
-	// 		document.documentElement.setAttribute('data-theme', theme);
-	// 	}
-	// 	loading = false;
-	// };
+		if (theme) {
+			document.documentElement.setAttribute('data-theme', theme);
+			if (typeof window !== 'undefined') {
+				window.localStorage.setItem('theme', theme);
+			}
+		}
+		loading = false;
+	};
 
-	// const themes = [
-	// 	'boston',
-	// 	'light',
-	// 	'dark',
-	// 	'cupcake',
-	// 	'bumblebee',
-	// 	'emerald',
-	// 	'corporate',
-	// 	'synthwave',
-	// 	'retro',
-	// 	'cyberpunk',
-	// 	'valentine',
-	// 	'halloween',
-	// 	'garden',
-	// 	'forest',
-	// 	'aqua',
-	// 	'lofi',
-	// 	'pastel',
-	// 	'fantasy',
-	// 	'wireframe',
-	// 	'black',
-	// 	'luxury',
-	// 	'dracula',
-	// 	'cmyk',
-	// 	'autumn',
-	// 	'business',
-	// 	'acid',
-	// 	'lemonade',
-	// 	'night',
-	// 	'coffee',
-	// 	'winter'
-	// ];
+	onMount(() => {
+		if (typeof window !== 'undefined') {
+			const savedTheme = window.localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', savedTheme);
+			}
+		}
+	});
+
+	$: {
+		if (!data.user && typeof window !== 'undefined') {
+			const savedTheme = window.localStorage.getItem('theme');
+			if (savedTheme) {
+				document.documentElement.setAttribute('data-theme', boston);
+			}
+		}
+	}
+	const themes = [
+		'boston',
+		'light',
+		'dark',
+		'cupcake',
+		'bumblebee',
+		'emerald',
+		'corporate',
+		'synthwave',
+		'retro',
+		'cyberpunk',
+		'valentine',
+		'halloween',
+		'garden',
+		'forest',
+		'aqua',
+		'lofi',
+		'pastel',
+		'fantasy',
+		'wireframe',
+		'black',
+		'luxury',
+		'dracula',
+		'cmyk',
+		'autumn',
+		'business',
+		'acid',
+		'lemonade',
+		'night',
+		'coffee',
+		'winter'
+	];
 
 	inject({ mode: dev ? 'development' : 'production' }); //analytics
 </script>
@@ -99,8 +120,11 @@
 							<a href="/register" class="btn btn-secondary">Register</a>
 						</div>
 					{:else}
-						<!-- <div class="dropdown">
+						<div class="dropdown">
+							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
+							<!-- svelte-ignore a11y-label-has-associated-control -->
 							<label tabindex="0" class="btn btn-ghost btn-circle">🎨</label>
+							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 							<ul
 								tabindex="0"
 								class="flex flex-nowrap menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 max-h-60 right-0 overflow-y-scroll sticky border-4"
@@ -117,7 +141,7 @@
 									</form>
 								{/each}
 							</ul>
-						</div> -->
+						</div>
 						<div class="dropdown dropdown-end">
 							<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 							<!-- svelte-ignore a11y-label-has-associated-control -->
