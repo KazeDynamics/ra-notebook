@@ -1,6 +1,10 @@
 <script>
 	import { ItemCard } from '$lib/components';
 	export let data;
+
+	if (data.items && data.items.length > 0) {
+		data.items.sort((a, b) => new Date(b.created) - new Date(a.created));
+	}
 </script>
 
 <div class="flex flex-col gap-3">

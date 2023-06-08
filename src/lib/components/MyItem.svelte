@@ -921,18 +921,14 @@
 						>
 					</p>
 					<p class="font-light text-base">
-						Class: {#if item.class === 'class1'}<span
-								class="text-base text-col font-medium text-red-600">1/A</span
-							>
-						{:else if item.class === 'class2'}
-							<span class="text-base text-col font-medium text-error">2/B</span>
-						{:else if item.class === 'class3'}
-							<span class="text-base text-col font-medium text-error">3/C</span>
-						{:else if item.class === 'class4'}
-							<span class="text-base text-col font-medium text-error">4/D</span>
-						{:else}
-							<span class="text-base text-col font-medium text-error">None</span>
-						{/if}
+						Class: <span class="text-base text-col font-medium text-error">
+							{#if item.class === 'class1'}1/A
+							{:else if item.class === 'class2'}2/B
+							{:else if item.class === 'class3'}3/C
+							{:else if item.class === 'class4'}4/D
+							{:else}None
+							{/if}
+						</span>
 					</p>
 				</div>
 				<div

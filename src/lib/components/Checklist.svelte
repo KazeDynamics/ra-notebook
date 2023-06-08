@@ -151,6 +151,7 @@
 							class="checkbox checkbox-success"
 							bind:checked={task.completed}
 							on:click={() => handleCheckboxClick(task)}
+							disabled={completedPercentage === 100 || item.status === true}
 						/>
 					</td>
 					<td class="md:table-cell whitespace-normal">{task.name}</td>

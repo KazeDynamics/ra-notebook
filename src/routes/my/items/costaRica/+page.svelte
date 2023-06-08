@@ -2,6 +2,10 @@
 	import { MyItem } from '$lib/components';
 	export let data;
 	import Icon from '@iconify/svelte';
+
+	if (data.items && data.items.length > 0) {
+		data.items.sort((a, b) => new Date(b.created) - new Date(a.created));
+	}
 </script>
 
 <h2 class="text-3xl font-bold">

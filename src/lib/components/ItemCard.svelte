@@ -2,22 +2,27 @@
 	import Icon from '@iconify/svelte';
 
 	export let item;
-	let url = '';
-	if (item.country === 'guatemala') {
-		url = 'my/items/guatemala';
-	} else if (item.country === 'honduras') {
-		url = 'my/items/honduras';
-	} else if (item.country === 'elSalvador') {
-		url = 'my/items/elSalvador';
-	} else if (item.country === 'nicaragua') {
-		url = 'my/items/nicaragua';
-	} else if (item.country === 'costaRica') {
-		url = 'my/items/costaRica';
-	} else if (item.country === 'panama') {
-		url = 'my/items/panama';
-	} else {
-		url = '/home';
-	}
+	const countryUrlMap = {
+		guatemala: 'my/items/guatemala',
+		honduras: 'my/items/honduras',
+		elSalvador: 'my/items/elSalvador',
+		nicaragua: 'my/items/nicaragua',
+		costaRica: 'my/items/costaRica',
+		panama: 'my/items/panama'
+	};
+
+	const country = item.country;
+
+	let url = countryUrlMap[country] ? countryUrlMap[country] : '/home';
+
+	const countryFlagMap = {
+		guatemala: 'twemoji:flag-guatemala',
+		honduras: 'twemoji:flag-honduras',
+		elSalvador: 'twemoji:flag-el-salvador',
+		nicaragua: 'twemoji:flag-nicaragua',
+		costaRica: 'twemoji:flag-costa-rica',
+		panama: 'twemoji:flag-panama'
+	};
 </script>
 
 <div class="card w-72 m-4 bg-base-100 shadow-xl">
@@ -33,18 +38,8 @@
 			</div>
 			<div class="flex flex-col items-center justify-center">
 				<h2 class="text-3xl">
-					{#if item.country === 'guatemala'}
-						<Icon icon="twemoji:flag-guatemala" class="text-xxl ml-4 mb-2 inline" />
-					{:else if item.country === 'honduras'}
-						<Icon icon="twemoji:flag-honduras" class="text-xxl ml-4 mb-2 inline" />
-					{:else if item.country === 'elSalvador'}
-						<Icon icon="twemoji:flag-el-salvador" class="text-xxl ml-4 mb-2 inline" />
-					{:else if item.country === 'nicaragua'}
-						<Icon icon="twemoji:flag-nicaragua" class="text-xxl ml-4 mb-2 inline" />
-					{:else if item.country === 'costaRica'}
-						<Icon icon="twemoji:flag-costa-rica" class="text-xxl ml-4 mb-2 inline" />
-					{:else if item.country === 'panama'}
-						<Icon icon="twemoji:flag-panama" class="text-xxl ml-4 mb-2 inline" />
+					{#if countryFlagMap[item.country]}
+						<Icon icon={countryFlagMap[item.country]} class="text-xxl ml-4 mb-2 inline" />
 					{/if}
 				</h2>
 				<h2>
