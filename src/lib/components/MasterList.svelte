@@ -87,7 +87,7 @@
 							</button>
 						</div>
 						{#if isOpen}
-						<div class="dropdown-content origin-top-right absolute right-0 mt-2 w-56 rounded-md shadow-lg">
+						<div class="dropdown-content origin-top-right absolute right-0 mt-2 !w-44 rounded-md shadow-lg">
 							<div class="py-1 text-lg bg-base-100" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 								{#each Object.keys(countryFlagMap) as country}
 								<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -151,6 +151,7 @@
 		<thead>
 			<tr>
 				<th class="whitespace-nowrap font-extrabold text-base">Specific Declarations</th>
+				<th class="relative text-base font-extrabold">Countries</th>
 			</tr>
 		</thead>
 		<tbody>
