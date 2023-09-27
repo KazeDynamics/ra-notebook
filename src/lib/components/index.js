@@ -7,6 +7,7 @@ import DropdownCountry from './DropdownCountry.svelte';
 import DropdownProcess from './DropdownProcess.svelte';
 import DropdownClass from './DropdownClass.svelte';
 import Checklist from './Checklist.svelte';
+import MasterList from './MasterList.svelte';
 
 export {
 	Input,
@@ -17,5 +18,6 @@ export {
 	DropdownCountry,
 	DropdownProcess,
 	DropdownClass,
-	Checklist
+	Checklist,
+	MasterList
 };

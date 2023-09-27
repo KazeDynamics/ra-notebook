@@ -159,7 +159,7 @@
 						{#if task.completed}
 							<span class="badge badge-success gap-2">Completed</span>
 						{:else}
-							<span class="badge badge-info gap-2">In Progress</span>
+							<span class="badge-fix badge badge-info gap-2">In Progress</span>
 						{/if}
 					</td>
 				</tr>
@@ -195,3 +195,20 @@
 		</form>
 	</div>
 </Modal>
+
+<style lang="postcss">
+	@media (min-width: 1024px) and (max-width: 1068px) {
+		.badge-fix {
+			width: 122%;
+			gap: 0;
+		}		
+	}
+	@media (max-width: 875px) {
+		.badge-fix {
+			width: 122%;
+			gap: 0;
+			font-size: 0.75rem;
+			line-height: 1rem;
+		}		
+	}
+</style>

@@ -82,7 +82,7 @@
 <div class="drawer">
 	<input id="my-drawer" type="checkbox" class="drawer-toggle" />
 	<div class="drawer-content flex flex-col">
-		<div class="min-h-full">
+		<div>
 			<nav class="navbar bg-primary z-50 relative">
 				{#if data.user}
 					<div class="flex-none lg:hidden">
@@ -180,9 +180,9 @@
 					{/if}
 				</div>
 			</nav>
-			<div class=" flex flex-row">
+			<div class="flex flex-row">
 				{#if data.user}
-					<ul class="menu bg-base-100 min-w-[12rem] hidden lg:block first:mt-2">
+					<ul class="menu bg-base-100 min-w-[12rem] hidden lg:flex first:mt-2">
 						<!-- <li>
 							<span
 								><Icon icon="material-symbols:map" class="inline text-xl" />Map
@@ -232,6 +232,14 @@
 								><Icon icon="openmoji:ship" class="inline text-xl" />Panama</a
 							>
 						</li>
+						<li class="menu-title pt-11">
+							<span>Resources</span>
+						</li>
+						<li>
+							<a href="/my/items/master"
+								><Icon icon="gg:list" class="inline text-xl" />Master List</a
+							>
+						</li>
 					</ul>
 				{/if}
 				{#if !data.user}
@@ -252,7 +260,7 @@
 	</div>
 	<div class="drawer-side">
 		<label for="my-drawer" class="drawer-overlay" />
-		<ul class="menu p-4 w-80 bg-base-100">
+		<ul class="menu p-4 bg-base-100 w-full sm:w-80 h-full">
 			<!-- <li class="py-2 h-12">
 				<span
 					><Icon icon="material-symbols:map" class="inline text-xl" />Map
@@ -325,6 +333,14 @@
 						document.getElementById('my-drawer').checked = false;
 					}}
 					href="/my/items/panama"><Icon icon="openmoji:ship" class="inline text-xl" />Panama</a
+				>
+			</li>
+			<li class="mt-auto">
+				<a
+					on:click={() => {
+						document.getElementById('my-drawer').checked = false;
+					}}
+					href="/my/items/master"><Icon icon="gg:list" class="inline text-xl" />Master List</a
 				>
 			</li>
 		</ul>

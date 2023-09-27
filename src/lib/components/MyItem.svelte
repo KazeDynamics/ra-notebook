@@ -948,9 +948,9 @@
 							{completedPercentage.toFixed(0)}%
 						</div>
 					{/if}
-					<a href="/items/{item.id}/edit" class="btn btn-outline z-10">Edit Item</a>
+					<a href="/items/{item.id}/edit" class="btn btn-outline">Edit Item</a>
 					<Modal label={item.id} checked={modalOpen}>
-						<span slot="trigger" class="btn btn-error ml-2 relative z-10">Delete</span>
+						<span slot="trigger" class="btn btn-error ml-2 relative">Delete</span>
 						<div slot="heading">
 							<h3 class="text-2xl">Delete {item.name}</h3>
 							<p class="text-base font-normal mt-2">
@@ -1049,5 +1049,17 @@
 		clip: rect(0, 0, 0, 0);
 		white-space: nowrap;
 		border: 0;
+	}
+	.collapse-content {
+    	grid-row-start: 2;
+    	overflow: hidden;
+    	max-height: 0px;
+    	padding-left: 1rem;
+    	padding-right: 1rem;
+    	cursor: unset;
+    	transition: padding .2s ease-in-out,background-color .2s ease-in-out
+	}
+	.collapse:not(.collapse-close) input[type=checkbox]:checked~.collapse-content {
+	    max-height: none;
 	}
 </style>

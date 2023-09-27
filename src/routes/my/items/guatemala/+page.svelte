@@ -3,8 +3,10 @@
 	export let data;
 	import Icon from '@iconify/svelte';
 
-	if (data.items && data.items.length > 0) {
-		data.items.sort((a, b) => new Date(b.created) - new Date(a.created));
+	$: {
+		if (data.items && data.items.length > 0) {
+			data.items.sort((a, b) => new Date(b.created) - new Date(a.created));
+		}
 	}
 </script>
 
