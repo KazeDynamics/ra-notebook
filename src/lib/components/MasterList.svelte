@@ -194,6 +194,7 @@
    	 	transition-duration: 200ms;
     	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     	border-radius: var(--rounded-btn, 0.5rem);
+		z-index: 11;
 	}
 	.dropdown-item:hover {
 		background-color: #f0f0f0;
