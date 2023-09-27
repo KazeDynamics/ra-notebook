@@ -87,7 +87,7 @@
 							</button>
 						</div>
 						{#if isOpen}
-						<div class="dropdown-content origin-top-right absolute right-0 mt-2 !w-44 rounded-md shadow-lg">
+						<div class="dropdown-content origin-top-right absolute right-0 mt-3 p-2 shadow bg-base-100 rounded-box !w-52">
 							<div class="py-1 text-lg bg-base-100 font-bold" role="menu" aria-orientation="vertical" aria-labelledby="options-menu">
 								{#each Object.keys(countryFlagMap) as country}
 								<!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -182,8 +182,18 @@
 		z-index: 1;
 	}
 	.dropdown-item {
-		padding: 8px 16px;
 		cursor: pointer;
+    	font-size: 0.875rem;
+   		line-height: 1.25rem;
+		font-weight: 700;
+		padding-left: 1rem;
+    	padding-right: 1rem;
+    	padding-top: 0.5rem;
+    	padding-bottom: 0.5rem;
+    	text-align: left;
+   	 	transition-duration: 200ms;
+    	transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    	border-radius: var(--rounded-btn, 0.5rem);
 	}
 	.dropdown-item:hover {
 		background-color: #f0f0f0;
