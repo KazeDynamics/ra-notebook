@@ -25,7 +25,6 @@ export const actions = {
 			console.log('Error: ', err);
 			throw error(err.status, err.message);
 		}
-
-		throw redirect(303, '/home');
+		throw redirect(303, '/');
 	}
 };
